@@ -3,10 +3,10 @@ Contributors: westerndeal, abdullah17, gsheetconnector
 Donate link: https://www.paypal.me/WesternDeal
 Author URL: https://profiles.wordpress.org/westerndeal/
 Tags: forminator, forminator google sheet, forminator forms google sheet, google sheet forminator, wordpress google sheet
-Tested up to: 6.7
+Tested up to: 6.8
 Requires at least: 5.6
 Requires PHP: 7.4
-Stable tag: 1.0.14
+Stable tag: 1.0.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,14 @@ Enjoy!
 [FREE VERSIONS CAN BE DOWNLOADED FROM HERE](https://profiles.wordpress.org/westerndeal/#content-plugins)
 
 == Changelog ==	
+
+= 1.0.15 (12-08-2025) =
+Fixed: Warnings and errors reported by Plugin Check.
+Fixed: Missing function comments for better code readability.
+Fixed: Duplicate feed name check to ensure unique entries with error feedback.
+Added: Old extension page replaced with new design.
+Added: General Settings tab in plugin settings.
+Changed: Moved logs to the uploads folder for better file organization.
 
 = 1.0.14 (22-04-2025) =
 Added: Moved saving of credentials to database for Auto API Integration.

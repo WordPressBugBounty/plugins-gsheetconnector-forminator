@@ -1,27 +1,43 @@
 <?php
+
 /*
- * Utilities class for edd google sheet connector pro
- * @since 1.0
+ * Utilities class for gsheetconnector forminator
+ * @since 1.0.15
  */
+
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
     exit;
 }
+
 /**
  * GS_FORMNTR_Free_Utility class - singleton class
- * @since 1.0
+ * @since 1.0.15
  */
+
 class GS_FORMNTR_Free_Utility
 {
+
+    /**
+     *  Set things up.
+     *  @since 1.0.15
+     */
+
     private function __construct()
     {
         // Do Nothing
     }
+
     /**
-     * Get the singleton instance of the GS_FORMNTR_Free_Utility class
+     * Get the singleton instance of GS_FORMNTR_Free_Utility.
      *
-     * @return singleton instance of GS_FORMNTR_Free_Utility
+     * Ensures only one instance of the utility class exists.
+     *
+     * @since 1.0.15
+     *
+     * @return GS_FORMNTR_Free_Utility The singleton instance.
      */
+
     public static function instance()
     {
         static $instance = NULL;
@@ -30,29 +46,36 @@ class GS_FORMNTR_Free_Utility
         }
         return $instance;
     }
+
     /**
-     * Prints message (string or array) in the debug.log file
+     * Logs a debug message if WP_DEBUG is enabled.
      *
-     * @param mixed $message
+     * Handles both string messages and exceptions by logging their messages.
+     *
+     * @since 1.0.15
+     *
      */
+
     public function logger($message)
     {
         if (WP_DEBUG === true) {
             if (is_array($message) || is_object($message)) {
-                error_log(print_r($message, true));
+                GS_FORMNTR_Free_Utility::frmgs_debug_log($message->getMessage());
             } else {
-                error_log($message);
+                GS_FORMNTR_Free_Utility::frmgs_debug_log($message->getMessage());
             }
         }
     }
+
     /**
      * Display error or success message in the admin section
      *
      * @param array $data containing type and message
      * @return string with html containing the error message
      * 
-     * @since 1.0 initial version
+     * @since 1.0.15
      */
+
     public function admin_notice($data = array())
     {
         // extract message and type from the $data array
@@ -75,19 +98,21 @@ class GS_FORMNTR_Free_Utility
                 $admin_notice = '<div id="message" class="error notice formntr-gs-auth-expired-adds is-dismissible">';
                 break;
             default:
-                $message = __('There\'s something wrong with your code...', 'gsheetconnector-forminator');
+                $message = 'There\'s something wrong with your code...';
                 $admin_notice = "<div id=\"message\" class=\"error\">\n";
                 break;
         }
-        $admin_notice .= "    <p>" . __($message, 'gsheetconnector-forminator') . "</p>\n";
+        $admin_notice .= "    <p>" . ($message === 'There\'s something wrong with your code...' ? __('There\'s something wrong with your code...', 'gsheetconnector-forminator') : $message) . "</p>\n";
         $admin_notice .= "</div>\n";
         return $admin_notice;
     }
+
     /**
      * Utility function to get the current user's role
      *
-     * @since 1.0
+     * @since 1.0.15
      */
+
     public function get_current_user_role()
     {
         global $wp_roles;
@@ -100,8 +125,9 @@ class GS_FORMNTR_Free_Utility
     /**
      * Fetch and save Auto Integration API credentials
      *
-     * @since 1.0.14
+     * @since 1.0.15
      */
+
     public function save_api_credentials()
     {
         // Create a nonce
@@ -147,72 +173,60 @@ class GS_FORMNTR_Free_Utility
     /**
      * Utility function to get the current user's role
      *
-     * @since 1.0
+     * @since 1.0.15
      */
+
     public static function frmgs_debug_log($error)
     {
-        try {
-            if (!is_dir(GS_FORMNTR_PATH . 'logs')) {
-                mkdir(GS_FORMNTR_PATH . 'logs', 0755, true);
-            }
-        } catch (Exception $e) {
-
+        if (!function_exists('WP_Filesystem')) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
         }
+        global $wp_filesystem;
+        if (!WP_Filesystem()) {
+            return;
+        }
+        $upload_dir = wp_upload_dir();
+        $log_dir = trailingslashit($upload_dir['basedir']) . 'gsc-forminator-logs/';
+        $log_file = get_option('frmgs_debug_log');
+        $timestamp = gmdate('Y-m-d H:i:s') . "\t PHP " . phpversion() . "\t";
         try {
-            // check if debug log file exists or not
-            $logFilePathToDelete = GS_FORMNTR_PATH . "logs/log.txt";
-            // Check if the log file exists before attempting to delete
-            if (file_exists($logFilePathToDelete)) {
-                unlink($logFilePathToDelete);
+            if (!$wp_filesystem->is_dir($log_dir)) {
+                $wp_filesystem->mkdir($log_dir, FS_CHMOD_DIR);
             }
-            // check if debug unique log file exists or not
-            $existDebugFile = get_option('frmgs_debug_log');
-            if (!empty($existDebugFile) && file_exists($existDebugFile)) {
-                $log = fopen($existDebugFile, 'a');
-                if (is_array($error)) {
-                    fwrite($log, print_r(date_i18n('j F Y H:i:s', current_time('timestamp')) . " \t PHP " . phpversion(), TRUE));
-                    fwrite($log, print_r($error, TRUE));
-                } else {
-                    $result = fwrite($log, print_r(date_i18n('j F Y H:i:s', current_time('timestamp')) . " \t PHP " . phpversion() . " \t $error \r\n", TRUE));
-                }
-                fclose($log);
+            // Protect directory with .htaccess
+            $wp_filesystem->put_contents($log_dir . '.htaccess', "Deny from all\n", FS_CHMOD_FILE);
+            $old_file = $log_dir . 'log.txt';
+            if ($wp_filesystem->exists($old_file)) {
+                $wp_filesystem->delete($old_file);
+            }
+            $log_message = is_array($error) || is_object($error)
+                ? $timestamp . wp_json_encode($error) . "\r\n"
+                : $timestamp . $error . "\r\n";
+            if (!empty($log_file) && $wp_filesystem->exists($log_file)) {
+                $existing = $wp_filesystem->get_contents($log_file);
+                $wp_filesystem->put_contents($log_file, $existing . $log_message, FS_CHMOD_FILE);
             } else {
-                // if unique log file not exists then create new file code
-                // Your log content (you can customize this)
-                $unique_log_content = "Log created at " . date('Y-m-d H:i:s');
-                // Create the log file
-                $logfileName = 'log-' . uniqid() . '.txt';
-                // Define the file path
-                $logUniqueFile = GS_FORMNTR_PATH . "logs/" . $logfileName;
-                if (file_put_contents($logUniqueFile, $unique_log_content)) {
-                    // save debug unique file in table
-                    update_option('frmgs_debug_log', $logUniqueFile);
-                    // Success message
-                    // echo "Log file created successfully: " . $logUniqueFile;
-                    $log = fopen($logUniqueFile, 'a');
-                    if (is_array($error)) {
-                        fwrite($log, print_r(date_i18n('j F Y H:i:s', current_time('timestamp')) . " \t PHP " . phpversion(), TRUE));
-                        fwrite($log, print_r($error, TRUE));
-                    } else {
-                        $result = fwrite($log, print_r(date_i18n('j F Y H:i:s', current_time('timestamp')) . " \t PHP " . phpversion() . " \t $error \r\n", TRUE));
-                    }
-                    fclose($log);
-
-                } else {
-                    // Error message
-                    echo "Error - Not able to create Log File.";
+                $new_log_file = $log_dir . 'log-' . uniqid() . '.txt';
+                $log_content = "Log created at " . gmdate('Y-m-d H:i:s') . "\r\n" . $log_message;
+                if ($wp_filesystem->put_contents($new_log_file, $log_content, FS_CHMOD_FILE)) {
+                    update_option('frmgs_debug_log', $new_log_file);
                 }
             }
-
         } catch (Exception $e) {
-
+            GS_FORMNTR_Free_Utility::frmgs_debug_log('Exception in frmgs_debug_log: ' . $e->getMessage());
+            return;
         }
     }
+
     /**
+     * Render a multi-checkbox for user roles
+     *
+     * @since 1.0.15
      * 
      * @param string $setting_name
      * @param array $selected_roles
      */
+
     public function gs_FORMNTR_checkbox_roles_multi($setting_name, $selected_roles)
     {
         $selected_row = '';
@@ -238,16 +252,20 @@ class GS_FORMNTR_Free_Utility
             }
             $selected_row .= "<label style='display: block;'> <input type='checkbox' class='gs-checkbox'
 			  name='" . $setting_name . "' value='" . esc_attr($role) . "'" . $checked . "/>";
-            $selected_row .= __($display_name, 'gsheetconnector-forminator');
+            $selected_row .= esc_html($display_name);
             $selected_row .= "</label>";
         }
         echo esc_html($selected_row);
     }
-    /*
-     * Get all editable roles except for subscriber role
-     * @return array
-     * @since 1.1
+
+    /** 
+     * Get all editable roles except the subscriber role.
+     *
+     * @since 1.0.15
+     *
+     * @return array List of editable roles.
      */
+
     public function get_system_roles()
     {
         $participating_roles = array();
@@ -257,5 +275,4 @@ class GS_FORMNTR_Free_Utility
         }
         return $participating_roles;
     }
-
 }

@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     $forms_list = $gs_forminator_connector_service->get_forms_connected_to_sheet();
 
     if (!empty($forms_list)) {
-        ?>
+    ?>
         <h3><?php esc_html_e("Forminator Forms connected with Google Sheets.", 'gsheetconnector-forminator'); ?></h3>
         <div class="main-content">
             <div class="gs_formntr_dash_widget">
@@ -29,13 +29,13 @@ if (!defined('ABSPATH')) {
                                 $selected_sheet_id = esc_attr($feed_data['sheet_id']);
                                 $selected_sheet_name = esc_html($feed_data['sheet_name']);
                                 $selected_tab_id = esc_attr($feed_data['tab_id']);
-                                ?>
+                        ?>
                                 <li>
                                     <a href="<?php echo esc_url('https://docs.google.com/spreadsheets/d/' . $selected_sheet_id . '/edit#gid=' . $selected_tab_id); ?>" target="_blank">
                                         <?php echo esc_html($selected_sheet_name); ?>
                                     </a>
                                 </li>
-                                <?php
+                        <?php
                             }
                         }
                         ?>

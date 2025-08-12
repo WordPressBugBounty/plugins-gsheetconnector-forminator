@@ -1,74 +1,92 @@
 <?php
+
 /*
  * Process class for edd google sheet connector pro
- * @since 1.0
+ * @since 1.0.15
  */
+
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
     exit;
 }
+
 /**
  * GS_FORMNTR_Service class
- * @since 1.0
+ * @since 1.0.15
  */
-class GS_Formntr_Processes {
-    public function __construct() {
+
+class GS_Formntr_Processes
+{
+
+    /**
+     *  Set things up.
+     *  @since 1.0.15
+     */
+
+    public function __construct()
+    {
+        //verify google sheet integration
         add_action('wp_ajax_verify_gs_formntr_integation', array($this, 'verify_gs_formntr_integation'));
+
         //deactivate google sheet integration
         add_action('wp_ajax_deactivate_gs_formntr_integation', array($this, 'deactivate_gs_formntr_integation'));
+
         // clear debug log data
         add_action('wp_ajax_gs_formntr_clear_logs', array($this, 'gs_formntr_clear_logs'));
+
         // clear debug logs method using ajax for system status tab
         add_action('wp_ajax_frm_clear_debug_logs', array($this, 'frm_clear_debug_logs'));
+
         // get sheet name and tab name
         add_action('wp_ajax_sync_formntr_google_account', array($this, 'sync_formntr_google_account'));
+
         // get sheet names
         add_action('wp_ajax_get_tab_list', array($this, 'get_formntr_tab_list_by_sheetname'));
-    
-     }
+    }
 
-    
-
-
-   
     /**
      * AJAX function - verifies the token
      *
-     * @since 1.0
+     * @since 1.0.15
      */
-    public function verify_gs_formntr_integation($Code="") {
-       try{
-              // nonce checksave_gs_settings
-              check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
-              /* sanitize incoming data */
-              $Code = sanitize_text_field($_POST["gs_formntr_code"]);
 
-              if (!empty($Code)) {
-                 update_option('gs_formntr_access_code', $Code);
-              } else {
-                 return;
-              }
-              if (get_option('gs_formntr_access_code') != '') {
-                 include_once( GS_FORMNTR_ROOT . '/lib/google-sheets.php');
-                 FORMI_GSC_googlesheet::preauth(get_option('gs_formntr_access_code'));
-                 //update_option('ffforms_gs_verify', 'valid');
-                 wp_send_json_success();
-              } else {
-                 update_option('gs_formntr_verify', 'invalid');
-                 wp_send_json_error();
-              } 
-       } catch (Exception $e) {
-         GS_FORMNTR_Free_Utility::frmgs_debug_log("Something Wrong : - " . $e->getMessage());
-         wp_send_json_error();
-      } 
-   }
+    public function verify_gs_formntr_integation($Code = "")
+    {
+        try {
+            // nonce checksave_gs_settings
+            check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
+            /* sanitize incoming data */
+            if (isset($_POST['gs_formntr_code'])) {
+                $Code = sanitize_text_field(wp_unslash($_POST['gs_formntr_code']));
+            }
 
-   
+            if (!empty($Code)) {
+                update_option('gs_formntr_access_code', $Code);
+            } else {
+                return;
+            }
+            if (get_option('gs_formntr_access_code') != '') {
+                include_once(GS_FORMNTR_ROOT . '/lib/google-sheets.php');
+                FORMI_GSC_googlesheet::preauth(get_option('gs_formntr_access_code'));
+                //update_option('ffforms_gs_verify', 'valid');
+                wp_send_json_success();
+            } else {
+                update_option('gs_formntr_verify', 'invalid');
+                wp_send_json_error();
+            }
+        } catch (Exception $e) {
+            GS_FORMNTR_Free_Utility::frmgs_debug_log("Something Wrong : - " . $e->getMessage());
+            wp_send_json_error();
+        }
+    }
+
     /**
      * AJAX function - deactivate activation
-     * @since 1.2
+     * @since 1.0.15
      */
-    public function deactivate_gs_formntr_integation() {
+
+    public function deactivate_gs_formntr_integation()
+    {
         // nonce check
         check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
         if (get_option('gs_formntr_token') !== '') {
@@ -84,56 +102,81 @@ class GS_Formntr_Processes {
         }
         //}
     }
-   
+
     /**
      * AJAX function - clear log file
-     * @since 1.0
+     * @since 1.0.15
      */
-    public function gs_formntr_clear_logs() {
+
+    public function gs_formntr_clear_logs()
+    {
         // nonce check
-      check_ajax_referer( 'frmntr-gs-ajax-nonce', 'security' );
-      $existDebugFile = get_option('frmgs_debug_log');
-      $clear_file_msg ='';
-      // check if debug unique log file exist or not then exists to clear file
-      if (!empty($existDebugFile) && file_exists($existDebugFile)) {
-       
-         $handle = fopen ( $existDebugFile, 'w');
-        
-        fclose( $handle );
-        $clear_file_msg ='Logs are cleared.';
-       }
-       else{
-        $clear_file_msg = 'No log file exists to clear logs.';
-       }
-     
-      
-      wp_send_json_success($clear_file_msg);
+        check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
+        $existDebugFile = get_option('frmgs_debug_log');
+        $clear_file_msg = '';
+        // check if debug unique log file exist or not then exists to clear file
+        if (!empty($existDebugFile) && file_exists($existDebugFile)) {
+
+            global $wp_filesystem;
+            if (empty($wp_filesystem)) {
+                require_once ABSPATH . 'wp-admin/includes/file.php';
+                WP_Filesystem();
+            }
+            // $wp_filesystem->put_contents($existDebugFile, '', FS_CHMOD_FILE);
+            if ($wp_filesystem->exists($existDebugFile)) {
+                $wp_filesystem->delete($existDebugFile);
+            }
+            delete_option('frmgs_debug_log');
+
+
+            $clear_file_msg = 'Logs are cleared.';
+        } else {
+            $clear_file_msg = 'No log file exists to clear logs.';
+        }
+
+
+        wp_send_json_success($clear_file_msg);
     }
 
     /**
-    * AJAX function - clear log file for system status tab
-    * @since 2.1
-    */
-    public function frm_clear_debug_logs() {
+     * AJAX function - clear log file for system status tab
+     * @since 1.0.15
+     */
+
+    public function frm_clear_debug_logs()
+    {
         // nonce check
         check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
-        $handle = fopen(WP_CONTENT_DIR . '/debug.log', 'w');
-        fclose($handle);
+        global $wp_filesystem;
+
+        if (empty($wp_filesystem)) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+            WP_Filesystem();
+        }
+
+        $wp_filesystem->put_contents(WP_CONTENT_DIR . '/debug.log', '', FS_CHMOD_FILE);
+
         wp_send_json_success();
     }
+
     /**
      * Function - sync with google account to fetch sheet and tab name
-     * @since 1.0
+     * @since 1.0.15
      */
-    public function sync_formntr_google_account() {
+
+    public function sync_formntr_google_account()
+    {
         $return_ajax = false;
         if (isset($_POST['isajax']) && $_POST['isajax'] == 'yes') {
             // nonce check
             check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
-            $init = sanitize_text_field($_POST['isinit']);
+            // $init = sanitize_text_field($_POST['isinit']);
+            if (isset($_POST['isinit'])) {
+                $init = sanitize_text_field(wp_unslash($_POST['isinit']));
+            }
             $return_ajax = true;
         }
-        include_once( GS_FORMNTR_ROOT . '/lib/google-sheets.php');
+        include_once(GS_FORMNTR_ROOT . '/lib/google-sheets.php');
         $doc = new GSC_Formntr_Googlesheet();
         $doc->auth();
         // Get all spreadsheets
@@ -154,14 +197,20 @@ class GS_Formntr_Processes {
             }
         }
     }
+
     /**
      * AJAX function - Fetch tab list by sheet name
-     * @since 1.0
+     * @since 1.0.15
      */
-    public function get_formntr_tab_list_by_sheetname() {
+
+    public function get_formntr_tab_list_by_sheetname()
+    {
         // nonce check
         check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
-        $sheetname = sanitize_text_field($_POST['sheetname']);
+        // $sheetname = sanitize_text_field($_POST['sheetname']); 
+        if (isset($_POST['sheetname'])) {
+            $sheetname = sanitize_text_field(wp_unslash($_POST['sheetname']));
+        }
         $sheet_data = get_option('gs_formntr_feeds');
         $html = "";
         $tablist = "";
@@ -169,14 +218,13 @@ class GS_Formntr_Processes {
             $tablist = $sheet_data[$sheetname];
         }
         if (!empty($tablist)) {
-            $html = '<option value="">' . __("Select", "gs-edd") . '</option>';
+           $html = '<option value="">' . esc_html__( 'Select', 'gsheetconnector-forminator' ) . '</option>';
+
             foreach ($tablist as $tab) {
                 $html .= '<option value="' . $tab . '">' . $tab . '</option>';
             }
         }
         wp_send_json_success(htmlentities($html));
     }
-   
-   
 }
 $gs_processes = new GS_Formntr_Processes();

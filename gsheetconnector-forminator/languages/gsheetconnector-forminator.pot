@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-04-22 18:21+0530\n"
+"POT-Creation-Date: 2025-08-12 20:18+0530\n"
 "PO-Revision-Date: 2024-07-23 13:14+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,12 +22,14 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: gsheetconnector-forminator.php:70
+#. translators: %1$s is the user's first name.
+#: gsheetconnector-forminator.php:79
 #, php-format
 msgid "Hey %1$s"
 msgstr ""
 
-#: gsheetconnector-forminator.php:71
+#. translators: %2$s is the plugin title, %5$s is the Freemius link.
+#: gsheetconnector-forminator.php:81
 #, php-format
 msgid ""
 "Please help us improve %2$s! If you opt-in, some data about your usage of "
@@ -35,82 +37,81 @@ msgid ""
 "work just fine."
 msgstr ""
 
-#: gsheetconnector-forminator.php:256
+#: gsheetconnector-forminator.php:281
 msgid ""
 "Forminator Google Sheet Connector Add-on requires Forminator plugin to be "
 "installed and activated."
 msgstr ""
 
-#: gsheetconnector-forminator.php:273
+#: gsheetconnector-forminator.php:296
 msgid "Google Sheet"
 msgstr ""
 
-#: gsheetconnector-forminator.php:515
+#: gsheetconnector-forminator.php:625
 msgid "Settings"
 msgstr ""
 
-#: gsheetconnector-forminator.php:524
-msgid "<img style='width:30px;margin-right: 10px;' src='"
+#: gsheetconnector-forminator.php:637
+msgid "Forminator Forms - GSheetConnector"
 msgstr ""
 
-#: includes/class-gs-formntr-processes.php:172 includes/pages/edit-feed.php:83
+#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:117
 msgid "Select"
 msgstr ""
 
-#: includes/class-gs-formntr-services.php:226
+#: includes/class-gs-formntr-services.php:270
 msgid "Forminator Data Settings saved successfully."
 msgstr ""
 
-#: includes/class-gs-formntr-services.php:299
+#: includes/class-gs-formntr-services.php:361
 msgid "Feed added successfully."
 msgstr ""
 
-#: includes/class-gs-formntr-services.php:312
+#: includes/class-gs-formntr-services.php:381
 msgid "Feed name already exists in the list, Please enter unique name of feed."
 msgstr ""
 
-#: includes/class-gs-formntr-utility.php:78
+#: includes/class-gs-formntr-utility.php:105
 msgid "There's something wrong with your code..."
 msgstr ""
 
-#: includes/class-gs-formntr-utility.php:228
+#: includes/class-gs-formntr-utility.php:242
 msgid "Administrator"
 msgstr ""
 
-#: includes/pages/admin-footer.php:8
+#: includes/pages/admin-footer.php:6
 msgid "Please rate"
 msgstr ""
 
-#: includes/pages/admin-footer.php:10
-#: includes/pages/google-sheet-settings.php:35
+#: includes/pages/admin-footer.php:8
 msgid "Forminator GSheetConnector"
 msgstr ""
 
-#: includes/pages/admin-footer.php:10
+#: includes/pages/admin-footer.php:8
 msgid "WordPress.org"
 msgstr ""
 
-#: includes/pages/admin-footer.php:10
+#: includes/pages/admin-footer.php:8
 msgid "to help us spread the word."
 msgstr ""
 
-#: includes/pages/admin-footer.php:16
+#: includes/pages/admin-footer.php:15
 msgid "Made with ♥ by the GSheetConnector Team"
 msgstr ""
 
-#: includes/pages/admin-footer.php:18
+#: includes/pages/admin-footer.php:17
 msgid "Support"
 msgstr ""
 
-#: includes/pages/admin-footer.php:19
+#: includes/pages/admin-footer.php:18
 msgid "Docs"
 msgstr ""
 
-#: includes/pages/admin-footer.php:20
+#: includes/pages/admin-footer.php:19
 msgid "VIP Circle"
 msgstr ""
 
-#: includes/pages/admin-footer.php:21
+#: includes/pages/admin-footer.php:20
 msgid "Free Plugins"
 msgstr ""
 
@@ -140,350 +141,217 @@ msgstr ""
 msgid "Client Token"
 msgstr ""
 
-#: includes/pages/api-setting-pro.php:35
+#: includes/pages/api-setting-pro.php:33
 msgid "Click here to generate an Authentication Token"
 msgstr ""
 
-#: includes/pages/edit-feed.php:29
+#: includes/pages/api-setting-pro.php:41
+msgid "Save"
+msgstr ""
+
+#: includes/pages/api-setting-pro.php:42
+msgid "Reset"
+msgstr ""
+
+#: includes/pages/edit-feed.php:42
 msgid "Back to Forms List"
 msgstr ""
 
-#: includes/pages/edit-feed.php:33
+#: includes/pages/edit-feed.php:47
 msgid "Back to Feeds List"
 msgstr ""
 
-#: includes/pages/edit-feed.php:39
+#: includes/pages/edit-feed.php:54
 msgid "Edit Feed and Integrate with Google Sheets"
 msgstr ""
 
-#: includes/pages/edit-feed.php:45
+#: includes/pages/edit-feed.php:62
 msgid "Sheet Name:"
 msgstr ""
 
-#: includes/pages/edit-feed.php:48
+#: includes/pages/edit-feed.php:65
 msgid "Sheet ID:"
 msgstr ""
 
-#: includes/pages/edit-feed.php:51
+#: includes/pages/edit-feed.php:68
 msgid "Tab Name:"
 msgstr ""
 
-#: includes/pages/edit-feed.php:54
+#: includes/pages/edit-feed.php:71
 msgid "Tab ID:"
 msgstr ""
 
-#: includes/pages/edit-feed.php:58
+#: includes/pages/edit-feed.php:75
 msgid "Sheet URL:"
 msgstr ""
 
-#: includes/pages/edit-feed.php:77
+#: includes/pages/edit-feed.php:81
+msgid "View in Google Sheets"
+msgstr ""
+
+#: includes/pages/edit-feed.php:89
+msgid "Save Changes"
+msgstr ""
+
+#: includes/pages/edit-feed.php:110
 msgid "Auto Sheet and Tab Names"
 msgstr ""
 
-#: includes/pages/edit-feed.php:77 includes/pages/edit-feed.php:140
-#: includes/pages/edit-feed.php:144 includes/pages/edit-feed.php:233
-#: includes/pages/edit-feed.php:242 includes/pages/edit-feed.php:257
-#: includes/pages/edit-feed.php:274 includes/pages/edit-feed.php:288
-#: includes/pages/edit-feed.php:301 includes/pages/extensions.php:43
-#: includes/pages/extensions.php:68 includes/pages/extensions.php:94
-#: includes/pages/extensions.php:118 includes/pages/extensions.php:142
-#: includes/pages/extensions.php:167 includes/pages/extensions.php:202
+#: includes/pages/edit-feed.php:111 includes/pages/edit-feed.php:181
+#: includes/pages/edit-feed.php:187 includes/pages/edit-feed.php:276
+#: includes/pages/edit-feed.php:287 includes/pages/edit-feed.php:304
+#: includes/pages/edit-feed.php:323 includes/pages/edit-feed.php:339
+#: includes/pages/edit-feed.php:355
 msgid "PRO"
 msgstr ""
 
-#: includes/pages/edit-feed.php:81
+#: includes/pages/edit-feed.php:115
 msgid "Google Spreadsheet Name"
 msgstr ""
 
-#: includes/pages/edit-feed.php:84
+#: includes/pages/edit-feed.php:119
 msgid "Create New"
 msgstr ""
 
-#: includes/pages/edit-feed.php:96
+#: includes/pages/edit-feed.php:132
 msgid "Google Sheet Tab Name"
 msgstr ""
 
-#: includes/pages/edit-feed.php:112
+#: includes/pages/edit-feed.php:148
 msgid "Create Spreadsheet"
 msgstr ""
 
-#: includes/pages/edit-feed.php:124
+#: includes/pages/edit-feed.php:162
 msgid "Click here"
 msgstr ""
 
-#: includes/pages/edit-feed.php:125
+#: includes/pages/edit-feed.php:163
 msgid "to fetch sheets detail for \"Forms Feed Settings\"."
 msgstr ""
 
-#: includes/pages/edit-feed.php:140
+#: includes/pages/edit-feed.php:180
 msgid "Field List"
 msgstr ""
 
-#: includes/pages/edit-feed.php:144
+#: includes/pages/edit-feed.php:186
 msgid "Special Mail Tags"
 msgstr ""
 
-#: includes/pages/edit-feed.php:154
+#: includes/pages/edit-feed.php:198
 msgid "Select All"
 msgstr ""
 
-#: includes/pages/edit-feed.php:233
+#: includes/pages/edit-feed.php:275
 msgid "Header Settings"
 msgstr ""
 
-#: includes/pages/edit-feed.php:241
+#: includes/pages/edit-feed.php:286
 msgid "Freeze Header"
 msgstr ""
 
-#: includes/pages/edit-feed.php:256
+#: includes/pages/edit-feed.php:303
 msgid "Header - Font Settings"
 msgstr ""
 
-#: includes/pages/edit-feed.php:273
+#: includes/pages/edit-feed.php:322
 msgid "Sheet Background Color"
 msgstr ""
 
-#: includes/pages/edit-feed.php:287
+#: includes/pages/edit-feed.php:338
 msgid "Row - Font Settings"
 msgstr ""
 
-#: includes/pages/edit-feed.php:296
+#: includes/pages/edit-feed.php:347
 msgid "Sync Entries."
 msgstr ""
 
-#: includes/pages/edit-feed.php:300
+#: includes/pages/edit-feed.php:352
 msgid "Click Here to Sync Entries."
 msgstr ""
 
-#: includes/pages/edit-sheet.php:28
+#: includes/pages/edit-sheet.php:34
 msgid " Back to Forms List"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:32
+#: includes/pages/edit-sheet.php:38
 msgid "+ Add Feed to Form"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:46
+#: includes/pages/edit-sheet.php:52
 msgid "Sr No"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:47 includes/pages/edit-sheet.php:107
+#: includes/pages/edit-sheet.php:53 includes/pages/edit-sheet.php:113
 msgid "Feed Name"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:48
+#: includes/pages/edit-sheet.php:54
 msgid "Edit Feed"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:49
+#: includes/pages/edit-sheet.php:55
 msgid "Delete Feed"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:70
+#: includes/pages/edit-sheet.php:76
 msgid " Edit Feed and Integrate with Google Sheets"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:77
+#: includes/pages/edit-sheet.php:83
 msgid "Delete this feed."
 msgstr ""
 
-#: includes/pages/edit-sheet.php:87
+#: includes/pages/edit-sheet.php:93
 msgid "No Feeds Found!"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:103
+#: includes/pages/edit-sheet.php:109
 msgid "Add Feed"
 msgstr ""
 
-#: includes/pages/edit-sheet.php:114
+#: includes/pages/edit-sheet.php:120
 msgid "Submit"
 msgstr ""
 
-#: includes/pages/extensions.php:7 includes/pages/extensions.php:31
-#: includes/pages/extensions.php:56 includes/pages/extensions.php:82
-#: includes/pages/extensions.php:106 includes/pages/extensions.php:130
-#: includes/pages/extensions.php:155 includes/pages/extensions.php:190
-#: includes/pages/extensions.php:215 includes/pages/extensions.php:239
-#: includes/pages/extensions.php:266 includes/pages/extensions.php:290
-msgid "logo"
+#: includes/pages/extensions/extensions.php:286
+#: includes/pages/extensions/extensions.php:412
+#: includes/pages/extensions/extensions.php:426
+msgid "Activate"
 msgstr ""
 
-#: includes/pages/extensions.php:11 includes/pages/extensions.php:35
-#: includes/pages/extensions.php:60 includes/pages/extensions.php:86
-#: includes/pages/extensions.php:110 includes/pages/extensions.php:134
-#: includes/pages/extensions.php:159 includes/pages/extensions.php:194
-#: includes/pages/extensions.php:219 includes/pages/extensions.php:243
-#: includes/pages/extensions.php:270 includes/pages/extensions.php:294
-msgid "Learn more"
+#: includes/pages/extensions/extensions.php:313
+msgid "Upgrade to PRO"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-#: includes/pages/extensions.php:11
-msgid "GSheetConnector for Forminator Forms"
+#: includes/pages/extensions/extensions.php:346
+msgid "Already using PRO version"
 msgstr ""
 
-#: includes/pages/extensions.php:14
-msgid ""
-"GSheetConnector for Forminator Forms is an addon plugin, A bridge between "
-"your WordPress based Forminator Forms forms and Google Sheets."
-msgstr ""
-
-#: includes/pages/extensions.php:19 includes/pages/extensions.php:278
-#: includes/pages/extensions.php:302
-msgid "Free"
-msgstr ""
-
-#: includes/pages/extensions.php:22 includes/pages/extensions.php:46
-#: includes/pages/extensions.php:72 includes/pages/extensions.php:97
-#: includes/pages/extensions.php:121 includes/pages/extensions.php:145
-#: includes/pages/extensions.php:170 includes/pages/extensions.php:205
-#: includes/pages/extensions.php:281 includes/pages/extensions.php:305
-msgid "Download"
-msgstr ""
-
-#: includes/pages/extensions.php:35
-msgid "WPForms Google Sheet Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:38
-msgid ""
-"WPForms, A bridge between your WordPress based WPForms and Google Sheets. It "
-"helps to record the entries in real-time."
-msgstr ""
-
-#: includes/pages/extensions.php:47 includes/pages/extensions.php:73
-#: includes/pages/extensions.php:98 includes/pages/extensions.php:122
-#: includes/pages/extensions.php:146 includes/pages/extensions.php:171
-#: includes/pages/extensions.php:206 includes/pages/extensions.php:230
-#: includes/pages/extensions.php:254
-msgid "Buy Now"
-msgstr ""
-
-#: includes/pages/extensions.php:60
-msgid "Ninja Forms Google Sheet Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:63
-msgid ""
-"Ninja Forms, A bridge between your WordPress based Ninja Forms and Google "
-"Sheets. It helps to record the entries in real-time."
-msgstr ""
-
-#: includes/pages/extensions.php:86
-msgid "Gravity Forms Google Sheet Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:89
-msgid ""
-"Gravity Forms Google Sheets Connector Plugin is a Bridge between your "
-"Gravity Forms and Google Sheets."
-msgstr ""
-
-#: includes/pages/extensions.php:110
-msgid "WooCommerce Google Sheet Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:113
-msgid ""
-"WooCommerce Google Spreadsheet Addon Plugin to connect with Google Sheets."
-msgstr ""
-
-#: includes/pages/extensions.php:134
-msgid "Elementor Forms Google Sheet Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:137
-msgid ""
-"A bridge between your WordPress based Elementor Forms or Metform Elementor "
-"Builder to Google Sheets."
-msgstr ""
-
-#: includes/pages/extensions.php:159
-msgid "CF7 Google Sheets Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:162
-msgid ""
-"CF7 Google Sheet Connector is an addon plugin, A bridge between your "
-"WordPress based Contact Form 7 forms and Google Sheets."
-msgstr ""
-
-#: includes/pages/extensions.php:194
-msgid "Easy Digital Downloads Google Sheet Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:197
-msgid ""
-"Easy Digital Downloads Google Sheet Connector sends orders entries to Google "
-"Sheet in a real-time"
-msgstr ""
-
-#: includes/pages/extensions.php:219
-msgid "Avada Forms Google Sheet Connector Pro"
-msgstr ""
-
-#: includes/pages/extensions.php:222
-msgid ""
-"Avada Theme Fusion Builder addon, simplifies real-time data transmission "
-"from Avada theme-based forms to Google Sheets with premium features."
-msgstr ""
-
-#: includes/pages/extensions.php:227 includes/pages/extensions.php:251
-msgid "Available PRO Version"
-msgstr ""
-
-#: includes/pages/extensions.php:243
-msgid "Divi Forms Google Sheet Connector Pro"
-msgstr ""
-
-#: includes/pages/extensions.php:246
-msgid ""
-"Divi Forms GSheetConnector, an addon for DIVI Theme/Builder, simplifies real-"
-"time syncing of data from DIVI theme forms to both the database and Google "
-"Sheets."
-msgstr ""
-
-#: includes/pages/extensions.php:270
-msgid "GSheetConnector for Formidable Forms"
-msgstr ""
-
-#: includes/pages/extensions.php:273
-msgid ""
-"Formidable Forms, A bridge between your WordPress based Formidable Forms "
-"forms and Google Sheets."
-msgstr ""
-
-#: includes/pages/extensions.php:294
-msgid "Caldera Forms Google Sheets Connector"
-msgstr ""
-
-#: includes/pages/extensions.php:297
-msgid ""
-"Caldera Forms Closure, No more updates on this plugin Due to Caldera Forms "
-"being sunset/retired on December 31, 2021"
-msgstr ""
-
-#: includes/pages/google-sheet-settings.php:35
-msgid "Version :"
-msgstr ""
-
-#: includes/pages/google-sheet-settings.php:38
-msgid "DASHBOARD"
+#: includes/pages/extensions/extensions.php:407
+msgid "Activated"
 msgstr ""
 
 #: includes/pages/google-sheet-settings.php:44
+msgid "DASHBOARD"
+msgstr ""
+
+#: includes/pages/google-sheet-settings.php:50
 msgid "Integration"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:45
+#: includes/pages/google-sheet-settings.php:51
 msgid "Form Feed"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:46
+#: includes/pages/google-sheet-settings.php:52
+msgid "General Settings"
+msgstr ""
+
+#: includes/pages/google-sheet-settings.php:53
 msgid "System Status"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:47
+#: includes/pages/google-sheet-settings.php:54
 msgid "Extensions"
 msgstr ""
 
@@ -499,79 +367,35 @@ msgstr ""
 msgid "No Forminator Forms are connected with Google Sheets."
 msgstr ""
 
-#: includes/pages/gs-formntr-google-sheet.php:28
-msgid ""
-"<strong>Authentication Required:</strong>\n"
-"              You must authenticate using your Google Account along with "
-"Google Drive and Google Sheets Permissions to enable the settings for "
-"configuration."
-msgstr ""
-
-#: includes/pages/gs-formntr-google-sheet.php:39
-msgid "Active Forms"
-msgstr ""
-
-#: includes/pages/gs-formntr-google-sheet.php:50
-msgid "Last Submission:"
-msgstr ""
-
-#: includes/pages/gs-formntr-google-sheet.php:53
-msgid "Submissions in the last 30 days:"
-msgstr ""
-
-#: includes/pages/gs-formntr-google-sheet.php:62
-msgid "No forms are currently available."
-msgstr ""
-
-#: includes/pages/gs-formntr-google-sheet.php:62
-msgid "Create a new form"
-msgstr ""
-
-#: includes/pages/gs-formntr-google-sheet.php:62
-msgid "to get started."
-msgstr ""
-
-#: includes/pages/gs-formntr-google-sheet.php:84
-msgid "Set Up Forms Integration with Google Sheets"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:55
+#: includes/pages/gs-formntr-integration.php:47
 msgid "Choose Google API Setting :"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:59
+#: includes/pages/gs-formntr-integration.php:52
 msgid "Use Existing Client/Secret Key (Auto Google API Configuration)"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:61
+#: includes/pages/gs-formntr-integration.php:55
 msgid ""
 "Use Manual Client/Secret Key (Use Your Google API Configuration) (Upgrade To "
 "PRO)"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:64 includes/pages/pro-popup.php:12
+#: includes/pages/gs-formntr-integration.php:61
 msgid "Upgrade To PRO"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:67
+#: includes/pages/gs-formntr-integration.php:64
 msgid ""
 "Manual Client/Secret Key (Use Your Google API Configuration) method is "
 "available in the PRO version of the plugin."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:76
-msgid "Forminator- "
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:77
-msgid "Google Sheet Integration"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:84
+#: includes/pages/gs-formntr-integration.php:82
 msgid "Authenticate with your Google account, follow these steps:"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:86
+#: includes/pages/gs-formntr-integration.php:85
 msgid "Click on the \"Sign In With Google\" button."
 msgstr ""
 
@@ -587,215 +411,135 @@ msgstr ""
 msgid "Google Sheets"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:92
+#: includes/pages/gs-formntr-integration.php:93
 msgid "Ensure that you enable the checkbox for each of these services."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:94
+#: includes/pages/gs-formntr-integration.php:96
 msgid ""
 "This will allow the integration to access your Google Drive and Google "
 "Sheets."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:102
+#: includes/pages/gs-formntr-integration.php:106
 msgid "Google Access Code"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:109
+#: includes/pages/gs-formntr-integration.php:114
 msgid "Currently Active"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:111
+#: includes/pages/gs-formntr-integration.php:116
 msgid "Deactivate"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:113
+#: includes/pages/gs-formntr-integration.php:121
 msgid ""
 "On deactivation, all your data saved with authentication\n"
 "                        will be removed and you need to reauthenticate with "
 "your google account."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:123
+#: includes/pages/gs-formntr-integration.php:133
 msgid "Click Sign in with Google"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:137
+#: includes/pages/gs-formntr-integration.php:150
 msgid "Save & Authenticate"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:154
+#: includes/pages/gs-formntr-integration.php:167
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
 "Re-Authenticate again with the permissions."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:159
+#: includes/pages/gs-formntr-integration.php:172
 msgid "Also,"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:159
+#: includes/pages/gs-formntr-integration.php:174
 msgid "Click Here "
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:160
+#: includes/pages/gs-formntr-integration.php:175
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:175
+#: includes/pages/gs-formntr-integration.php:193
 #, php-format
 msgid "Connected email account: <u>%s</u>"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:180
+#: includes/pages/gs-formntr-integration.php:201
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:191
+#: includes/pages/gs-formntr-integration.php:213
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
 "extremely seriously and ensure it is never misused."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:191
+#: includes/pages/gs-formntr-integration.php:215
 msgid "Learn more."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:197
-msgid "Debug Log"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:198
-msgid "View"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:200
-#: includes/pages/gs-formntr-systeminfo.php:23
-msgid "Clear"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:242
+#: includes/pages/gs-formntr-integration.php:269
 msgid "No errors found."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:248
+#: includes/pages/gs-formntr-integration.php:273
 msgid "No log file exists as no errors are generated."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:284
-msgid "Next steps…"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:295
-msgid "Upgrade to PRO"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:296
-msgid "Sync Sheets,Entries and much more."
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:307
-msgid "Compatibility"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:308
-msgid "Compatibility with Forminator Third-Party Plugins"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:318
-msgid "Multi Languages"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:319
-msgid "This plugin supports multi-languages as well!"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:331
-msgid "Product Support"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:339
-msgid "Online Documentation"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:340
-msgid "Understand all the capabilities of Forminator GSheetConnector"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:348
-msgid "Ticket Support"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:349
-msgid "Direct help from our qualified support team"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:357
-msgid "Affiliate Program"
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:358
-#, php-format
-msgid "Earn flat 30% on every sale!"
-msgstr ""
-
-#: includes/pages/gs-formntr-systeminfo.php:10
+#: includes/pages/gs-formntr-systeminfo.php:11
 msgid "System Info"
 msgstr ""
 
-#: includes/pages/gs-formntr-systeminfo.php:11
+#: includes/pages/gs-formntr-systeminfo.php:12
 msgid "Copy System Info to Clipboard"
 msgstr ""
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:19
 msgid "Error Log"
 msgstr ""
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:20
 msgid "If you have"
 msgstr ""
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:20
 msgid "WP_DEBUG_LOG"
 msgstr ""
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:20
 msgid ""
 "enabled, errors are stored in a log file. Here you can find the last 100 "
 "lines in reversed order so that you or the GSheetConnector support team can "
 "view it easily. The file cannot be edited here."
 msgstr ""
 
-#: includes/pages/gs-formntr-systeminfo.php:22
+#: includes/pages/gs-formntr-systeminfo.php:21
 msgid "Copy Error Log to Clipboard"
 msgstr ""
 
-#: includes/pages/gs-formntr-systeminfo.php:29
+#: includes/pages/gs-formntr-systeminfo.php:22
+msgid "Clear"
+msgstr ""
+
+#: includes/pages/gs-formntr-systeminfo.php:28
 msgid "Copied"
 msgstr ""
 
-#: includes/pages/pro-popup.php:9
-msgid "GSheetConnector for Forminator PRO Features"
-msgstr ""
-
-#: includes/pages/pro-popup.php:10
-msgid ""
-"This features is available in the PRO version of the plugin. To "
-"<strong>Enable the options Upgrade to the PRO</strong> version to unlock all "
-"these awesome features."
-msgstr ""
-
-#: includes/pages/pro-popup.php:16
-msgid ""
-"Bonus: GSheetConnector for Forminator Lite users will get <strong>Special "
-"Discounts</strong> for unlimited site licence, automatically applied at "
-"checkout."
+#. Plugin Name of the plugin/theme
+msgid "GSheetConnector for Forminator Forms"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-04-22 18:25+0530\n"
-"PO-Revision-Date: 2025-04-22 18:25+0530\n"
+"POT-Creation-Date: 2025-08-12 20:22+0530\n"
+"PO-Revision-Date: 2025-08-12 20:23+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -21,12 +21,14 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: gsheetconnector-forminator.php:70
+#. translators: %1$s is the user's first name.
+#: gsheetconnector-forminator.php:79
 #, php-format
 msgid "Hey %1$s"
 msgstr "嘿 %1$s"
 
-#: gsheetconnector-forminator.php:71
+#. translators: %2$s is the plugin title, %5$s is the Freemius link.
+#: gsheetconnector-forminator.php:81
 #, php-format
 msgid ""
 "Please help us improve %2$s! If you opt-in, some data about your usage of "
@@ -36,83 +38,82 @@ msgstr ""
 "请帮助我们改进 %2$s! 如果您选择加入，则有关您使用%2$s 某些数据将被发送到％5 "
 "$ s。 如果跳过 %5$s仍然可以正常工作。"
 
-#: gsheetconnector-forminator.php:256
+#: gsheetconnector-forminator.php:281
 msgid ""
 "Forminator Google Sheet Connector Add-on requires Forminator plugin to be "
 "installed and activated."
 msgstr ""
 "Forminator Google Sheet Connector Add-on 需要安装并激活 Forminator 插件。"
 
-#: gsheetconnector-forminator.php:273
+#: gsheetconnector-forminator.php:296
 msgid "Google Sheet"
 msgstr "谷歌表格"
 
-#: gsheetconnector-forminator.php:515
+#: gsheetconnector-forminator.php:625
 msgid "Settings"
 msgstr "设置"
 
-#: gsheetconnector-forminator.php:524
-msgid "<img style='width:30px;margin-right: 10px;' src='"
-msgstr "<img style='width：30px;右边距：10px;' src='"
+#: gsheetconnector-forminator.php:637
+msgid "Forminator Forms - GSheetConnector"
+msgstr "Forminator 表单 - GSheetConnector"
 
-#: includes/class-gs-formntr-processes.php:172 includes/pages/edit-feed.php:83
+#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:117
 msgid "Select"
 msgstr "选择 "
 
-#: includes/class-gs-formntr-services.php:226
+#: includes/class-gs-formntr-services.php:270
 msgid "Forminator Data Settings saved successfully."
 msgstr "Forminator数据设置已成功保存。"
 
-#: includes/class-gs-formntr-services.php:299
+#: includes/class-gs-formntr-services.php:361
 msgid "Feed added successfully."
 msgstr "源已成功添加。"
 
-#: includes/class-gs-formntr-services.php:312
+#: includes/class-gs-formntr-services.php:381
 msgid "Feed name already exists in the list, Please enter unique name of feed."
 msgstr "列表中已存在 Feed 名称，请输入 Feed 的唯一名称。"
 
-#: includes/class-gs-formntr-utility.php:78
+#: includes/class-gs-formntr-utility.php:105
 msgid "There's something wrong with your code..."
 msgstr "代码有误."
 
-#: includes/class-gs-formntr-utility.php:228
+#: includes/class-gs-formntr-utility.php:242
 msgid "Administrator"
 msgstr "管理员"
 
-#: includes/pages/admin-footer.php:8
+#: includes/pages/admin-footer.php:6
 msgid "Please rate"
 msgstr "请评价"
 
-#: includes/pages/admin-footer.php:10
-#: includes/pages/google-sheet-settings.php:35
+#: includes/pages/admin-footer.php:8
 msgid "Forminator GSheetConnector"
 msgstr "Forminator GSheet连接器"
 
-#: includes/pages/admin-footer.php:10
+#: includes/pages/admin-footer.php:8
 msgid "WordPress.org"
 msgstr "WordPress.org"
 
-#: includes/pages/admin-footer.php:10
+#: includes/pages/admin-footer.php:8
 msgid "to help us spread the word."
 msgstr "帮助我们传播这个词。"
 
-#: includes/pages/admin-footer.php:16
+#: includes/pages/admin-footer.php:15
 msgid "Made with ♥ by the GSheetConnector Team"
 msgstr "♥ 由 GSheetConnector 团队制作"
 
-#: includes/pages/admin-footer.php:18
+#: includes/pages/admin-footer.php:17
 msgid "Support"
 msgstr "支持"
 
-#: includes/pages/admin-footer.php:19
+#: includes/pages/admin-footer.php:18
 msgid "Docs"
 msgstr "文档"
 
-#: includes/pages/admin-footer.php:20
+#: includes/pages/admin-footer.php:19
 msgid "VIP Circle"
 msgstr "VIP Circle"
 
-#: includes/pages/admin-footer.php:21
+#: includes/pages/admin-footer.php:20
 msgid "Free Plugins"
 msgstr "免费插件"
 
@@ -144,369 +145,217 @@ msgstr "客户端密钥"
 msgid "Client Token"
 msgstr "客户令牌"
 
-#: includes/pages/api-setting-pro.php:35
+#: includes/pages/api-setting-pro.php:33
 msgid "Click here to generate an Authentication Token"
 msgstr "单击此处生成身份验证令牌"
 
-#: includes/pages/edit-feed.php:29
+#: includes/pages/api-setting-pro.php:41
+msgid "Save"
+msgstr "保存"
+
+#: includes/pages/api-setting-pro.php:42
+msgid "Reset"
+msgstr "重置"
+
+#: includes/pages/edit-feed.php:42
 msgid "Back to Forms List"
 msgstr "返回表单列表"
 
-#: includes/pages/edit-feed.php:33
+#: includes/pages/edit-feed.php:47
 msgid "Back to Feeds List"
 msgstr "返回源列表"
 
-#: includes/pages/edit-feed.php:39
+#: includes/pages/edit-feed.php:54
 msgid "Edit Feed and Integrate with Google Sheets"
 msgstr "编辑 Feed 并与 Google 表格集成"
 
-#: includes/pages/edit-feed.php:45
+#: includes/pages/edit-feed.php:62
 msgid "Sheet Name:"
 msgstr "片材名称："
 
-#: includes/pages/edit-feed.php:48
+#: includes/pages/edit-feed.php:65
 msgid "Sheet ID:"
 msgstr "工作表 ID："
 
-#: includes/pages/edit-feed.php:51
+#: includes/pages/edit-feed.php:68
 msgid "Tab Name:"
 msgstr "选项卡名称："
 
-#: includes/pages/edit-feed.php:54
+#: includes/pages/edit-feed.php:71
 msgid "Tab ID:"
 msgstr "选项卡 ID："
 
-#: includes/pages/edit-feed.php:58
+#: includes/pages/edit-feed.php:75
 msgid "Sheet URL:"
 msgstr "工作表 URL："
 
-#: includes/pages/edit-feed.php:77
+#: includes/pages/edit-feed.php:81
+msgid "View in Google Sheets"
+msgstr "在 Google 表格中查看"
+
+#: includes/pages/edit-feed.php:89
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: includes/pages/edit-feed.php:110
 msgid "Auto Sheet and Tab Names"
 msgstr "自动工作表和标签名称"
 
-#: includes/pages/edit-feed.php:77 includes/pages/edit-feed.php:140
-#: includes/pages/edit-feed.php:144 includes/pages/edit-feed.php:233
-#: includes/pages/edit-feed.php:242 includes/pages/edit-feed.php:257
-#: includes/pages/edit-feed.php:274 includes/pages/edit-feed.php:288
-#: includes/pages/edit-feed.php:301 includes/pages/extensions.php:43
-#: includes/pages/extensions.php:68 includes/pages/extensions.php:94
-#: includes/pages/extensions.php:118 includes/pages/extensions.php:142
-#: includes/pages/extensions.php:167 includes/pages/extensions.php:202
+#: includes/pages/edit-feed.php:111 includes/pages/edit-feed.php:181
+#: includes/pages/edit-feed.php:187 includes/pages/edit-feed.php:276
+#: includes/pages/edit-feed.php:287 includes/pages/edit-feed.php:304
+#: includes/pages/edit-feed.php:323 includes/pages/edit-feed.php:339
+#: includes/pages/edit-feed.php:355
 msgid "PRO"
 msgstr "专业版"
 
-#: includes/pages/edit-feed.php:81
+#: includes/pages/edit-feed.php:115
 msgid "Google Spreadsheet Name"
 msgstr "Google 电子表格名称"
 
-#: includes/pages/edit-feed.php:84
+#: includes/pages/edit-feed.php:119
 msgid "Create New"
 msgstr "创建新的"
 
-#: includes/pages/edit-feed.php:96
+#: includes/pages/edit-feed.php:132
 msgid "Google Sheet Tab Name"
 msgstr "Google 表格标签页名称"
 
-#: includes/pages/edit-feed.php:112
+#: includes/pages/edit-feed.php:148
 msgid "Create Spreadsheet"
 msgstr "创建新电子表格"
 
-#: includes/pages/edit-feed.php:124
+#: includes/pages/edit-feed.php:162
 msgid "Click here"
 msgstr "点击这里"
 
-#: includes/pages/edit-feed.php:125
+#: includes/pages/edit-feed.php:163
 msgid "to fetch sheets detail for \"Forms Feed Settings\"."
 msgstr "以获取“表单源设置”的工作表详细信息。"
 
-#: includes/pages/edit-feed.php:140
+#: includes/pages/edit-feed.php:180
 msgid "Field List"
 msgstr "字段列表"
 
-#: includes/pages/edit-feed.php:144
+#: includes/pages/edit-feed.php:186
 msgid "Special Mail Tags"
 msgstr "Special Mail标签"
 
-#: includes/pages/edit-feed.php:154
+#: includes/pages/edit-feed.php:198
 msgid "Select All"
 msgstr "全选"
 
-#: includes/pages/edit-feed.php:233
+#: includes/pages/edit-feed.php:275
 msgid "Header Settings"
 msgstr "页眉设置"
 
-#: includes/pages/edit-feed.php:241
+#: includes/pages/edit-feed.php:286
 msgid "Freeze Header"
 msgstr "冻结标头"
 
-#: includes/pages/edit-feed.php:256
+#: includes/pages/edit-feed.php:303
 msgid "Header - Font Settings"
 msgstr "页眉 - 字体设置"
 
-#: includes/pages/edit-feed.php:273
+#: includes/pages/edit-feed.php:322
 msgid "Sheet Background Color"
 msgstr "工作表背景颜色"
 
-#: includes/pages/edit-feed.php:287
+#: includes/pages/edit-feed.php:338
 msgid "Row - Font Settings"
 msgstr "行 - 字体设置"
 
-#: includes/pages/edit-feed.php:296
+#: includes/pages/edit-feed.php:347
 msgid "Sync Entries."
 msgstr "同步条目。"
 
-#: includes/pages/edit-feed.php:300
+#: includes/pages/edit-feed.php:352
 msgid "Click Here to Sync Entries."
 msgstr "单击此处同步条目。"
 
-#: includes/pages/edit-sheet.php:28
+#: includes/pages/edit-sheet.php:34
 msgid " Back to Forms List"
 msgstr "返回表单列表"
 
-#: includes/pages/edit-sheet.php:32
+#: includes/pages/edit-sheet.php:38
 msgid "+ Add Feed to Form"
 msgstr "+ 将源添加到表单"
 
-#: includes/pages/edit-sheet.php:46
+#: includes/pages/edit-sheet.php:52
 msgid "Sr No"
 msgstr "高级编号"
 
-#: includes/pages/edit-sheet.php:47 includes/pages/edit-sheet.php:107
+#: includes/pages/edit-sheet.php:53 includes/pages/edit-sheet.php:113
 msgid "Feed Name"
 msgstr "源名称"
 
-#: includes/pages/edit-sheet.php:48
+#: includes/pages/edit-sheet.php:54
 msgid "Edit Feed"
 msgstr "编辑源"
 
-#: includes/pages/edit-sheet.php:49
+#: includes/pages/edit-sheet.php:55
 msgid "Delete Feed"
 msgstr "删除源"
 
-#: includes/pages/edit-sheet.php:70
+#: includes/pages/edit-sheet.php:76
 msgid " Edit Feed and Integrate with Google Sheets"
 msgstr "编辑 Feed 并与 Google 表格集成"
 
-#: includes/pages/edit-sheet.php:77
+#: includes/pages/edit-sheet.php:83
 msgid "Delete this feed."
 msgstr "删除此源。"
 
-#: includes/pages/edit-sheet.php:87
+#: includes/pages/edit-sheet.php:93
 msgid "No Feeds Found!"
 msgstr "未找到源！"
 
-#: includes/pages/edit-sheet.php:103
+#: includes/pages/edit-sheet.php:109
 msgid "Add Feed"
 msgstr "添加Feed"
 
-#: includes/pages/edit-sheet.php:114
+#: includes/pages/edit-sheet.php:120
 msgid "Submit"
 msgstr "提交"
 
-#: includes/pages/extensions.php:7 includes/pages/extensions.php:31
-#: includes/pages/extensions.php:56 includes/pages/extensions.php:82
-#: includes/pages/extensions.php:106 includes/pages/extensions.php:130
-#: includes/pages/extensions.php:155 includes/pages/extensions.php:190
-#: includes/pages/extensions.php:215 includes/pages/extensions.php:239
-#: includes/pages/extensions.php:266 includes/pages/extensions.php:290
-msgid "logo"
-msgstr "标志"
+#: includes/pages/extensions/extensions.php:286
+#: includes/pages/extensions/extensions.php:412
+#: includes/pages/extensions/extensions.php:426
+msgid "Activate"
+msgstr "启用"
 
-#: includes/pages/extensions.php:11 includes/pages/extensions.php:35
-#: includes/pages/extensions.php:60 includes/pages/extensions.php:86
-#: includes/pages/extensions.php:110 includes/pages/extensions.php:134
-#: includes/pages/extensions.php:159 includes/pages/extensions.php:194
-#: includes/pages/extensions.php:219 includes/pages/extensions.php:243
-#: includes/pages/extensions.php:270 includes/pages/extensions.php:294
-msgid "Learn more"
-msgstr "了解更多"
+#: includes/pages/extensions/extensions.php:313
+msgid "Upgrade to PRO"
+msgstr "升级到专业版"
 
-#. Plugin Name of the plugin/theme
-#: includes/pages/extensions.php:11
-msgid "GSheetConnector for Forminator Forms"
-msgstr "用于 Forminator 表单的 GSheetConnector"
+#: includes/pages/extensions/extensions.php:346
+msgid "Already using PRO version"
+msgstr "已在使用 PRO 版本"
 
-#: includes/pages/extensions.php:14
-msgid ""
-"GSheetConnector for Forminator Forms is an addon plugin, A bridge between "
-"your WordPress based Forminator Forms forms and Google Sheets."
-msgstr ""
-"GSheetConnector for Forminator Forms 是一个插件插件，是您基于 WordPress 的 "
-"Forminator Forms 表单和 Google 表格之间的桥梁。"
+#: includes/pages/extensions/extensions.php:407
+msgid "Activated"
+msgstr "激活"
 
-#: includes/pages/extensions.php:19 includes/pages/extensions.php:278
-#: includes/pages/extensions.php:302
-msgid "Free"
-msgstr "免费"
-
-#: includes/pages/extensions.php:22 includes/pages/extensions.php:46
-#: includes/pages/extensions.php:72 includes/pages/extensions.php:97
-#: includes/pages/extensions.php:121 includes/pages/extensions.php:145
-#: includes/pages/extensions.php:170 includes/pages/extensions.php:205
-#: includes/pages/extensions.php:281 includes/pages/extensions.php:305
-msgid "Download"
-msgstr "下载"
-
-#: includes/pages/extensions.php:35
-msgid "WPForms Google Sheet Connector"
-msgstr "WPForms Google 表格连接器"
-
-#: includes/pages/extensions.php:38
-msgid ""
-"WPForms, A bridge between your WordPress based WPForms and Google Sheets. It "
-"helps to record the entries in real-time."
-msgstr ""
-"WPForms，基于 WordPress 的 WPForms 和 Google 表格之间的桥梁。它有助于实时记录"
-"条目。"
-
-#: includes/pages/extensions.php:47 includes/pages/extensions.php:73
-#: includes/pages/extensions.php:98 includes/pages/extensions.php:122
-#: includes/pages/extensions.php:146 includes/pages/extensions.php:171
-#: includes/pages/extensions.php:206 includes/pages/extensions.php:230
-#: includes/pages/extensions.php:254
-msgid "Buy Now"
-msgstr "立即购买"
-
-#: includes/pages/extensions.php:60
-msgid "Ninja Forms Google Sheet Connector"
-msgstr "Ninja Forms Google 表格连接器"
-
-#: includes/pages/extensions.php:63
-msgid ""
-"Ninja Forms, A bridge between your WordPress based Ninja Forms and Google "
-"Sheets. It helps to record the entries in real-time."
-msgstr ""
-"Ninja Forms，基于 WordPress 的 Ninja Forms 和 Google 表格之间的桥梁。它有助于"
-"实时记录条目。"
-
-#: includes/pages/extensions.php:86
-msgid "Gravity Forms Google Sheet Connector"
-msgstr "与 Google 表格关联的 Gravity Forms"
-
-#: includes/pages/extensions.php:89
-msgid ""
-"Gravity Forms Google Sheets Connector Plugin is a Bridge between your "
-"Gravity Forms and Google Sheets."
-msgstr ""
-"Gravity Forms Google 表格连接器插件是 Gravity Forms 和 Google 表格之间的桥"
-"梁。"
-
-#: includes/pages/extensions.php:110
-msgid "WooCommerce Google Sheet Connector"
-msgstr "WooCommerce Google 表格连接器"
-
-#: includes/pages/extensions.php:113
-msgid ""
-"WooCommerce Google Spreadsheet Addon Plugin to connect with Google Sheets."
-msgstr "WooCommerce Google 电子表格插件 用于连接 Google 表格的插件。"
-
-#: includes/pages/extensions.php:134
-msgid "Elementor Forms Google Sheet Connector"
-msgstr "Elementor Forms Google 表格连接器"
-
-#: includes/pages/extensions.php:137
-msgid ""
-"A bridge between your WordPress based Elementor Forms or Metform Elementor "
-"Builder to Google Sheets."
-msgstr ""
-"基于 WordPress 的 Elementor Forms 或 Metform Elementor Builder 到 Google 表格"
-"之间的桥梁。"
-
-#: includes/pages/extensions.php:159
-msgid "CF7 Google Sheets Connector"
-msgstr "CF7 Google 表格连接器"
-
-#: includes/pages/extensions.php:162
-msgid ""
-"CF7 Google Sheet Connector is an addon plugin, A bridge between your "
-"WordPress based Contact Form 7 forms and Google Sheets."
-msgstr ""
-"CF7 Google Sheet Connector 是一个插件插件，是您基于 WordPress 的联系表格 7 表"
-"单和 Google 表格之间的桥梁。"
-
-#: includes/pages/extensions.php:194
-msgid "Easy Digital Downloads Google Sheet Connector"
-msgstr "轻松数字下载 Google 表格连接器"
-
-#: includes/pages/extensions.php:197
-msgid ""
-"Easy Digital Downloads Google Sheet Connector sends orders entries to Google "
-"Sheet in a real-time"
-msgstr "轻松数字下载 Google 表格连接器将订单条目实时发送到 Google 表格"
-
-#: includes/pages/extensions.php:219
-msgid "Avada Forms Google Sheet Connector Pro"
-msgstr "Avada Forms Google Sheet 连接器专业版"
-
-#: includes/pages/extensions.php:222
-msgid ""
-"Avada Theme Fusion Builder addon, simplifies real-time data transmission "
-"from Avada theme-based forms to Google Sheets with premium features."
-msgstr ""
-"Avada Theme Fusion Builder插件，通过高级功能简化了从基于Avada主题的表单到"
-"Google Sheets的实时数据传输。"
-
-#: includes/pages/extensions.php:227 includes/pages/extensions.php:251
-msgid "Available PRO Version"
-msgstr "可用的 PRO 版本"
-
-#: includes/pages/extensions.php:243
-msgid "Divi Forms Google Sheet Connector Pro"
-msgstr "Divi Forms Google 表格连接器专业版"
-
-#: includes/pages/extensions.php:246
-msgid ""
-"Divi Forms GSheetConnector, an addon for DIVI Theme/Builder, simplifies real-"
-"time syncing of data from DIVI theme forms to both the database and Google "
-"Sheets."
-msgstr ""
-"Divi Forms GSheetConnector 是 DIVI Theme/Builder 的插件，简化了数据从 DIVI 主"
-"题表单到数据库和 Google 表格的实时同步。"
-
-#: includes/pages/extensions.php:270
-msgid "GSheetConnector for Formidable Forms"
-msgstr "GSheetConnector 重力形式提要设置"
-
-#: includes/pages/extensions.php:273
-msgid ""
-"Formidable Forms, A bridge between your WordPress based Formidable Forms "
-"forms and Google Sheets."
-msgstr ""
-"Formidable Forms，基于WordPress的Formidable Forms表单和Google表格之间的桥梁。"
-
-#: includes/pages/extensions.php:294
-msgid "Caldera Forms Google Sheets Connector"
-msgstr "与 Google 表格关联的 Gravity Forms"
-
-#: includes/pages/extensions.php:297
-msgid ""
-"Caldera Forms Closure, No more updates on this plugin Due to Caldera Forms "
-"being sunset/retired on December 31, 2021"
-msgstr ""
-"Caldera Forms 关闭，由于 Caldera Forms 将于 2021 年 12 月 31 日日落/停用，因"
-"此此插件不再更新"
-
-#: includes/pages/google-sheet-settings.php:35
-msgid "Version :"
-msgstr "版本："
-
-#: includes/pages/google-sheet-settings.php:38
+#: includes/pages/google-sheet-settings.php:44
 msgid "DASHBOARD"
 msgstr "仪表盘"
 
-#: includes/pages/google-sheet-settings.php:44
+#: includes/pages/google-sheet-settings.php:50
 msgid "Integration"
 msgstr "集成"
 
-#: includes/pages/google-sheet-settings.php:45
+#: includes/pages/google-sheet-settings.php:51
 msgid "Form Feed"
 msgstr "表单源"
 
-#: includes/pages/google-sheet-settings.php:46
+#: includes/pages/google-sheet-settings.php:52
+msgid "General Settings"
+msgstr "常规设置"
+
+#: includes/pages/google-sheet-settings.php:53
 msgid "System Status"
 msgstr "系统状态"
 
-#: includes/pages/google-sheet-settings.php:47
+#: includes/pages/google-sheet-settings.php:54
 msgid "Extensions"
 msgstr "扩展"
 
@@ -522,83 +371,36 @@ msgstr "连接的工作表名称"
 msgid "No Forminator Forms are connected with Google Sheets."
 msgstr "没有 Forminator 表单与 Google 表格相关联"
 
-#: includes/pages/gs-formntr-google-sheet.php:28
-msgid ""
-"<strong>Authentication Required:</strong>\n"
-"              You must authenticate using your Google Account along with "
-"Google Drive and Google Sheets Permissions to enable the settings for "
-"configuration."
-msgstr ""
-"<strong>需要身份验证：</strong>\n"
-"              您必须使用您的 Google 帐户以及 Google 云端硬盘和 Google 表格权"
-"限进行身份验证，才能启用配置设置。"
-
-#: includes/pages/gs-formntr-google-sheet.php:39
-msgid "Active Forms"
-msgstr "活动表单"
-
-#: includes/pages/gs-formntr-google-sheet.php:50
-msgid "Last Submission:"
-msgstr "最后提交："
-
-#: includes/pages/gs-formntr-google-sheet.php:53
-msgid "Submissions in the last 30 days:"
-msgstr "过去 30 天内提交的内容："
-
-#: includes/pages/gs-formntr-google-sheet.php:62
-msgid "No forms are currently available."
-msgstr "目前没有可用的表格。"
-
-#: includes/pages/gs-formntr-google-sheet.php:62
-msgid "Create a new form"
-msgstr "创建新表单"
-
-#: includes/pages/gs-formntr-google-sheet.php:62
-msgid "to get started."
-msgstr "以开始使用。"
-
-#: includes/pages/gs-formntr-google-sheet.php:84
-msgid "Set Up Forms Integration with Google Sheets"
-msgstr "设置表单与 Google 表格的集成"
-
-#: includes/pages/gs-formntr-integration.php:55
+#: includes/pages/gs-formntr-integration.php:47
 msgid "Choose Google API Setting :"
 msgstr "选择 Google API 设置："
 
-#: includes/pages/gs-formntr-integration.php:59
+#: includes/pages/gs-formntr-integration.php:52
 msgid "Use Existing Client/Secret Key (Auto Google API Configuration)"
 msgstr "使用现有客户端/密钥（自动 Google API 配置）"
 
-#: includes/pages/gs-formntr-integration.php:61
+#: includes/pages/gs-formntr-integration.php:55
 msgid ""
 "Use Manual Client/Secret Key (Use Your Google API Configuration) (Upgrade To "
 "PRO)"
 msgstr "使用手动客户端/密钥（使用您的 Google API 配置）（升级到 PRO）"
 
-#: includes/pages/gs-formntr-integration.php:64 includes/pages/pro-popup.php:12
+#: includes/pages/gs-formntr-integration.php:61
 msgid "Upgrade To PRO"
 msgstr "升级到专业版"
 
-#: includes/pages/gs-formntr-integration.php:67
+#: includes/pages/gs-formntr-integration.php:64
 msgid ""
 "Manual Client/Secret Key (Use Your Google API Configuration) method is "
 "available in the PRO version of the plugin."
 msgstr ""
 "手动客户端/密钥（使用您的 Google API 配置）方法在插件的 PRO 版本中可用。"
 
-#: includes/pages/gs-formntr-integration.php:76
-msgid "Forminator- "
-msgstr "福尔米纳特-"
-
-#: includes/pages/gs-formntr-integration.php:77
-msgid "Google Sheet Integration"
-msgstr "Google 表格集成"
-
-#: includes/pages/gs-formntr-integration.php:84
+#: includes/pages/gs-formntr-integration.php:82
 msgid "Authenticate with your Google account, follow these steps:"
 msgstr "使用您的 Google 帐户进行身份验证，请按照以下步骤操作："
 
-#: includes/pages/gs-formntr-integration.php:86
+#: includes/pages/gs-formntr-integration.php:85
 msgid "Click on the \"Sign In With Google\" button."
 msgstr "点击“使用 Google 登录”按钮。"
 
@@ -614,29 +416,29 @@ msgstr "谷歌云盘"
 msgid "Google Sheets"
 msgstr "Google表格"
 
-#: includes/pages/gs-formntr-integration.php:92
+#: includes/pages/gs-formntr-integration.php:93
 msgid "Ensure that you enable the checkbox for each of these services."
 msgstr "* 确保为其中每一项服务启用复选框。"
 
-#: includes/pages/gs-formntr-integration.php:94
+#: includes/pages/gs-formntr-integration.php:96
 msgid ""
 "This will allow the integration to access your Google Drive and Google "
 "Sheets."
 msgstr "这将允许集成访问您的 Google Drive 和 Google 表格。"
 
-#: includes/pages/gs-formntr-integration.php:102
+#: includes/pages/gs-formntr-integration.php:106
 msgid "Google Access Code"
 msgstr "Google 访问代码"
 
-#: includes/pages/gs-formntr-integration.php:109
+#: includes/pages/gs-formntr-integration.php:114
 msgid "Currently Active"
 msgstr "目前活跃的"
 
-#: includes/pages/gs-formntr-integration.php:111
+#: includes/pages/gs-formntr-integration.php:116
 msgid "Deactivate"
 msgstr "停用"
 
-#: includes/pages/gs-formntr-integration.php:113
+#: includes/pages/gs-formntr-integration.php:121
 msgid ""
 "On deactivation, all your data saved with authentication\n"
 "                        will be removed and you need to reauthenticate with "
@@ -646,15 +448,15 @@ msgstr ""
 "                        系统将被移除，您需要使用您的 Google 帐户重新进行身份"
 "验证。"
 
-#: includes/pages/gs-formntr-integration.php:123
+#: includes/pages/gs-formntr-integration.php:133
 msgid "Click Sign in with Google"
 msgstr "点击通过 Google 登录"
 
-#: includes/pages/gs-formntr-integration.php:137
+#: includes/pages/gs-formntr-integration.php:150
 msgid "Save & Authenticate"
 msgstr "保存并验证"
 
-#: includes/pages/gs-formntr-integration.php:154
+#: includes/pages/gs-formntr-integration.php:167
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
@@ -663,15 +465,15 @@ msgstr ""
 "出了点问题！看起来您没有从您的Google帐户中获得Google Drive和Google Sheets的许"
 "可。请停用身份验证，然后使用权限重新进行身份验证。"
 
-#: includes/pages/gs-formntr-integration.php:159
+#: includes/pages/gs-formntr-integration.php:172
 msgid "Also,"
 msgstr "还，   "
 
-#: includes/pages/gs-formntr-integration.php:159
+#: includes/pages/gs-formntr-integration.php:174
 msgid "Click Here "
 msgstr "点击这里 "
 
-#: includes/pages/gs-formntr-integration.php:160
+#: includes/pages/gs-formntr-integration.php:175
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
@@ -679,18 +481,18 @@ msgstr ""
 "如果它在具有帐户访问权限的第三方应用程序下显示“GSheetConnector for WP "
 "Contact Forms”，则将其删除。"
 
-#: includes/pages/gs-formntr-integration.php:175
+#: includes/pages/gs-formntr-integration.php:193
 #, php-format
 msgid "Connected email account: <u>%s</u>"
 msgstr "关联的电子邮件帐户：   <u>%s </u>"
 
-#: includes/pages/gs-formntr-integration.php:180
+#: includes/pages/gs-formntr-integration.php:201
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
 msgstr "出了点问题！您的授权码可能错误或已过期。请停用并重新进行身份验证。 "
 
-#: includes/pages/gs-formntr-integration.php:191
+#: includes/pages/gs-formntr-integration.php:213
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
@@ -699,109 +501,39 @@ msgstr ""
 "我们不会将您的Google帐户中的任何数据存储在我们的服务器上，所有内容都会在您的"
 "服务器上处理和存储。我们非常重视您的隐私，并确保绝不会被滥用。"
 
-#: includes/pages/gs-formntr-integration.php:191
+#: includes/pages/gs-formntr-integration.php:215
 msgid "Learn more."
 msgstr "了解更多。"
 
-#: includes/pages/gs-formntr-integration.php:197
-msgid "Debug Log"
-msgstr "调试日志"
-
-#: includes/pages/gs-formntr-integration.php:198
-msgid "View"
-msgstr "查看"
-
-#: includes/pages/gs-formntr-integration.php:200
-#: includes/pages/gs-formntr-systeminfo.php:23
-msgid "Clear"
-msgstr "清除"
-
-#: includes/pages/gs-formntr-integration.php:242
+#: includes/pages/gs-formntr-integration.php:269
 msgid "No errors found."
 msgstr "没有发现错误."
 
-#: includes/pages/gs-formntr-integration.php:248
+#: includes/pages/gs-formntr-integration.php:273
 msgid "No log file exists as no errors are generated."
 msgstr "不存在日志文件，因为不会生成任何错误。"
 
-#: includes/pages/gs-formntr-integration.php:284
-msgid "Next steps…"
-msgstr "后续步骤..."
-
-#: includes/pages/gs-formntr-integration.php:295
-msgid "Upgrade to PRO"
-msgstr "升级到专业版"
-
-#: includes/pages/gs-formntr-integration.php:296
-msgid "Sync Sheets,Entries and much more."
-msgstr "同步工作表，条目等等。"
-
-#: includes/pages/gs-formntr-integration.php:307
-msgid "Compatibility"
-msgstr "兼容性"
-
-#: includes/pages/gs-formntr-integration.php:308
-msgid "Compatibility with Forminator Third-Party Plugins"
-msgstr "与Forminator第三方插件的兼容性"
-
-#: includes/pages/gs-formntr-integration.php:318
-msgid "Multi Languages"
-msgstr "多语言"
-
-#: includes/pages/gs-formntr-integration.php:319
-msgid "This plugin supports multi-languages as well!"
-msgstr "这个插件也支持多种语言！"
-
-#: includes/pages/gs-formntr-integration.php:331
-msgid "Product Support"
-msgstr "产品支持"
-
-#: includes/pages/gs-formntr-integration.php:339
-msgid "Online Documentation"
-msgstr "在线文档"
-
-#: includes/pages/gs-formntr-integration.php:340
-msgid "Understand all the capabilities of Forminator GSheetConnector"
-msgstr "了解 Forminator GSheetConnector 的所有功能"
-
-#: includes/pages/gs-formntr-integration.php:348
-msgid "Ticket Support"
-msgstr "购买支持"
-
-#: includes/pages/gs-formntr-integration.php:349
-msgid "Direct help from our qualified support team"
-msgstr "官方专业团队为您直接提供帮助"
-
-#: includes/pages/gs-formntr-integration.php:357
-msgid "Affiliate Program"
-msgstr "联盟计划"
-
-#: includes/pages/gs-formntr-integration.php:358
-#, php-format
-msgid "Earn flat 30% on every sale!"
-msgstr "每次销售赚30% o平！"
-
-#: includes/pages/gs-formntr-systeminfo.php:10
+#: includes/pages/gs-formntr-systeminfo.php:11
 msgid "System Info"
 msgstr "系统信息"
 
-#: includes/pages/gs-formntr-systeminfo.php:11
+#: includes/pages/gs-formntr-systeminfo.php:12
 msgid "Copy System Info to Clipboard"
 msgstr "将系统信息复制到剪贴板"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:19
 msgid "Error Log"
 msgstr "错误日志"
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:20
 msgid "If you have"
 msgstr "如果你有"
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:20
 msgid "WP_DEBUG_LOG"
 msgstr "WP_DEBUG_LOG"
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:20
 msgid ""
 "enabled, errors are stored in a log file. Here you can find the last 100 "
 "lines in reversed order so that you or the GSheetConnector support team can "
@@ -810,35 +542,21 @@ msgstr ""
 "启用后，错误将存储在日志文件中。在这里，您可以以相反的顺序找到最后 100 行，以"
 "便您或 GSheetConnector 支持团队可以轻松查看它。无法在此处编辑文件。"
 
-#: includes/pages/gs-formntr-systeminfo.php:22
+#: includes/pages/gs-formntr-systeminfo.php:21
 msgid "Copy Error Log to Clipboard"
 msgstr "将错误日志复制到剪贴板"
 
-#: includes/pages/gs-formntr-systeminfo.php:29
+#: includes/pages/gs-formntr-systeminfo.php:22
+msgid "Clear"
+msgstr "清除"
+
+#: includes/pages/gs-formntr-systeminfo.php:28
 msgid "Copied"
 msgstr "复制"
 
-#: includes/pages/pro-popup.php:9
-msgid "GSheetConnector for Forminator PRO Features"
-msgstr "GSheetConnector for Forminator PRO功能"
-
-#: includes/pages/pro-popup.php:10
-msgid ""
-"This features is available in the PRO version of the plugin. To "
-"<strong>Enable the options Upgrade to the PRO</strong> version to unlock all "
-"these awesome features."
-msgstr ""
-"此功能在插件的 PRO 版本中可用。 <strong>启用选项 升级到 PRO</strong> 版本以解"
-"锁所有这些很棒的功能。"
-
-#: includes/pages/pro-popup.php:16
-msgid ""
-"Bonus: GSheetConnector for Forminator Lite users will get <strong>Special "
-"Discounts</strong> for unlimited site licence, automatically applied at "
-"checkout."
-msgstr ""
-"奖励：Forminator Lite 用户的 GSheetConnector 将获得无限站点许可证 <strong>的"
-"特别折扣</strong> ，在结账时自动应用。"
+#. Plugin Name of the plugin/theme
+msgid "GSheetConnector for Forminator Forms"
+msgstr "用于 Forminator 表单的 GSheetConnector"
 
 #. Plugin URI of the plugin/theme
 msgid "https://www.gsheetconnector.com"
@@ -855,6 +573,242 @@ msgstr "GSheet连接器"
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/westerndeal/"
 msgstr "https://profiles.wordpress.org/westerndeal/"
+
+#~ msgid "<img style='width:30px;margin-right: 10px;' src='"
+#~ msgstr "<img style='width：30px;右边距：10px;' src='"
+
+#~ msgid "logo"
+#~ msgstr "标志"
+
+#~ msgid "Learn more"
+#~ msgstr "了解更多"
+
+#~ msgid ""
+#~ "GSheetConnector for Forminator Forms is an addon plugin, A bridge between "
+#~ "your WordPress based Forminator Forms forms and Google Sheets."
+#~ msgstr ""
+#~ "GSheetConnector for Forminator Forms 是一个插件插件，是您基于 WordPress "
+#~ "的 Forminator Forms 表单和 Google 表格之间的桥梁。"
+
+#~ msgid "Free"
+#~ msgstr "免费"
+
+#~ msgid "Download"
+#~ msgstr "下载"
+
+#~ msgid "WPForms Google Sheet Connector"
+#~ msgstr "WPForms Google 表格连接器"
+
+#~ msgid ""
+#~ "WPForms, A bridge between your WordPress based WPForms and Google Sheets. "
+#~ "It helps to record the entries in real-time."
+#~ msgstr ""
+#~ "WPForms，基于 WordPress 的 WPForms 和 Google 表格之间的桥梁。它有助于实时"
+#~ "记录条目。"
+
+#~ msgid "Buy Now"
+#~ msgstr "立即购买"
+
+#~ msgid "Ninja Forms Google Sheet Connector"
+#~ msgstr "Ninja Forms Google 表格连接器"
+
+#~ msgid ""
+#~ "Ninja Forms, A bridge between your WordPress based Ninja Forms and Google "
+#~ "Sheets. It helps to record the entries in real-time."
+#~ msgstr ""
+#~ "Ninja Forms，基于 WordPress 的 Ninja Forms 和 Google 表格之间的桥梁。它有"
+#~ "助于实时记录条目。"
+
+#~ msgid "Gravity Forms Google Sheet Connector"
+#~ msgstr "与 Google 表格关联的 Gravity Forms"
+
+#~ msgid ""
+#~ "Gravity Forms Google Sheets Connector Plugin is a Bridge between your "
+#~ "Gravity Forms and Google Sheets."
+#~ msgstr ""
+#~ "Gravity Forms Google 表格连接器插件是 Gravity Forms 和 Google 表格之间的桥"
+#~ "梁。"
+
+#~ msgid "WooCommerce Google Sheet Connector"
+#~ msgstr "WooCommerce Google 表格连接器"
+
+#~ msgid ""
+#~ "WooCommerce Google Spreadsheet Addon Plugin to connect with Google Sheets."
+#~ msgstr "WooCommerce Google 电子表格插件 用于连接 Google 表格的插件。"
+
+#~ msgid "Elementor Forms Google Sheet Connector"
+#~ msgstr "Elementor Forms Google 表格连接器"
+
+#~ msgid ""
+#~ "A bridge between your WordPress based Elementor Forms or Metform "
+#~ "Elementor Builder to Google Sheets."
+#~ msgstr ""
+#~ "基于 WordPress 的 Elementor Forms 或 Metform Elementor Builder 到 Google "
+#~ "表格之间的桥梁。"
+
+#~ msgid "CF7 Google Sheets Connector"
+#~ msgstr "CF7 Google 表格连接器"
+
+#~ msgid ""
+#~ "CF7 Google Sheet Connector is an addon plugin, A bridge between your "
+#~ "WordPress based Contact Form 7 forms and Google Sheets."
+#~ msgstr ""
+#~ "CF7 Google Sheet Connector 是一个插件插件，是您基于 WordPress 的联系表格 "
+#~ "7 表单和 Google 表格之间的桥梁。"
+
+#~ msgid "Easy Digital Downloads Google Sheet Connector"
+#~ msgstr "轻松数字下载 Google 表格连接器"
+
+#~ msgid ""
+#~ "Easy Digital Downloads Google Sheet Connector sends orders entries to "
+#~ "Google Sheet in a real-time"
+#~ msgstr "轻松数字下载 Google 表格连接器将订单条目实时发送到 Google 表格"
+
+#~ msgid "Avada Forms Google Sheet Connector Pro"
+#~ msgstr "Avada Forms Google Sheet 连接器专业版"
+
+#~ msgid ""
+#~ "Avada Theme Fusion Builder addon, simplifies real-time data transmission "
+#~ "from Avada theme-based forms to Google Sheets with premium features."
+#~ msgstr ""
+#~ "Avada Theme Fusion Builder插件，通过高级功能简化了从基于Avada主题的表单到"
+#~ "Google Sheets的实时数据传输。"
+
+#~ msgid "Divi Forms Google Sheet Connector Pro"
+#~ msgstr "Divi Forms Google 表格连接器专业版"
+
+#~ msgid ""
+#~ "Divi Forms GSheetConnector, an addon for DIVI Theme/Builder, simplifies "
+#~ "real-time syncing of data from DIVI theme forms to both the database and "
+#~ "Google Sheets."
+#~ msgstr ""
+#~ "Divi Forms GSheetConnector 是 DIVI Theme/Builder 的插件，简化了数据从 "
+#~ "DIVI 主题表单到数据库和 Google 表格的实时同步。"
+
+#~ msgid "GSheetConnector for Formidable Forms"
+#~ msgstr "GSheetConnector 重力形式提要设置"
+
+#~ msgid ""
+#~ "Formidable Forms, A bridge between your WordPress based Formidable Forms "
+#~ "forms and Google Sheets."
+#~ msgstr ""
+#~ "Formidable Forms，基于WordPress的Formidable Forms表单和Google表格之间的桥"
+#~ "梁。"
+
+#~ msgid "Caldera Forms Google Sheets Connector"
+#~ msgstr "与 Google 表格关联的 Gravity Forms"
+
+#~ msgid ""
+#~ "Caldera Forms Closure, No more updates on this plugin Due to Caldera "
+#~ "Forms being sunset/retired on December 31, 2021"
+#~ msgstr ""
+#~ "Caldera Forms 关闭，由于 Caldera Forms 将于 2021 年 12 月 31 日日落/停用，"
+#~ "因此此插件不再更新"
+
+#~ msgid "Version :"
+#~ msgstr "版本："
+
+#~ msgid ""
+#~ "<strong>Authentication Required:</strong>\n"
+#~ "              You must authenticate using your Google Account along with "
+#~ "Google Drive and Google Sheets Permissions to enable the settings for "
+#~ "configuration."
+#~ msgstr ""
+#~ "<strong>需要身份验证：</strong>\n"
+#~ "              您必须使用您的 Google 帐户以及 Google 云端硬盘和 Google 表格"
+#~ "权限进行身份验证，才能启用配置设置。"
+
+#~ msgid "Active Forms"
+#~ msgstr "活动表单"
+
+#~ msgid "Last Submission:"
+#~ msgstr "最后提交："
+
+#~ msgid "Submissions in the last 30 days:"
+#~ msgstr "过去 30 天内提交的内容："
+
+#~ msgid "No forms are currently available."
+#~ msgstr "目前没有可用的表格。"
+
+#~ msgid "Create a new form"
+#~ msgstr "创建新表单"
+
+#~ msgid "to get started."
+#~ msgstr "以开始使用。"
+
+#~ msgid "Set Up Forms Integration with Google Sheets"
+#~ msgstr "设置表单与 Google 表格的集成"
+
+#~ msgid "Forminator- "
+#~ msgstr "福尔米纳特-"
+
+#~ msgid "Google Sheet Integration"
+#~ msgstr "Google 表格集成"
+
+#~ msgid "Debug Log"
+#~ msgstr "调试日志"
+
+#~ msgid "View"
+#~ msgstr "查看"
+
+#~ msgid "Next steps…"
+#~ msgstr "后续步骤..."
+
+#~ msgid "Sync Sheets,Entries and much more."
+#~ msgstr "同步工作表，条目等等。"
+
+#~ msgid "Compatibility"
+#~ msgstr "兼容性"
+
+#~ msgid "Compatibility with Forminator Third-Party Plugins"
+#~ msgstr "与Forminator第三方插件的兼容性"
+
+#~ msgid "Multi Languages"
+#~ msgstr "多语言"
+
+#~ msgid "This plugin supports multi-languages as well!"
+#~ msgstr "这个插件也支持多种语言！"
+
+#~ msgid "Product Support"
+#~ msgstr "产品支持"
+
+#~ msgid "Online Documentation"
+#~ msgstr "在线文档"
+
+#~ msgid "Understand all the capabilities of Forminator GSheetConnector"
+#~ msgstr "了解 Forminator GSheetConnector 的所有功能"
+
+#~ msgid "Ticket Support"
+#~ msgstr "购买支持"
+
+#~ msgid "Direct help from our qualified support team"
+#~ msgstr "官方专业团队为您直接提供帮助"
+
+#~ msgid "Affiliate Program"
+#~ msgstr "联盟计划"
+
+#, php-format
+#~ msgid "Earn flat 30% on every sale!"
+#~ msgstr "每次销售赚30% o平！"
+
+#~ msgid "GSheetConnector for Forminator PRO Features"
+#~ msgstr "GSheetConnector for Forminator PRO功能"
+
+#~ msgid ""
+#~ "This features is available in the PRO version of the plugin. To "
+#~ "<strong>Enable the options Upgrade to the PRO</strong> version to unlock "
+#~ "all these awesome features."
+#~ msgstr ""
+#~ "此功能在插件的 PRO 版本中可用。 <strong>启用选项 升级到 PRO</strong> 版本"
+#~ "以解锁所有这些很棒的功能。"
+
+#~ msgid ""
+#~ "Bonus: GSheetConnector for Forminator Lite users will get <strong>Special "
+#~ "Discounts</strong> for unlimited site licence, automatically applied at "
+#~ "checkout."
+#~ msgstr ""
+#~ "奖励：Forminator Lite 用户的 GSheetConnector 将获得无限站点许可证 <strong>"
+#~ "的特别折扣</strong> ，在结账时自动应用。"
 
 #~ msgid "Debug Constants"
 #~ msgstr "调试常量"
@@ -885,12 +839,6 @@ msgstr "https://profiles.wordpress.org/westerndeal/"
 
 #~ msgid "SAVEQUERIES"
 #~ msgstr "保存查询"
-
-#~ msgid "Save"
-#~ msgstr "保存"
-
-#~ msgid "Forminator Forms - GSheetConnector"
-#~ msgstr "Forminator 表单 - GSheetConnector"
 
 #~ msgid "Upgrade to Unlock Elementor Forms GSheetConnector Addons"
 #~ msgstr "升级以解锁 Elementor Forms GSheetConnector 插件"

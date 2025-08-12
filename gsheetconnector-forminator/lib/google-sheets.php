@@ -11,19 +11,34 @@ class FORMI_GSC_googlesheet
     private $token;
     private $spreadsheet;
     private $worksheet;
-
-
     private static $instance;
 
-    public function __construct()
-    {
+    /**
+     *  Set things up.
+     *  @since 1.0.15
+     */
 
-    }
+    public function __construct() {}
+
+    /**
+     * Sets the Google_Client instance.
+     *
+     * @param Google_Client|null $instance Google Client instance or null.
+     * @since 1.0.15
+     */
 
     public static function setInstance(Google_Client $instance = null)
     {
         self::$instance = $instance;
     }
+
+    /**
+     * Retrieves the Google_Client instance.
+     *
+     * @return Google_Client
+     * @throws LogicException If no instance is set.
+     * @since 1.0.15
+     */
 
     public static function getInstance()
     {
@@ -35,10 +50,11 @@ class FORMI_GSC_googlesheet
     }
 
     /**
-     * Generate token for the user and refresh the token if it's expired.
+     * Generates a token for the user and refreshes it if expired.
      *
-     * @return array
+     * @since 1.0.15
      */
+
     public static function get_auth_url($frmingsc_clientId = '', $frmingsc_clientSecert = '')
     {
         $frmingsc_client = new Google_Client();
@@ -59,7 +75,15 @@ class FORMI_GSC_googlesheet
         }
     }
 
-    //constructed on call
+    /**
+     * Performs pre-authorization by exchanging the access code for an access token.
+     *
+     * Fetches API credentials, initializes Google Client, sets scopes, and updates the token.
+     *
+     * @param string $access_code Google authorization code.
+     * @since 1.0.15
+     */
+
     public static function preauth($access_code)
     {
         if (is_multisite()) {
@@ -87,6 +111,13 @@ class FORMI_GSC_googlesheet
         FORMI_GSC_googlesheet::updateToken($tokenData);
     }
 
+    /**
+     * Updates the token data in the WordPress options table.
+     * 
+     * @param array $tokenData The token data to update.
+     * @since 1.0.15
+     * */
+
     public static function updateToken($tokenData)
     {
         $expires_in = isset($tokenData['expires_in']) ? intval($tokenData['expires_in']) : 0;
@@ -108,15 +139,20 @@ class FORMI_GSC_googlesheet
         }
     }
 
+    /**
+     * Authenticates the user with Google Sheets API.
+     * 
+     * @throws LogicException If the OAuth2 access token is invalid or missing.
+     * @since 1.0.15
+     * */
+
     public function auth()
     {
         $maunal_setting = get_option('gs_formntr_manual_setting') != "" ? get_option('gs_formntr_manual_setting') : '0';
         if ($maunal_setting == '1')
             $tokenData = json_decode(get_option('gs_frmin_token_manual'), true);
         else
-            $tokenData = json_decode(get_option('gs_formntr_token'), true);
-
-        ;
+            $tokenData = json_decode(get_option('gs_formntr_token'), true);;
         //$tokenData = json_decode(get_option('gs_formntr_token'), true);
         if (!isset($tokenData['refresh_token']) || empty($tokenData['refresh_token'])) {
             throw new LogicException("Auth, Invalid OAuth2 access token");
@@ -132,7 +168,6 @@ class FORMI_GSC_googlesheet
                 $gs_frmin_secret_id = get_option('gs_frmin_secret_id');
                 $client->setClientId($gs_frmin_client_id);
                 $client->setClientSecret($gs_frmin_secret_id);
-
             } else {
                 if (is_multisite()) {
                     // Fetch API creds
@@ -166,10 +201,16 @@ class FORMI_GSC_googlesheet
             self::setInstance($client);
         } catch (Exception $e) {
             GS_FORMNTR_Free_Utility::frmgs_debug_log($e->getMessage());
-            throw new LogicException("Auth, Error fetching OAuth2 access token, message: " . $e->getMessage());
+            throw new LogicException("Auth, Error fetching OAuth2 access token, message: " . esc_html($e->getMessage()));
             exit();
         }
     }
+
+    /**
+     * Updates the token data manually.
+     * @param array $tokenData The token data to update.
+     * @since 1.0.15
+     * */
 
     public static function updateToken_manual($tokenData)
     {
@@ -182,32 +223,46 @@ class FORMI_GSC_googlesheet
         }
     }
 
-    public function get_user_data()
-    {
-        $client = self::getInstance();
+    // public function get_user_data()
+    // {
+    //     $client = self::getInstance();
 
-        $results = $this->get_spreadsheets();
+    //     $results = $this->get_spreadsheets();
 
-        echo '<pre>';
-        print_r($results);
-        echo '</pre>';
-        $spreadsheets = $this->get_worktabs('1mRuDMnZveDFQrmzHM9s5YkPA4F_dZkHJ1Gh81BvYB2k');
-        echo '<pre>';
-        print_r($spreadsheets);
-        echo '</pre>';
-        $this->setSpreadsheetId('1mRuDMnZveDFQrmzHM9s5YkPA4F_dZkHJ1Gh81BvYB2k');
-        $this->setWorkTabId('Foglio1');
-        $worksheetTab = $this->list_rows();
-        echo '<pre>';
-        print_r($worksheetTab);
-        echo '</pre>';
-    }
-
+    //     echo '<pre>';
+    //     print_r($results);
+    //     echo '</pre>';
+    //     $spreadsheets = $this->get_worktabs('1mRuDMnZveDFQrmzHM9s5YkPA4F_dZkHJ1Gh81BvYB2k');
+    //     echo '<pre>';
+    //     print_r($spreadsheets);
+    //     echo '</pre>';
+    //     $this->setSpreadsheetId('1mRuDMnZveDFQrmzHM9s5YkPA4F_dZkHJ1Gh81BvYB2k');
+    //     $this->setWorkTabId('Foglio1');
+    //     $worksheetTab = $this->list_rows();
+    //     echo '<pre>';
+    //     print_r($worksheetTab);
+    //     echo '</pre>';
+    // }
     //preg_match is a key of error handle in this case
+
+    /**
+     * Sets the Google Spreadsheet ID.
+     *
+     * @param string $id Spreadsheet ID.
+     * @since 1.0.15
+     */
+
     public function setSpreadsheetId($id)
     {
         $this->spreadsheet = $id;
     }
+
+    /**
+     * Retrieves the Google Spreadsheet ID.
+     *
+     * @return string Spreadsheet ID.
+     * @since 1.0.15
+     */
 
     public function getSpreadsheetId()
     {
@@ -215,15 +270,36 @@ class FORMI_GSC_googlesheet
         return $this->spreadsheet;
     }
 
+    /**
+     * Sets the Google Sheet tab (worksheet) ID.
+     *
+     * @param string $id Worksheet ID.
+     * @since 1.0.15
+     */
+
     public function setWorkTabId($id)
     {
         $this->worksheet = $id;
     }
 
+    /**
+     * Retrieves the Google Sheet tab (worksheet) ID.
+     *
+     * @return string Worksheet ID.
+     * @since 1.0.15
+     */
+
     public function getWorkTabId()
     {
         return $this->worksheet;
     }
+
+    /**
+     * Adds a new row to the Google Sheet.
+     *
+     * @param array $data Row data to insert.
+     * @since 1.0.15
+     */
 
     public function add_row($data, $field_data_array)
     {
@@ -255,7 +331,6 @@ class FORMI_GSC_googlesheet
                             }
                         }
 
-                        /* RASHID */
                         $tab_name = $worksheet_id;
                         $full_range = $tab_name . "!A1:Z";
                         $response = $service->spreadsheets_values->get($spreadsheetId, $full_range);
@@ -294,9 +369,12 @@ class FORMI_GSC_googlesheet
         }
     }
 
+    /**
+     * Retrieves all Google Spreadsheets from the connected account.
+     *
+     * @since 1.0.15
+     */
 
-
-    //get all the spreadsheets
     public function get_spreadsheets()
     {
         $all_sheets = array();
@@ -325,7 +403,12 @@ class FORMI_GSC_googlesheet
         return $all_sheets;
     }
 
-    //get worksheets title
+    /**
+     * Retrieves all work tabs (sheets) from a specific Google Spreadsheet.
+     *
+     * @since 1.0.15
+     */
+
     public function get_worktabs($spreadsheet_id)
     {
         $work_tabs_list = array();
@@ -350,20 +433,12 @@ class FORMI_GSC_googlesheet
         return $work_tabs_list;
     }
 
-
-
-
-
-
-    /*     * **************************************************************************** */
-    /*     * ******************************  VERSION 3.1 ******************************** */
-    /*     * **************************************************************************** */
-
     /**
-     * GFGSC_googlesheet::sync_with_google_account
-     * Fetch Spreadsheets
-     * @since 3.1 
-     * */
+     * Fetches all spreadsheets from the connected Google account.
+     *
+     * @since 1.0.15
+     */
+
     public function sync_with_google_account()
     {
         return;
@@ -371,8 +446,12 @@ class FORMI_GSC_googlesheet
         $return_ajax = false;
 
         if (isset($_POST['isajax']) && $_POST['isajax'] == 'yes') {
-            check_ajax_referer('gf-ajax-nonce', 'security');
-            $init = sanitize_text_field($_POST['isinit']);
+            check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
+            // $init = sanitize_text_field($_POST['isinit']);
+            if (isset($_POST['isinit'])) {
+                $init = sanitize_text_field(wp_unslash($_POST['isinit']));
+            }
+
             $return_ajax = true;
         }
 
@@ -424,11 +503,12 @@ class FORMI_GSC_googlesheet
     }
 
     /**
-     * GFGSC_googlesheet::gsheet_get_google_account
-     * Get Google Account
-     * @since 3.1 
-     * @retun $user
-     * */
+     * Retrieves the connected Google account details.
+     *
+     * @since 1.0.15
+     * @return object $user Google account information.
+     */
+
     public function gsheet_get_google_account()
     {
 
@@ -450,11 +530,12 @@ class FORMI_GSC_googlesheet
     }
 
     /**
-     * GFGSC_googlesheet::gsheet_get_google_account_email
-     * Get Google Account Email
-     * @since 3.1 
-     * @retun string $email
-     * */
+     * Retrieves the connected Google account email address.
+     *
+     * @since 1.0.15
+     * @return string $email Google account email.
+     */
+
     public function gsheet_get_google_account_email()
     {
         $google_account = $this->gsheet_get_google_account();
@@ -467,26 +548,22 @@ class FORMI_GSC_googlesheet
     }
 
     /**
-     * GFGSC_googlesheet::gsheet_print_google_account_email
-     * Get Google Account Email
-     * @since 3.1 
-     * @retun string $google_account
-     * */
+     * Prints the connected Google account email address.
+     *
+     * @since 1.0.15
+     * @return string $google_account Google account email.
+     */
+
     public function gsheet_print_google_account_email()
     {
         try {
-            // $google_account = get_option("frmingf_email_account");
-
-            // if ($google_account) {
-            //     return $google_account;
-            // } else {
-
+           
             $google_sheet = new FORMI_GSC_googlesheet();
             $google_sheet->auth();
             $email = $google_sheet->gsheet_get_google_account_email();
             update_option('frmingf_email_account', $email);
             return $email;
-            // }
+        
         } catch (Exception $e) {
             GS_FORMNTR_Free_Utility::frmgs_debug_log($e->getMessage());
             return false;
@@ -494,10 +571,17 @@ class FORMI_GSC_googlesheet
     }
 
     /**
-     * Generate token for the user and refresh the token if it's expired.
+     * Retrieves the Google Client instance for API communication.
      *
-     * @return array
+     * @since 1.0.15
+     *
+     * @param int    $flag                  Flag to determine if debug logging is enabled.
+     * @param string $gscfrmin_clientId     Google Client ID.
+     * @param string $gscfrmin_clientSecret Google Client Secret.
+     *
+     * @return Google_Client|false Google Client instance or false on failure.
      */
+
     public static function getClient_auth($flag = 0, $gscfrmin_clientId = '', $gscfrmin_clientSecert = '')
     {
         $gscfrmin_client = new Google_Client();
@@ -524,7 +608,6 @@ class FORMI_GSC_googlesheet
                     $gscfrmin_auth_url = $gscfrmin_client->createAuthUrl();
                     return $gscfrmin_auth_url;
                 }
-
             }
 
             $gscfrmin_client->setAccessToken($gscfrmin_accessToken);
@@ -554,6 +637,15 @@ class FORMI_GSC_googlesheet
         return $gscfrmin_client;
     }
 
+    /**
+     * Revokes the Google OAuth token (auto mode).
+     *
+     * Fetches API credentials, initializes Google Client, and revokes the provided access token.
+     *
+     * @param string $access_code JSON-encoded access token data.
+     * @since 1.0.15
+     */
+
     public static function revokeToken_auto($access_code)
     {
         if (is_multisite()) {
@@ -574,5 +666,4 @@ class FORMI_GSC_googlesheet
         $token = $tokendecode->access_token;
         $client->revokeToken($token);
     }
-
 }
