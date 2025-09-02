@@ -17,10 +17,10 @@
 .system-debug-logs {
   position: relative;
   background-color: #fff;
-  padding: 20px;
+  padding:0;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #b5bfc9;
+  border: none;
+  box-shadow: 0 0 0;
   margin: 20px auto;
   width: 100%;
   box-sizing: border-box;
@@ -54,8 +54,8 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 45px;
-  height: 25px;
+  width:30px;
+  height: 10px;
 }
 
 .switch input {
@@ -89,17 +89,17 @@
 }
 
 input:checked + .slider {
-  background-color: #b8199a;
+  background-color: #607dbc;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #b8199a;
+  box-shadow: 0 0 1px #607dbc;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
 }
 
 .info-button .dashicons {
@@ -334,7 +334,6 @@ input:checked + .slider:before {
 }
 
 .copy {
-  margin: 1rem 0;
   display: inline-flex;
   align-items: center;
   margin: 0.5rem 0 1rem;

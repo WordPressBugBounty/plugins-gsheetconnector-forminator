@@ -1,4 +1,4 @@
-=== GSheetConnector for Forminator Forms===
+=== GSheetConnector for Forminator Forms ===
 Contributors: westerndeal, abdullah17, gsheetconnector
 Donate link: https://www.paypal.me/WesternDeal
 Author URL: https://profiles.wordpress.org/westerndeal/
@@ -6,44 +6,46 @@ Tags: forminator, forminator google sheet, forminator forms google sheet, google
 Tested up to: 6.8
 Requires at least: 5.6
 Requires PHP: 7.4
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Send your Forminator Forms data directly to your Google Contacts spreadsheet. 
+Send your Forminator Forms data directly to your Google Sheet in a real-time. 
 
 == Description ==
 
 **GSheetConnector for Forminator Forms is an addon plugin**, 
-A bridge between your [WordPress](https://wordpress.org/) based [Forminator Forms](https://wordpress.org/plugins/forminator/) forms and [Google Sheets](https://www.google.com/sheets/about/). 
+A bridge between your [WordPress](https://wordpress.org/) based [Forminator Forms](https://wordpress.org/plugins/forminator/) and [Google Sheets](https://www.google.com/sheets/about/). 
 ✔🚀 **Quick and Simple to use WordPress Plugin.**
 
 If you're using **[Forminator Forms](https://wordpress.org/plugins/forminator/) by WPMU DEV** to collect data from your website visitors , it's important to have a streamlined process for managing that data. One way to do this is to send Forminator form entry data directly to a Google Sheet. This integration can save your time and effort by eliminating the need to manually transfer data from your form submissions to your spreadsheet.
 
 When a visitor submits their information on your website using GSheetConnector for Forminator Forms, the data they provide is automatically sent to Google Sheets upon form submission in real-time.
 
-== Installation ==
+[Homepage](https://www.gsheetconnector.com/) | [Documentation](https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/introduction/) | [Support](https://www.gsheetconnector.com/support) | [Demo](https://demo.gsheetconnector.com/forminator-google-sheet-connector/) | [Forminator Forms Google Sheet PRO](https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro?wp-repo)
 
-1. Upload `GSheetConnector Forminator Forms` to the `/wp-content/plugins/` directory and  Install it.
-2. Activate the plugin through the 'Plugins' screen in WordPress.  
-3. Use the `Admin Panel > Forms > Google Sheet` screen to connect to `Google Sheets` by clicking on signin with Google button. Allow the Sheets and Drive permissions and Hit Save, you will see code copied into the plugin settings and simply save authentication.
-4. Configure with the appropriate sheet and hit save and you are done.
-Enjoy!
+= 📝 Forminator Forms ➜ ✍️Google Sheet=
+Get rid of making mistakes while adding the sheet settings or adding the headers ( Mail Tags ) to the sheet column. We have Launched the [Forminator Forms Google Sheet Connector PRO version](https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro?wp-repo) with more automated features.
 
-== Screenshots ==
+= ✨PRO Features✨ =
+➜ Custom Google API Integration Settings
+➜ Allowing to Create a New Sheet from Plugin Settings
+➜ Custom Ordering Feature / Manage Fields to Display in Sheet using Enable-Disable / Edit the Fields/ Headers Name to display in Google Sheet.
+➜ Syncronize Existing Entries for Forminator Forms PRO users
+➜ Freeze Header Settings
+➜ Header Color and Row Odd/Even Colors.
+Refer to the features and benefits page for more detailed information on the features of the [Forminator Forms Google Sheet PRO Addon Plugin](https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro?wp-repo)
 
-1. Google Sheet Integration Shown with Authentication along with Permissions. 
-2. Create a form.
-3. How to create feeds and display the Sheet name and Tab name.
-4. Entering the Field Header Names Manually in the Connected Sheet and Submitting the form.
-5. System Status.
-6. Extensions.
+= ⚡️ Check Live Demo =
+[Demo URL: Forminator Google Sheet](https://demo.gsheetconnector.com/forminator-google-sheet-connector/)
+
+[Google Sheet URL to Check submitted Data](https://docs.google.com/spreadsheets/d/1Ftht9knBeuzcvZlzM4Wz6L8qsV4PiDU5ukFlFq9M6PU/edit?gid=378149633#gid=378149633)
 
 = ⚡️ How to Use this Plugin =
 
 * **Step: 1 - [In Google Sheets](https://sheets.google.com/)** 
 ➜ Log into your Google Account and visit Google Sheets.  
-➜ Create a new Sheet and name it.  
+➜ Create a New Sheet and Name it.  
 ➜ Rename or keep default name of the tab on which you want to capture the data. 
 ➜ Copy Sheet Name, Sheet ID, Tab Name and Tab ID (Refer Screenshots)
 
@@ -62,7 +64,52 @@ Enjoy!
 ➜ In the Google sheets tab, provide column names in row 1. The first column should be "date". For each further column, copy paste mail tags from the Forminator Forms form (e.g. "your-name", "your-email", "your-subject", "your-message", etc).  
 ➜ Test your form submit and verify that the data shows up in your Google Sheet.
 
-= 🔥 Videos to help you get started with Forminator Forms Google Sheets Connector =
+== External Services ==
+
+This plugin connects your Forminator Forms with Google Sheets. To work properly, it relies on the following external services:
+
+1. **Google APIs (https://www.googleapis.com)**  
+   - Used to send the form submission data to your connected Google Sheets.  
+   - Data sent: Only the form/entry data that you choose to map in the plugin settings.  
+   - Data is sent when a form is submitted or when the integration is triggered.  
+   - Terms of Service: https://policies.google.com/terms  
+   - Privacy Policy: https://policies.google.com/privacy  
+
+2. **Google Accounts OAuth (https://accounts.google.com)**  
+   - Used for authentication and authorization to connect your Google account.  
+   - Data sent: During authentication, the plugin requests OAuth 2.0 access tokens with permissions to access your Google Sheets.  
+   - Terms of Service: https://policies.google.com/terms  
+   - Privacy Policy: https://policies.google.com/privacy  
+
+3. **GSheetConnector Authentication Service**  
+   - Used to simplify the OAuth connection process between your Forminator Forms and Google APIs.    
+   - This service does not store your form entries or personal data; it only facilitates authentication with Google.  
+   - Terms of Service: https://www.gsheetconnector.com/terms-of-service/  
+   - Privacy Policy: https://www.gsheetconnector.com/privacy-policy/  
+
+
+= Important Notes = 
+
+➜ You must pay very careful attention to your naming. This plugin will not send submissions, if names and spellings do not match between your Google Sheets and form fields.
+
+👉 [Get Forminator GoogleSheetConnector PRO today](https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro?wp-repo)
+
+== Installation ==
+
+1. Upload `GSheetConnector for Forminator Forms` to the `/wp-content/plugins/` directory and  Install it.
+2. Activate the plugin through the 'Plugins' screen in WordPress.  
+3. Use the `Admin Panel > Forms > Google Sheet` screen to connect to `Google Sheets` by clicking on signin with Google button. Allow the Sheets and Drive permissions and Hit Save, you will see code copied into the plugin settings and simply save authentication.
+4. Configure with the appropriate sheet and hit save and you are done.
+Enjoy!
+
+== Screenshots ==
+
+1. Google Sheet Integration Shown with Authentication along with Permissions. 
+2. Create a form.
+3. How to create feeds and display the Sheet name and Tab name.
+4. Entering the Field Header Names Manually in the Connected Sheet and Submitting the form.
+5. System Status.
+6. Extensions.
 
 🚀How to Install, Authenticate and Integrate Contact Form with your Google Sheet.
 
@@ -72,6 +119,7 @@ Enjoy!
 ✔ [Gravity Forms Google Sheet Connector](https://www.gsheetconnector.com/gravity-forms-google-sheet-connector?utm_source=wordpress.org&utm_medium=referral&utm_campaign=WPGSC&utm_content=plugin+repos+description)
 ✔ [Ninja Forms Google Sheet Connector](https://www.gsheetconnector.com/ninja-forms-google-sheet-connector-pro?utm_source=wordpress.org&utm_medium=referral&utm_campaign=WPGSC&utm_content=plugin+repos+description)
 ✔ [Elementor Forms Google Sheet Connector](https://www.gsheetconnector.com/elementor-forms-google-sheet-connector-pro?utm_source=wordpress.org&utm_medium=referral&utm_campaign=WPGSC&utm_content=plugin+repos+description)
+✔ [Formidable Forms Google Sheet Connector](https://www.gsheetconnector.com/formidable-forms-google-sheet-connector-pro?utm_source=wordpress.org&utm_medium=referral&utm_campaign=WPGSC&utm_content=plugin+repos+description)
 ✔ [Avada Forms Google Sheet Connector](https://www.gsheetconnector.com/avada-forms-google-sheet-connector-pro?utm_source=wordpress.org&utm_medium=referral&utm_campaign=WPGSC&utm_content=plugin+repos+description)
 ✔ [DIVI Forms Google Sheet Connector](https://www.gsheetconnector.com/divi-forms-db-google-sheet-connector-pro?utm_source=wordpress.org&utm_medium=referral&utm_campaign=WPGSC&utm_content=plugin+repos+description)
 
@@ -83,6 +131,9 @@ Enjoy!
 [FREE VERSIONS CAN BE DOWNLOADED FROM HERE](https://profiles.wordpress.org/westerndeal/#content-plugins)
 
 == Changelog ==	
+
+= 1.0.16 (02-09-2025) =
+Fixed: CSS and HTML UI — removed extra images, resolved responsive issues, updated FontAwesome files, and included missing fonts.
 
 = 1.0.15 (12-08-2025) =
 Fixed: Warnings and errors reported by Plugin Check.

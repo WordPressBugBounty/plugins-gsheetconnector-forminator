@@ -38,13 +38,21 @@ $plugin_version = defined('GS_FORMNTR_VERSION') ? GS_FORMNTR_VERSION : 'N/A';
         <small><?php echo esc_html("Version :", 'gsheetconnector-forminator'); ?>
             <?php echo esc_html($plugin_version, 'gsheetconnector-forminator'); ?> </small>
     </h1>
-    <a href="https://support.gsheetconnector.com/kb" title="gsheet Knowledge Base" target="_blank"
-        class="button gsheet-help"><i class="dashicons dashicons-editor-help"></i></a>
+	
+	<ul> 
+		<li><a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/introduction" title="Document" target="_blank"><i class="fa-regular fa-file-lines"></i></a></li>
+		<li><a href="https://www.gsheetconnector.com/support" title="Support" target="_blank"><i class="fa-regular fa-life-ring"></i></a></li>
+		<li><a href="https://wordpress.org/plugins/gsheetconnector-forminator/#developers" title="Changelog" target="_blank"><i class="fa-solid fa-bullhorn"></i></a></li>
+	</ul>
+    
 </div>
-<span class="dashboard-gsc"><?php echo esc_html(__('DASHBOARD', 'gsheetconnector-forminator')); ?></span>
-<span class="divider-gsc"> / </span>
-<span class="modules-gsc"> <?php echo esc_html($active_tab_name); ?></span>
-<div class="wrap">
+
+<div class="breadcrumb">
+	<span class="dashboard-gsc"><?php echo esc_html(__('DASHBOARD', 'gsheetconnector-forminator')); ?></span>
+	<span class="divider-gsc"> / </span>
+	<span class="modules-gsc"> <?php echo esc_html($active_tab_name); ?></span>
+</div>
+
     <?php
     $tabs = array(
         'integration' => __('Integration', 'gsheetconnector-forminator'),
@@ -55,7 +63,7 @@ $plugin_version = defined('GS_FORMNTR_VERSION') ? GS_FORMNTR_VERSION : 'N/A';
     );
 
     echo '<div id="icon-themes" class="icon32"><br></div>';
-    echo '<h2 class="nav-tab-wrapper">';
+    echo '<div class="nav-tab-wrapper">';
     foreach ($tabs as $tab => $name) {
         $class = ($tab == $active_tab) ? ' nav-tab-active' : '';
         printf(
@@ -65,7 +73,7 @@ $plugin_version = defined('GS_FORMNTR_VERSION') ? GS_FORMNTR_VERSION : 'N/A';
             esc_attr($name),
         );
     }
-    echo '</h2>';
+    echo '</div><div class="wrap-gsc">';
     switch ($active_tab) {
         case 'integration':
             include(GS_FORMNTR_PATH . "includes/pages/gs-formntr-integration.php");

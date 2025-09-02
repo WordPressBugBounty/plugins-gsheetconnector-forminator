@@ -53,25 +53,37 @@ $form = $form_settings->fields;
         <h2 class="info-headers">
             <?php echo esc_html(__('Edit Feed and Integrate with Google Sheets', 'gsheetconnector-forminator')); ?>
         </h2>
+		
+		<p><?php echo esc_html(__('Easily edit your feed settings and connect your form submissions directly to Google Sheets for real-time data management.', 'gsheetconnector-forminator')); ?> 
+			<a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/integration-with-google-manual-method" target="_blank"><?php echo esc_html(__('Click here', 'gsheetconnector-forminator')); ?></a>.</p>
 
         <form id="edit-feed-form" method="post">
             <input type="hidden" id="edit-feed-id" name="edit_feed_id" value="<?php echo esc_attr($feed_id); ?>">
             <input type="hidden" id="edit-form-id" name="edit_form_id" value="<?php echo esc_attr($form_id); ?>">
-
+			
+			
+			<div class="row">
             <label
-                for="edit-sheet-name"><?php echo esc_html(__('Sheet Name:', 'gsheetconnector-forminator')); ?></label>
+                for="edit-sheet-name"><?php echo esc_html(__('Sheet Name', 'gsheetconnector-forminator')); ?></label>
             <input type="text" id="edit-sheet-name" name="edit_sheet_name" value="<?php echo esc_attr($sheet_name); ?>">
-            <br>
-            <label for="edit-sheet-id"><?php echo esc_html(__('Sheet ID:', 'gsheetconnector-forminator')); ?></label>
+            </div>
+			
+			<div class="row">
+            <label for="edit-sheet-id"><?php echo esc_html(__('Sheet ID', 'gsheetconnector-forminator')); ?></label>
             <input type="text" id="edit-sheet-id" name="edit_sheet_id" value="<?php echo esc_attr($sheet_id); ?>">
-            <br>
-            <label for="edit-tab-name"><?php echo esc_html(__('Tab Name:', 'gsheetconnector-forminator')); ?></label>
+            </div>
+			
+			<div class="row">
+            <label for="edit-tab-name"><?php echo esc_html(__('Tab Name', 'gsheetconnector-forminator')); ?></label>
             <input type="text" id="edit-tab-name" name="edit_tab_name" value="<?php echo esc_attr($tab_name); ?>">
-            <br>
-            <label for="edit-tab-id"><?php echo esc_html(__('Tab ID:', 'gsheetconnector-forminator')); ?></label>
+             </div>
+			
+			<div class="row">
+            <label for="edit-tab-id"><?php echo esc_html(__('Tab ID', 'gsheetconnector-forminator')); ?></label>
             <input type="text" id="edit-tab-id" name="edit_tab_id" value="<?php echo esc_attr($tab_id); ?>">
-            <br>
+            </div>
             <?php if (!empty($sheet_id)) { ?>
+			<div class="row">
                 <label for="edit-tab-id"><?php echo esc_html(__('Sheet URL:', 'gsheetconnector-forminator')); ?></label>
             <?php
 // Generate the Google Sheets link
@@ -79,9 +91,9 @@ $link = "https://docs.google.com/spreadsheets/d/" . $sheet_id . "/edit#gid=" . $
 
 echo '<a href="' . esc_url( $link ) . '" target="_blank" class="google-sheets-button">'
     . esc_html__( 'View in Google Sheets', 'gsheetconnector-forminator' )
-    . '</a>';
+    . '</a></div>';
 }
-echo '<br><br>';
+echo '';
 ?>
 
             <input type="submit" 
@@ -177,15 +189,13 @@ echo '<br><br>';
 
             <div class="color-forminatorgs">
 
-                <p><?php echo esc_html__('Field List', 'gsheetconnector-forminator'); ?><span
-                        class="pro-ver"><?php echo esc_html__('PRO', 'gsheetconnector-forminator'); ?></span></p>
-                <p class="Fl"></p>
-            </div>
-            <div class="color-forminatorgs">
+                <h3><?php echo esc_html__('Field List', 'gsheetconnector-forminator'); ?>  <span
+                        class="pro-ver"><?php echo esc_html__('PRO', 'gsheetconnector-forminator'); ?></span></h3>
+                 
+            
 
-                <p><?php echo esc_html__('Special Mail Tags', 'gsheetconnector-forminator'); ?><span
-                        class="pro-ver"><?php echo esc_html__('PRO', 'gsheetconnector-forminator'); ?></span></p>
-                <p class="SM"></p>
+                <p><?php echo esc_html__('Special Mail Tags', 'gsheetconnector-forminator'); ?>
+                <span class="SM"></span></p>
             </div>
 
         </div>
@@ -344,15 +354,14 @@ echo '<br><br>';
     </div>
 
     <div class="gs-wpcore-sync-entries">
-        <?php echo esc_html__('Sync Entries.', 'gsheetconnector-forminator'); ?>
-        <span class="tooltip">
-            <img src="<?php echo esc_url(GS_FORMNTR_URL . 'assets/img/help.png'); ?>" class="help-icon">
-        </span>
+		<div class="row">
+       	<label> <?php echo esc_html__('Sync Entries', 'gsheetconnector-forminator'); ?></label>
         <a id="gs-wpcore-sync-entries" data-init="yes" class="sync-button-entries">
             <?php echo esc_html__('Click Here to Sync Entries.', 'gsheetconnector-forminator'); ?>
         </a>
         <span class="pro-ver">
             <?php echo esc_html__('PRO', 'gsheetconnector-forminator'); ?>
         </span>
+	   </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
  * Description: Send your Forminator Forms data to your Google Sheets spreadsheet.
  * Author: GSheetConnector
  * Author URI: https://profiles.wordpress.org/westerndeal/
- * Version: 1.0.15
+ * Version: 1.0.16
  * Text Domain: gsheetconnector-forminator
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -94,8 +94,8 @@ if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-for
 
 
 // Declare some global constants
-define('GS_FORMNTR_VERSION', '1.0.15');
-define('GS_FORMNTR_DB_VERSION', '1.0.15');
+define('GS_FORMNTR_VERSION', '1.0.16');
+define('GS_FORMNTR_DB_VERSION', '1.0.16');
 define('GS_FORMNTR_ROOT', dirname(__FILE__));
 define('GS_FORMNTR_URL', plugins_url('/', __FILE__));
 define('GS_FORMNTR_BASE_FILE', basename(dirname(__FILE__)) . '/gsheetconnector-forminator.php');
@@ -367,7 +367,7 @@ class GS_FORMNTR_Init
             );
             wp_enqueue_style(
                 'gs-formntr-connector-css-font',
-                GS_FORMNTR_URL . 'assets/css/font-awesome.min.css',
+                GS_FORMNTR_URL . 'assets/css/fontawesome.css',
                 GS_FORMNTR_VERSION,
                 true
             );

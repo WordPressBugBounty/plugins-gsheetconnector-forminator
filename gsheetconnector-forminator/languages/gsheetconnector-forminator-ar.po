@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-08-12 20:18+0530\n"
-"PO-Revision-Date: 2025-08-12 20:18+0530\n"
+"POT-Creation-Date: 2025-09-02 17:16+0530\n"
+"PO-Revision-Date: 2025-09-02 17:17+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -59,7 +59,7 @@ msgstr "الإعدادات"
 msgid "Forminator Forms - GSheetConnector"
 msgstr "نماذج الثقب - GSheetConnector"
 
-#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:117
+#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:129
 msgid "Select"
 msgstr "تحديد"
 
@@ -75,11 +75,11 @@ msgstr "تمت إضافة الخلاصة بنجاح."
 msgid "Feed name already exists in the list, Please enter unique name of feed."
 msgstr "اسم الخلاصة موجود بالفعل في القائمة ، الرجاء إدخال اسم فريد للخلاصة."
 
-#: includes/class-gs-formntr-utility.php:105
+#: includes/class-gs-formntr-utility.php:104
 msgid "There's something wrong with your code..."
 msgstr "هناك خطأ ما في التعليمات البرمجية الخاصة بك ..."
 
-#: includes/class-gs-formntr-utility.php:242
+#: includes/class-gs-formntr-utility.php:241
 msgid "Administrator"
 msgstr "المدير"
 
@@ -171,107 +171,114 @@ msgstr "العودة إلى قائمة الخلاصات"
 msgid "Edit Feed and Integrate with Google Sheets"
 msgstr "تعديل الخلاصة والتكامل مع جداول بيانات Google"
 
-#: includes/pages/edit-feed.php:62
-msgid "Sheet Name:"
-msgstr "اسم الورقة:"
+#: includes/pages/edit-feed.php:57
+msgid ""
+"Easily edit your feed settings and connect your form submissions directly to "
+"Google Sheets for real-time data management."
+msgstr ""
+"يمكنك تعديل إعدادات الخلاصة بسهولة وربط عمليات إرسال النماذج مباشرة بجداول "
+"بيانات Google لإدارة البيانات في الوقت الفعلي."
 
-#: includes/pages/edit-feed.php:65
-msgid "Sheet ID:"
-msgstr "معرف الورقة:"
-
-#: includes/pages/edit-feed.php:68
-msgid "Tab Name:"
-msgstr "اسم علامة التبويب:"
-
-#: includes/pages/edit-feed.php:71
-msgid "Tab ID:"
-msgstr "معرف علامة التبويب:"
-
-#: includes/pages/edit-feed.php:75
-msgid "Sheet URL:"
-msgstr "عنوان URL للورقة:"
-
-#: includes/pages/edit-feed.php:81
-msgid "View in Google Sheets"
-msgstr "عرض في \"جداول بيانات Google\""
-
-#: includes/pages/edit-feed.php:89
-msgid "Save Changes"
-msgstr "حفظ التغييرات"
-
-#: includes/pages/edit-feed.php:110
-msgid "Auto Sheet and Tab Names"
-msgstr "أسماء الأوراق وعلامات التبويب التلقائية"
-
-#: includes/pages/edit-feed.php:111 includes/pages/edit-feed.php:181
-#: includes/pages/edit-feed.php:187 includes/pages/edit-feed.php:276
-#: includes/pages/edit-feed.php:287 includes/pages/edit-feed.php:304
-#: includes/pages/edit-feed.php:323 includes/pages/edit-feed.php:339
-#: includes/pages/edit-feed.php:355
-msgid "PRO"
-msgstr "النسخة المميزة"
-
-#: includes/pages/edit-feed.php:115
-msgid "Google Spreadsheet Name"
-msgstr "اسم جدول بيانات Google"
-
-#: includes/pages/edit-feed.php:119
-msgid "Create New"
-msgstr "إنشاء جديد"
-
-#: includes/pages/edit-feed.php:132
-msgid "Google Sheet Tab Name"
-msgstr "اسم علامة تبويب ورقة Google"
-
-#: includes/pages/edit-feed.php:148
-msgid "Create Spreadsheet"
-msgstr "إنشاء جدول بيانات"
-
-#: includes/pages/edit-feed.php:162
+#: includes/pages/edit-feed.php:58 includes/pages/edit-feed.php:174
 msgid "Click here"
 msgstr "انقر هنا"
 
-#: includes/pages/edit-feed.php:163
+#: includes/pages/edit-feed.php:67
+msgid "Sheet Name"
+msgstr "اسم الورقة"
+
+#: includes/pages/edit-feed.php:72
+msgid "Sheet ID"
+msgstr "معرف الورقة"
+
+#: includes/pages/edit-feed.php:77
+msgid "Tab Name"
+msgstr "اسم علامة التبويب"
+
+#: includes/pages/edit-feed.php:82
+msgid "Tab ID"
+msgstr "تبويب ID"
+
+#: includes/pages/edit-feed.php:87
+msgid "Sheet URL:"
+msgstr "عنوان URL للورقة:"
+
+#: includes/pages/edit-feed.php:93
+msgid "View in Google Sheets"
+msgstr "عرض في \"جداول بيانات Google\""
+
+#: includes/pages/edit-feed.php:101
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+#: includes/pages/edit-feed.php:122
+msgid "Auto Sheet and Tab Names"
+msgstr "أسماء الأوراق وعلامات التبويب التلقائية"
+
+#: includes/pages/edit-feed.php:123 includes/pages/edit-feed.php:193
+#: includes/pages/edit-feed.php:286 includes/pages/edit-feed.php:297
+#: includes/pages/edit-feed.php:314 includes/pages/edit-feed.php:333
+#: includes/pages/edit-feed.php:349 includes/pages/edit-feed.php:363
+msgid "PRO"
+msgstr "النسخة المميزة"
+
+#: includes/pages/edit-feed.php:127
+msgid "Google Spreadsheet Name"
+msgstr "اسم جدول بيانات Google"
+
+#: includes/pages/edit-feed.php:131
+msgid "Create New"
+msgstr "إنشاء جديد"
+
+#: includes/pages/edit-feed.php:144
+msgid "Google Sheet Tab Name"
+msgstr "اسم علامة تبويب ورقة Google"
+
+#: includes/pages/edit-feed.php:160
+msgid "Create Spreadsheet"
+msgstr "إنشاء جدول بيانات"
+
+#: includes/pages/edit-feed.php:175
 msgid "to fetch sheets detail for \"Forms Feed Settings\"."
 msgstr "لجلب تفاصيل الأوراق ل \"إعدادات موجز النماذج\"."
 
-#: includes/pages/edit-feed.php:180
+#: includes/pages/edit-feed.php:192
 msgid "Field List"
 msgstr "قائمة الحقول"
 
-#: includes/pages/edit-feed.php:186
+#: includes/pages/edit-feed.php:197
 msgid "Special Mail Tags"
 msgstr "علامات البريد الخاصة"
 
-#: includes/pages/edit-feed.php:198
+#: includes/pages/edit-feed.php:208
 msgid "Select All"
 msgstr "تحديد الكل"
 
-#: includes/pages/edit-feed.php:275
+#: includes/pages/edit-feed.php:285
 msgid "Header Settings"
 msgstr "إعدادات الهيدر"
 
-#: includes/pages/edit-feed.php:286
+#: includes/pages/edit-feed.php:296
 msgid "Freeze Header"
 msgstr "تجميد الرأس"
 
-#: includes/pages/edit-feed.php:303
+#: includes/pages/edit-feed.php:313
 msgid "Header - Font Settings"
 msgstr "الرأس - إعدادات الخط"
 
-#: includes/pages/edit-feed.php:322
+#: includes/pages/edit-feed.php:332
 msgid "Sheet Background Color"
 msgstr "لون خلفية الورقة"
 
-#: includes/pages/edit-feed.php:338
+#: includes/pages/edit-feed.php:348
 msgid "Row - Font Settings"
 msgstr "الصف - إعدادات الخط"
 
-#: includes/pages/edit-feed.php:347
-msgid "Sync Entries."
-msgstr "مزامنة الإدخالات."
+#: includes/pages/edit-feed.php:358
+msgid "Sync Entries"
+msgstr "مزامنة الإدخالات"
 
-#: includes/pages/edit-feed.php:352
+#: includes/pages/edit-feed.php:360
 msgid "Click Here to Sync Entries."
 msgstr "انقر هنا لمزامنة الإدخالات."
 
@@ -337,27 +344,27 @@ msgstr "تستخدم بالفعل إصدار PRO"
 msgid "Activated"
 msgstr "مفعل"
 
-#: includes/pages/google-sheet-settings.php:44
+#: includes/pages/google-sheet-settings.php:51
 msgid "DASHBOARD"
 msgstr "لوحة القيادة"
 
-#: includes/pages/google-sheet-settings.php:50
+#: includes/pages/google-sheet-settings.php:58
 msgid "Integration"
 msgstr "دمج"
 
-#: includes/pages/google-sheet-settings.php:51
+#: includes/pages/google-sheet-settings.php:59
 msgid "Form Feed"
 msgstr "تغذية النموذج"
 
-#: includes/pages/google-sheet-settings.php:52
+#: includes/pages/google-sheet-settings.php:60
 msgid "General Settings"
 msgstr "  إعدادات واجهة برمجة التطبيقات"
 
-#: includes/pages/google-sheet-settings.php:53
+#: includes/pages/google-sheet-settings.php:61
 msgid "System Status"
 msgstr "حالة النظام"
 
-#: includes/pages/google-sheet-settings.php:54
+#: includes/pages/google-sheet-settings.php:62
 msgid "Extensions"
 msgstr "ملحقات"
 
@@ -373,8 +380,26 @@ msgstr "اسم الأوراق المتصلة"
 msgid "No Forminator Forms are connected with Google Sheets."
 msgstr "لا توجد نماذج forminator متصلة بجداول بيانات Google"
 
+#: includes/pages/gs-formntr-integration.php:42
+msgid "Forminator - Google Sheet Integration"
+msgstr "WPForms - تكامل ورقة جوجل"
+
+#: includes/pages/gs-formntr-integration.php:43
+msgid ""
+"Choose your Google API Setting from the dropdown. You can select Use "
+"Existing Client/Secret Key (Auto Google API Configuration) or Use Manual "
+"Client/Secret Key (Use Your Google API Configuration - Pro Version). After "
+"saving, the related integration settings will appear, and you can complete "
+"the setup."
+msgstr ""
+"اختر إعداد Google API من القائمة المنسدلة. يمكنك اختيار استخدام المفتاح "
+"السري / العميل الحالي (الضبط التلقائي لواجهة برمجة تطبيقات Google) أو "
+"استخدام العميل اليدوي / المفتاح السري (استخدام تهيئة Google API - الإصدار "
+"الاحترافي). بعد الحفظ ، ستظهر إعدادات التكامل ذات الصلة ، ويمكنك إكمال "
+"الإعداد."
+
 #: includes/pages/gs-formntr-integration.php:47
-msgid "Choose Google API Setting :"
+msgid "Choose Google API Setting  "
 msgstr "اختر إعداد واجهة برمجة تطبيقات Google:"
 
 #: includes/pages/gs-formntr-integration.php:52
@@ -395,13 +420,9 @@ msgstr ""
 msgid "Upgrade To PRO"
 msgstr "الترقية إلى الاصدار المدفوع"
 
-#: includes/pages/gs-formntr-integration.php:64
-msgid ""
-"Manual Client/Secret Key (Use Your Google API Configuration) method is "
-"available in the PRO version of the plugin."
-msgstr ""
-"تتوفر طريقة العميل اليدوي / المفتاح السري (استخدام تكوين واجهة برمجة تطبيقات "
-"Google) في إصدار PRO من المكون الإضافي."
+#: includes/pages/gs-formntr-integration.php:75
+msgid "click here"
+msgstr "اضغط هنا"
 
 #: includes/pages/gs-formntr-integration.php:82
 msgid "Authenticate with your Google account, follow these steps:"
@@ -433,37 +454,27 @@ msgid ""
 "Sheets."
 msgstr "سيسمح هذا للتكامل بالوصول إلى Google Drive وجداول بيانات Google."
 
-#: includes/pages/gs-formntr-integration.php:106
+#: includes/pages/gs-formntr-integration.php:102
 msgid "Google Access Code"
 msgstr "رمز الوصول إلى جوجل"
 
-#: includes/pages/gs-formntr-integration.php:114
+#: includes/pages/gs-formntr-integration.php:110
 msgid "Currently Active"
 msgstr "نشط حاليا"
 
-#: includes/pages/gs-formntr-integration.php:116
+#: includes/pages/gs-formntr-integration.php:112
 msgid "Deactivate"
 msgstr "تعطيل"
 
-#: includes/pages/gs-formntr-integration.php:121
-msgid ""
-"On deactivation, all your data saved with authentication\n"
-"                        will be removed and you need to reauthenticate with "
-"your google account."
-msgstr ""
-"عند إلغاء التنشيط ، يتم حفظ جميع بياناتك باستخدام المصادقة\n"
-"                        ستتم إزالته وتحتاج إلى إعادة المصادقة باستخدام حساب "
-"Google الخاص بك."
-
-#: includes/pages/gs-formntr-integration.php:133
+#: includes/pages/gs-formntr-integration.php:124
 msgid "Click Sign in with Google"
 msgstr "انقر على تسجيل الدخول باستخدام Google"
 
-#: includes/pages/gs-formntr-integration.php:150
+#: includes/pages/gs-formntr-integration.php:138
 msgid "Save & Authenticate"
 msgstr "حفظ ومصادقة"
 
-#: includes/pages/gs-formntr-integration.php:167
+#: includes/pages/gs-formntr-integration.php:155
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
@@ -473,15 +484,15 @@ msgstr ""
 "google الخاص بك. يرجى إلغاء تنشيط المصادقة وإعادة المصادقة مرة أخرى باستخدام "
 "الأذونات."
 
-#: includes/pages/gs-formntr-integration.php:172
+#: includes/pages/gs-formntr-integration.php:160
 msgid "Also,"
 msgstr "أيضًا"
 
-#: includes/pages/gs-formntr-integration.php:174
+#: includes/pages/gs-formntr-integration.php:162
 msgid "Click Here "
 msgstr "اضغط هنا "
 
-#: includes/pages/gs-formntr-integration.php:175
+#: includes/pages/gs-formntr-integration.php:163
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
@@ -489,12 +500,16 @@ msgstr ""
 "وإذا كان يعرض \"GSheetConnector لنماذج جهات اتصال WP\" ضمن تطبيقات الجهات "
 "الخارجية التي يمكنها الوصول إلى الحساب ، فقم بإزالته."
 
-#: includes/pages/gs-formntr-integration.php:193
-#, php-format
-msgid "Connected email account: <u>%s</u>"
-msgstr "حساب البريد الإلكتروني المتصل:   <u>%s </u>"
+#: includes/pages/gs-formntr-integration.php:181
+msgid "Connected email account"
+msgstr "حساب البريد الإلكتروني المتصل: %s"
 
-#: includes/pages/gs-formntr-integration.php:201
+#: includes/pages/gs-formntr-integration.php:187
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: includes/pages/gs-formntr-integration.php:195
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
@@ -502,7 +517,7 @@ msgstr ""
 "شيء خاطئ! قد يكون رمز المصادقة الخاص بك خاطئا أو منتهي الصلاحية. يرجى إلغاء "
 "التنشيط وإعادة المصادقة مرة أخرى. "
 
-#: includes/pages/gs-formntr-integration.php:213
+#: includes/pages/gs-formntr-integration.php:205
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
@@ -512,15 +527,15 @@ msgstr ""
 "كل شيء وتخزينه على الخادم الخاص بك. نحن نأخذ خصوصيتك على محمل الجد ونضمن عدم "
 "إساءة استخدامها أبدا."
 
-#: includes/pages/gs-formntr-integration.php:215
+#: includes/pages/gs-formntr-integration.php:205
 msgid "Learn more."
 msgstr "اعرف المزيد."
 
-#: includes/pages/gs-formntr-integration.php:269
+#: includes/pages/gs-formntr-integration.php:259
 msgid "No errors found."
 msgstr "لم يتم العثور على أخطاء."
 
-#: includes/pages/gs-formntr-integration.php:273
+#: includes/pages/gs-formntr-integration.php:263
 msgid "No log file exists as no errors are generated."
 msgstr "لا يوجد ملف سجل حيث لا يتم إنشاء أي أخطاء."
 
@@ -585,6 +600,22 @@ msgstr "جموصل شيت"
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/westerndeal/"
 msgstr "https://profiles.wordpress.org/westerndeal/"
+
+#~ msgid ""
+#~ "Manual Client/Secret Key (Use Your Google API Configuration) method is "
+#~ "available in the PRO version of the plugin."
+#~ msgstr ""
+#~ "تتوفر طريقة العميل اليدوي / المفتاح السري (استخدام تكوين واجهة برمجة "
+#~ "تطبيقات Google) في إصدار PRO من المكون الإضافي."
+
+#~ msgid ""
+#~ "On deactivation, all your data saved with authentication\n"
+#~ "                        will be removed and you need to reauthenticate "
+#~ "with your google account."
+#~ msgstr ""
+#~ "عند إلغاء التنشيط ، يتم حفظ جميع بياناتك باستخدام المصادقة\n"
+#~ "                        ستتم إزالته وتحتاج إلى إعادة المصادقة باستخدام "
+#~ "حساب Google الخاص بك."
 
 #~ msgid "<img style='width:30px;margin-right: 10px;' src='"
 #~ msgstr "<img النمط = 'العرض: 30px ؛ الهامش الأيمن: 10 بكسل ؛ 'src ='"
@@ -759,9 +790,6 @@ msgstr "https://profiles.wordpress.org/westerndeal/"
 
 #~ msgid "Forminator- "
 #~ msgstr "الثقب- "
-
-#~ msgid "Google Sheet Integration"
-#~ msgstr "جوجل شيت التكامل"
 
 #~ msgid "Debug Log"
 #~ msgstr "بيانات وضع التصحيح (Debug Log)"

@@ -1,8 +1,5 @@
 <?php
-$gs_frmin_client_id = get_option('gs_frmin_client_id');
-$gs_frmin_secret_id = get_option('gs_frmin_secret_id');
-$gs_frmin_manual_code_db = get_option('gs_frmin_access_manual_code');
-$gs_formntr_manual_setting = get_option('gs_formntr_manual_setting');
+
 $frmingsc_code = sanitize_text_field(isset($_GET['code']) ? wp_unslash($_GET['code']) : '');
 $header = esc_url_raw(admin_url('admin.php?page=formntr-gsheet-config'));
 
@@ -36,16 +33,19 @@ if (isset($_GET['code'])) {
 
 <input type="hidden" name="get_code_frmin" id="get_code_frmin"
     value="<?php echo (isset($_GET['code']) && $_GET['code'] != "") ? '1' : '0'; ?>">
-<input type="hidden" name="frmin_manual_setting" id="frmin_manual_setting"
-    value="<?php echo esc_attr($gs_formntr_manual_setting); ?>">
+
 
 <!--------------------------- Auto setting page -------------->
 
 <div class="card-formntr">
-    <div class="lbl-drop-down-select">
-        <label
-            for="gs_formntr_dro_option"><?php echo esc_html__('Choose Google API Setting :', 'gsheetconnector-forminator'); ?></label>
-    </div>
+	
+	<h2><?php echo esc_html__('Forminator - Google Sheet Integration', 'gsheetconnector-forminator'); ?></h2>
+	<p><?php echo esc_html__('Choose your Google API Setting from the dropdown. You can select Use Existing Client/Secret Key (Auto Google API Configuration) or Use Manual Client/Secret Key (Use Your Google API Configuration - Pro Version). After saving, the related integration settings will appear, and you can complete the setup.', 'gsheetconnector-forminator'); ?></p>
+	
+	<div class="row">
+	
+    <label for="gs_formntr_dro_option"><?php echo esc_html__('Choose Google API Setting  ', 'gsheetconnector-forminator'); ?></label>
+     
     <div class="drop-down-select-btn">
         <select id="gs_formntr_dro_option" name="gs_formntr_dro_option">
             <option value="formntr_existing" selected>
@@ -55,25 +55,25 @@ if (isset($_GET['code'])) {
                 <?php echo esc_html__('Use Manual Client/Secret Key (Use Your Google API Configuration) (Upgrade To PRO)', 'gsheetconnector-forminator'); ?>
             </option>
         </select>
-        <p class="int-meth-btn-formntr"><a
+    <a
                 href="https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
                 target="_blank"><input type="button" name="save-method-api-formntr" id=""
-                    value="<?php esc_attr_e('Upgrade To PRO', 'gsheetconnector-forminator'); ?>" class="button " /></a>
-            <span class="tooltip"> <img src="<?php echo esc_url(GS_FORMNTR_URL); ?>assets/img/help.png"
-                    class="help-icon"> <span
-                    class="tooltiptext tooltip-right"><?php esc_html_e('Manual Client/Secret Key (Use Your Google API Configuration) method is available in the PRO version of the plugin.', 'gsheetconnector-forminator'); ?></span></span>
-        </p>
+                    value="<?php esc_attr_e('Upgrade To PRO', 'gsheetconnector-forminator'); ?>" class="update-btn " /></a>
+           
+         
     </div>
-</div>
+</div> <!-- row #end -->
+	</div>  <!-- card-formntr #end -->
 
-<div class="wrap gs-form">
-    <?php if ($gs_formntr_manual_setting == 0) { ?>
+ 
+    
         <div class="card api_existing_setting_frmin" id="googlesheet">
             <h2>
-                <span class="title1"><?php echo esc_html('Forminator- ', 'gsheetconnector-forminator'); ?></span>
-                <span class="title"><?php echo esc_html('Google Sheet Integration', 'gsheetconnector-forminator'); ?></span>
+                 <?php echo esc_html('Google Sheet Integration - Use Existing Client/Secret Key (Auto Google API Configuration)', 'gsheetconnector-forminator'); ?>  
             </h2>
-            <hr>
+			
+			<p><?php echo esc_html('Automatic integration allows you to connect Gravity Forms with Google Sheets using built-in Google API configuration. By authorizing your Google account, the plugin will handle API setup and authentication automatically, enabling seamless form data sync. Learn more in the documentation', 'gsheetconnector-forminator'); ?> <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/integration-with-google-existing-method" target="_blank" ><?php echo esc_html__('click here', 'gsheetconnector-forminator'); ?></a>.</p>
+            
             <div class="inside">
 
                 <?php if (empty($Code)) { ?>
@@ -98,12 +98,8 @@ if (isset($_GET['code'])) {
                         </ol>
                     </div>
                 <?php } ?>
-                <p class="gs-integration-box">
-                    <label
-                        style="color: #242628;
-                    font-size: 14px;
-                    font-weight: 600;
-                    line-height: 2.3;"><?php echo esc_html__('Google Access Code', 'gsheetconnector-forminator'); ?></label>
+                <div class="gs-integration-box row">
+                    <label><?php echo esc_html__('Google Access Code', 'gsheetconnector-forminator'); ?></label>
                     <?php
                     $token = get_option('gs_formntr_token');
                     if (!empty($token) && $token !== "") {
@@ -115,12 +111,7 @@ if (isset($_GET['code'])) {
                         <input type="button" name="gs-formntr-deactivate-log" id="gs-formntr-deactivate-log"
                             value="<?php esc_attr_e('Deactivate', 'gsheetconnector-forminator'); ?>"
                             class="button button-primary" />
-                        <span class="tooltip"> <img src="<?php echo esc_url(GS_FORMNTR_URL); ?>assets/img/help.png"
-                                class="help-icon">
-                            <span
-                                class="tooltiptext tooltip-right"><?php echo esc_html__('On deactivation, all your data saved with authentication
-                        will be removed and you need to reauthenticate with your google account.', 'gsheetconnector-forminator'); ?></span></span>
-                        <span class="loading-sign-deactive">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                       <span class="loading-sign-deactive">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <?php
                     } else {
                         //$frmingsc_auth_url = FORMI_GSC_googlesheet::get_auth_url(FORMI_GSC_googlesheet::clientId,FORMI_GSC_googlesheet::clientSecret);
@@ -141,10 +132,7 @@ if (isset($_GET['code'])) {
                         <?php } ?>
 
                     <?php } ?>
-                    <?php
-    }
-    //resolved - google sheet permission issues - END
-    ?>
+                    
                 <?php if (!empty($_GET['code'])) { ?>
                     <button type="buttonfor" name="save-gs-formntr-code"
                         id="save-gs-formntr-code"><?php echo esc_html(__('Save & Authenticate', 'gsheetconnector-forminator')); ?></button>
@@ -157,7 +145,7 @@ if (isset($_GET['code'])) {
 
                 </p>
             <?php } ?>
-            </p>
+            </div>
 
 
             <?php
@@ -186,14 +174,20 @@ if (isset($_GET['code'])) {
                     if ($email_account) {
                         update_option('formntr_gs_auth_expired_free', 'false');
                         ?>
-                        <p class="connected-account">
+                        <div class="connected-account row">
+							<label> <?php
+                            printf(
+                                // Translators: %s is the connected email account address.
+                                wp_kses_post(__('Connected email account', 'gsheetconnector-forminator')),
+                                esc_html($email_account)
+                            ); ?></label>
                             <?php
                             printf(
                                 // Translators: %s is the connected email account address.
-                                wp_kses_post(__('Connected email account: <u>%s</u>', 'gsheetconnector-forminator')),
+                                wp_kses_post(__('%s', 'gsheetconnector-forminator')),
                                 esc_html($email_account)
                             ); ?>
-                        </p>
+                        </div>
 
                     <?php } else {
                         update_option('formntr_gs_auth_expired_free', 'true'); ?>
@@ -204,18 +198,13 @@ if (isset($_GET['code'])) {
                     }
                 }
             }
-            ?>
-
-            <div id="frm-gsc-cta" class="frm-gsc-privacy-box">
-                <div class="frm-gsc-table">
-                    <div class="frm-gsc-less-free">
-                        <p><i class="dashicons dashicons-lock"></i>
-                            <?php echo esc_html(__('We do not store any of the data from your Google account on our servers, everything is processed & stored on your server. We take your privacy extremely seriously and ensure it is never misused.', 'gsheetconnector-forminator')); ?>
-                        </p> <a href="https://gsheetconnector.com/usage-tracking/" target="_blank"
-                            rel="noopener noreferrer"><?php echo esc_html(__('Learn more.', 'gsheetconnector-forminator')); ?></a>
-                    </div>
-                </div>
-            </div>
+            ?> 
+				
+				<div class="msg success-msg">
+					<i class="fa-solid fa-lock"></i>
+						<p> <?php echo esc_html(__('We do not store any of the data from your Google account on our servers, everything is processed & stored on your server. We take your privacy extremely seriously and ensure it is never misused.', 'gsheetconnector-forminator')); ?>  <a href="https://gsheetconnector.com/usage-tracking/" target="_blank" rel="noopener noreferrer"><?php echo esc_html(__('Learn more.', 'gsheetconnector-forminator')); ?></a></p>
+				</div>
+				
 
             <p>
                 <label><?php echo esc_html('Debug Log', 'gsheetconnector-forminator'); ?></label>
@@ -238,8 +227,9 @@ if (isset($_GET['code'])) {
           
 
         </div>
-    </div>
-    <script>
+     
+
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             var googleDriveMsg = document.getElementById('google-drive-msg');
             if (googleDriveMsg) {
@@ -279,14 +269,14 @@ if (isset($_GET['code'])) {
 
     <div class="two-col frmgsc-math-box-help12">
         <div class="col frmgsc-math-box12">
-            <header>
+           
                 <h3> <?php echo esc_html("Next steps…", 'gsheetconnector-forminator'); ?></h3>
-            </header>
+            
             <div class="frmgsc-math-box-content12">
                 <ul class="frmgsc-math-list-icon12">
 
                     <li>
-                        <a href="https://wordpress.org/plugins/gsheetconnector-forminator/" target="_blank">
+                        <a href="https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro/" target="_blank">
                             <div>
                                 <button class="icon-button">
                                     <span class="dashicons dashicons-download"></span>
@@ -299,7 +289,7 @@ if (isset($_GET['code'])) {
                     </li>
 
                     <li>
-                        <a href="https://wordpress.org/plugins/gsheetconnector-forminator/" target="_blank">
+                        <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/" target="_blank">
                             <div>
                                 <button class="icon-button">
                                     <span class="dashicons dashicons-download"></span>
@@ -311,7 +301,7 @@ if (isset($_GET['code'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="https://wordpress.org/plugins/gsheetconnector-forminator/" target="_blank">
+                        <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/" target="_blank">
                             <div>
                                 <button class="icon-button">
                                     <span class="dashicons dashicons-chart-bar"></span>
@@ -329,13 +319,13 @@ if (isset($_GET['code'])) {
 
         <!-- 2nd div -->
         <div class="col frmgsc-math-box13">
-            <header>
+            
                 <h3><?php echo esc_html("Product Support", 'gsheetconnector-forminator'); ?></h3>
-            </header>
+          
             <div class="frmgsc-math-box-content13">
                 <ul class="frmgsc-math-list-icon13">
                     <li>
-                        <a href="https://wordpress.org/plugins/gsheetconnector-forminator/" target="_blank">
+                        <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/" target="_blank">
                             <span class="dashicons dashicons-book"></span>
                             <div>
                                 <strong><?php echo esc_html("Online Documentation", 'gsheetconnector-forminator'); ?></strong>
@@ -345,7 +335,7 @@ if (isset($_GET['code'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="https://wordpress.org/plugins/gsheetconnector-forminator/" target="_blank">
+                        <a href="https://www.gsheetconnector.com/support/" target="_blank">
                             <span class="dashicons dashicons-sos"></span>
                             <div>
                                 <strong><?php echo esc_html("Ticket Support", 'gsheetconnector-forminator'); ?></strong>
@@ -355,7 +345,7 @@ if (isset($_GET['code'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="https://wordpress.org/plugins/gsheetconnector-forminator/" target="_blank">
+                        <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/" target="_blank">
                             <span class="dashicons dashicons-admin-links"></span>
                             <div>
                                 <strong><?php echo esc_html("Affiliate Program", 'gsheetconnector-forminator'); ?></strong>
@@ -368,3 +358,7 @@ if (isset($_GET['code'])) {
             </div>
         </div>
     </div>
+</div>
+ 
+<div>
+    

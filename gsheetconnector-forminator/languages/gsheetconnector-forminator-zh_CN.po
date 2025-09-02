@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-08-12 20:22+0530\n"
-"PO-Revision-Date: 2025-08-12 20:23+0530\n"
+"POT-Creation-Date: 2025-09-02 17:19+0530\n"
+"PO-Revision-Date: 2025-09-02 17:20+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -57,7 +57,7 @@ msgstr "设置"
 msgid "Forminator Forms - GSheetConnector"
 msgstr "Forminator 表单 - GSheetConnector"
 
-#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:117
+#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:129
 msgid "Select"
 msgstr "选择 "
 
@@ -73,11 +73,11 @@ msgstr "源已成功添加。"
 msgid "Feed name already exists in the list, Please enter unique name of feed."
 msgstr "列表中已存在 Feed 名称，请输入 Feed 的唯一名称。"
 
-#: includes/class-gs-formntr-utility.php:105
+#: includes/class-gs-formntr-utility.php:104
 msgid "There's something wrong with your code..."
 msgstr "代码有误."
 
-#: includes/class-gs-formntr-utility.php:242
+#: includes/class-gs-formntr-utility.php:241
 msgid "Administrator"
 msgstr "管理员"
 
@@ -169,107 +169,115 @@ msgstr "返回源列表"
 msgid "Edit Feed and Integrate with Google Sheets"
 msgstr "编辑 Feed 并与 Google 表格集成"
 
-#: includes/pages/edit-feed.php:62
-msgid "Sheet Name:"
-msgstr "片材名称："
+#: includes/pages/edit-feed.php:57
+#, fuzzy
+msgid ""
+"Easily edit your feed settings and connect your form submissions directly to "
+"Google Sheets for real-time data management."
+msgstr ""
+"轻松编辑您的提要设置并将您的表单提交直接连接到 Google 表格以进行实时数据管"
+"理。"
 
-#: includes/pages/edit-feed.php:65
-msgid "Sheet ID:"
-msgstr "工作表 ID："
-
-#: includes/pages/edit-feed.php:68
-msgid "Tab Name:"
-msgstr "选项卡名称："
-
-#: includes/pages/edit-feed.php:71
-msgid "Tab ID:"
-msgstr "选项卡 ID："
-
-#: includes/pages/edit-feed.php:75
-msgid "Sheet URL:"
-msgstr "工作表 URL："
-
-#: includes/pages/edit-feed.php:81
-msgid "View in Google Sheets"
-msgstr "在 Google 表格中查看"
-
-#: includes/pages/edit-feed.php:89
-msgid "Save Changes"
-msgstr "保存更改"
-
-#: includes/pages/edit-feed.php:110
-msgid "Auto Sheet and Tab Names"
-msgstr "自动工作表和标签名称"
-
-#: includes/pages/edit-feed.php:111 includes/pages/edit-feed.php:181
-#: includes/pages/edit-feed.php:187 includes/pages/edit-feed.php:276
-#: includes/pages/edit-feed.php:287 includes/pages/edit-feed.php:304
-#: includes/pages/edit-feed.php:323 includes/pages/edit-feed.php:339
-#: includes/pages/edit-feed.php:355
-msgid "PRO"
-msgstr "专业版"
-
-#: includes/pages/edit-feed.php:115
-msgid "Google Spreadsheet Name"
-msgstr "Google 电子表格名称"
-
-#: includes/pages/edit-feed.php:119
-msgid "Create New"
-msgstr "创建新的"
-
-#: includes/pages/edit-feed.php:132
-msgid "Google Sheet Tab Name"
-msgstr "Google 表格标签页名称"
-
-#: includes/pages/edit-feed.php:148
-msgid "Create Spreadsheet"
-msgstr "创建新电子表格"
-
-#: includes/pages/edit-feed.php:162
+#: includes/pages/edit-feed.php:58 includes/pages/edit-feed.php:174
 msgid "Click here"
 msgstr "点击这里"
 
-#: includes/pages/edit-feed.php:163
+#: includes/pages/edit-feed.php:67
+msgid "Sheet Name"
+msgstr "工作表名称"
+
+#: includes/pages/edit-feed.php:72
+msgid "Sheet ID"
+msgstr "表 ID"
+
+#: includes/pages/edit-feed.php:77
+msgid "Tab Name"
+msgstr "选项卡名称"
+
+#: includes/pages/edit-feed.php:82
+msgid "Tab ID"
+msgstr "标签ID"
+
+#: includes/pages/edit-feed.php:87
+msgid "Sheet URL:"
+msgstr "工作表 URL："
+
+#: includes/pages/edit-feed.php:93
+msgid "View in Google Sheets"
+msgstr "在 Google 表格中查看"
+
+#: includes/pages/edit-feed.php:101
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: includes/pages/edit-feed.php:122
+msgid "Auto Sheet and Tab Names"
+msgstr "自动工作表和标签名称"
+
+#: includes/pages/edit-feed.php:123 includes/pages/edit-feed.php:193
+#: includes/pages/edit-feed.php:286 includes/pages/edit-feed.php:297
+#: includes/pages/edit-feed.php:314 includes/pages/edit-feed.php:333
+#: includes/pages/edit-feed.php:349 includes/pages/edit-feed.php:363
+msgid "PRO"
+msgstr "专业版"
+
+#: includes/pages/edit-feed.php:127
+msgid "Google Spreadsheet Name"
+msgstr "Google 电子表格名称"
+
+#: includes/pages/edit-feed.php:131
+msgid "Create New"
+msgstr "创建新的"
+
+#: includes/pages/edit-feed.php:144
+msgid "Google Sheet Tab Name"
+msgstr "Google 表格标签页名称"
+
+#: includes/pages/edit-feed.php:160
+msgid "Create Spreadsheet"
+msgstr "创建新电子表格"
+
+#: includes/pages/edit-feed.php:175
 msgid "to fetch sheets detail for \"Forms Feed Settings\"."
 msgstr "以获取“表单源设置”的工作表详细信息。"
 
-#: includes/pages/edit-feed.php:180
+#: includes/pages/edit-feed.php:192
 msgid "Field List"
 msgstr "字段列表"
 
-#: includes/pages/edit-feed.php:186
+#: includes/pages/edit-feed.php:197
 msgid "Special Mail Tags"
 msgstr "Special Mail标签"
 
-#: includes/pages/edit-feed.php:198
+#: includes/pages/edit-feed.php:208
 msgid "Select All"
 msgstr "全选"
 
-#: includes/pages/edit-feed.php:275
+#: includes/pages/edit-feed.php:285
 msgid "Header Settings"
 msgstr "页眉设置"
 
-#: includes/pages/edit-feed.php:286
+#: includes/pages/edit-feed.php:296
 msgid "Freeze Header"
 msgstr "冻结标头"
 
-#: includes/pages/edit-feed.php:303
+#: includes/pages/edit-feed.php:313
 msgid "Header - Font Settings"
 msgstr "页眉 - 字体设置"
 
-#: includes/pages/edit-feed.php:322
+#: includes/pages/edit-feed.php:332
 msgid "Sheet Background Color"
 msgstr "工作表背景颜色"
 
-#: includes/pages/edit-feed.php:338
+#: includes/pages/edit-feed.php:348
 msgid "Row - Font Settings"
 msgstr "行 - 字体设置"
 
-#: includes/pages/edit-feed.php:347
-msgid "Sync Entries."
-msgstr "同步条目。"
+#: includes/pages/edit-feed.php:358
+msgid "Sync Entries"
+msgstr "同步条目"
 
-#: includes/pages/edit-feed.php:352
+#: includes/pages/edit-feed.php:360
 msgid "Click Here to Sync Entries."
 msgstr "单击此处同步条目。"
 
@@ -335,27 +343,27 @@ msgstr "已在使用 PRO 版本"
 msgid "Activated"
 msgstr "激活"
 
-#: includes/pages/google-sheet-settings.php:44
+#: includes/pages/google-sheet-settings.php:51
 msgid "DASHBOARD"
 msgstr "仪表盘"
 
-#: includes/pages/google-sheet-settings.php:50
+#: includes/pages/google-sheet-settings.php:58
 msgid "Integration"
 msgstr "集成"
 
-#: includes/pages/google-sheet-settings.php:51
+#: includes/pages/google-sheet-settings.php:59
 msgid "Form Feed"
 msgstr "表单源"
 
-#: includes/pages/google-sheet-settings.php:52
+#: includes/pages/google-sheet-settings.php:60
 msgid "General Settings"
 msgstr "常规设置"
 
-#: includes/pages/google-sheet-settings.php:53
+#: includes/pages/google-sheet-settings.php:61
 msgid "System Status"
 msgstr "系统状态"
 
-#: includes/pages/google-sheet-settings.php:54
+#: includes/pages/google-sheet-settings.php:62
 msgid "Extensions"
 msgstr "扩展"
 
@@ -371,8 +379,29 @@ msgstr "连接的工作表名称"
 msgid "No Forminator Forms are connected with Google Sheets."
 msgstr "没有 Forminator 表单与 Google 表格相关联"
 
+#: includes/pages/gs-formntr-integration.php:42
+#, fuzzy
+#| msgid "Google Sheet Integration"
+msgid "Forminator - Google Sheet Integration"
+msgstr "Google 表格集成"
+
+#: includes/pages/gs-formntr-integration.php:43
+#, fuzzy
+msgid ""
+"Choose your Google API Setting from the dropdown. You can select Use "
+"Existing Client/Secret Key (Auto Google API Configuration) or Use Manual "
+"Client/Secret Key (Use Your Google API Configuration - Pro Version). After "
+"saving, the related integration settings will appear, and you can complete "
+"the setup."
+msgstr ""
+"从下拉列表中选择您的 Google API 设置。您可以选择使用现有客户端/密钥（自动 "
+"Google API 配置）或使用手动客户端/密钥（使用您的 Google API 配置 - 专业版）。"
+"保存后，会出现相关的集成设置，您可以完成设置。"
+
 #: includes/pages/gs-formntr-integration.php:47
-msgid "Choose Google API Setting :"
+#, fuzzy
+#| msgid "Choose Google API Setting :"
+msgid "Choose Google API Setting  "
 msgstr "选择 Google API 设置："
 
 #: includes/pages/gs-formntr-integration.php:52
@@ -389,12 +418,9 @@ msgstr "使用手动客户端/密钥（使用您的 Google API 配置）（升�
 msgid "Upgrade To PRO"
 msgstr "升级到专业版"
 
-#: includes/pages/gs-formntr-integration.php:64
-msgid ""
-"Manual Client/Secret Key (Use Your Google API Configuration) method is "
-"available in the PRO version of the plugin."
-msgstr ""
-"手动客户端/密钥（使用您的 Google API 配置）方法在插件的 PRO 版本中可用。"
+#: includes/pages/gs-formntr-integration.php:75
+msgid "click here"
+msgstr "点击这里"
 
 #: includes/pages/gs-formntr-integration.php:82
 msgid "Authenticate with your Google account, follow these steps:"
@@ -426,37 +452,27 @@ msgid ""
 "Sheets."
 msgstr "这将允许集成访问您的 Google Drive 和 Google 表格。"
 
-#: includes/pages/gs-formntr-integration.php:106
+#: includes/pages/gs-formntr-integration.php:102
 msgid "Google Access Code"
 msgstr "Google 访问代码"
 
-#: includes/pages/gs-formntr-integration.php:114
+#: includes/pages/gs-formntr-integration.php:110
 msgid "Currently Active"
 msgstr "目前活跃的"
 
-#: includes/pages/gs-formntr-integration.php:116
+#: includes/pages/gs-formntr-integration.php:112
 msgid "Deactivate"
 msgstr "停用"
 
-#: includes/pages/gs-formntr-integration.php:121
-msgid ""
-"On deactivation, all your data saved with authentication\n"
-"                        will be removed and you need to reauthenticate with "
-"your google account."
-msgstr ""
-"停用后，您的所有数据都将与身份验证一起保存\n"
-"                        系统将被移除，您需要使用您的 Google 帐户重新进行身份"
-"验证。"
-
-#: includes/pages/gs-formntr-integration.php:133
+#: includes/pages/gs-formntr-integration.php:124
 msgid "Click Sign in with Google"
 msgstr "点击通过 Google 登录"
 
-#: includes/pages/gs-formntr-integration.php:150
+#: includes/pages/gs-formntr-integration.php:138
 msgid "Save & Authenticate"
 msgstr "保存并验证"
 
-#: includes/pages/gs-formntr-integration.php:167
+#: includes/pages/gs-formntr-integration.php:155
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
@@ -465,15 +481,15 @@ msgstr ""
 "出了点问题！看起来您没有从您的Google帐户中获得Google Drive和Google Sheets的许"
 "可。请停用身份验证，然后使用权限重新进行身份验证。"
 
-#: includes/pages/gs-formntr-integration.php:172
+#: includes/pages/gs-formntr-integration.php:160
 msgid "Also,"
 msgstr "还，   "
 
-#: includes/pages/gs-formntr-integration.php:174
+#: includes/pages/gs-formntr-integration.php:162
 msgid "Click Here "
 msgstr "点击这里 "
 
-#: includes/pages/gs-formntr-integration.php:175
+#: includes/pages/gs-formntr-integration.php:163
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
@@ -481,18 +497,22 @@ msgstr ""
 "如果它在具有帐户访问权限的第三方应用程序下显示“GSheetConnector for WP "
 "Contact Forms”，则将其删除。"
 
-#: includes/pages/gs-formntr-integration.php:193
-#, php-format
-msgid "Connected email account: <u>%s</u>"
-msgstr "关联的电子邮件帐户：   <u>%s </u>"
+#: includes/pages/gs-formntr-integration.php:181
+msgid "Connected email account"
+msgstr "关联的电子邮件帐户："
 
-#: includes/pages/gs-formntr-integration.php:201
+#: includes/pages/gs-formntr-integration.php:187
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: includes/pages/gs-formntr-integration.php:195
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
 msgstr "出了点问题！您的授权码可能错误或已过期。请停用并重新进行身份验证。 "
 
-#: includes/pages/gs-formntr-integration.php:213
+#: includes/pages/gs-formntr-integration.php:205
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
@@ -501,15 +521,15 @@ msgstr ""
 "我们不会将您的Google帐户中的任何数据存储在我们的服务器上，所有内容都会在您的"
 "服务器上处理和存储。我们非常重视您的隐私，并确保绝不会被滥用。"
 
-#: includes/pages/gs-formntr-integration.php:215
+#: includes/pages/gs-formntr-integration.php:205
 msgid "Learn more."
 msgstr "了解更多。"
 
-#: includes/pages/gs-formntr-integration.php:269
+#: includes/pages/gs-formntr-integration.php:259
 msgid "No errors found."
 msgstr "没有发现错误."
 
-#: includes/pages/gs-formntr-integration.php:273
+#: includes/pages/gs-formntr-integration.php:263
 msgid "No log file exists as no errors are generated."
 msgstr "不存在日志文件，因为不会生成任何错误。"
 
@@ -573,6 +593,21 @@ msgstr "GSheet连接器"
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/westerndeal/"
 msgstr "https://profiles.wordpress.org/westerndeal/"
+
+#~ msgid ""
+#~ "Manual Client/Secret Key (Use Your Google API Configuration) method is "
+#~ "available in the PRO version of the plugin."
+#~ msgstr ""
+#~ "手动客户端/密钥（使用您的 Google API 配置）方法在插件的 PRO 版本中可用。"
+
+#~ msgid ""
+#~ "On deactivation, all your data saved with authentication\n"
+#~ "                        will be removed and you need to reauthenticate "
+#~ "with your google account."
+#~ msgstr ""
+#~ "停用后，您的所有数据都将与身份验证一起保存\n"
+#~ "                        系统将被移除，您需要使用您的 Google 帐户重新进行身"
+#~ "份验证。"
 
 #~ msgid "<img style='width:30px;margin-right: 10px;' src='"
 #~ msgstr "<img style='width：30px;右边距：10px;' src='"
@@ -741,9 +776,6 @@ msgstr "https://profiles.wordpress.org/westerndeal/"
 
 #~ msgid "Forminator- "
 #~ msgstr "福尔米纳特-"
-
-#~ msgid "Google Sheet Integration"
-#~ msgstr "Google 表格集成"
 
 #~ msgid "Debug Log"
 #~ msgstr "调试日志"

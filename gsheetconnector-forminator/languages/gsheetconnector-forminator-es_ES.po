@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-08-12 20:21+0530\n"
-"PO-Revision-Date: 2025-08-12 20:21+0530\n"
+"POT-Creation-Date: 2025-09-02 17:18+0530\n"
+"PO-Revision-Date: 2025-09-02 17:19+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -59,7 +59,7 @@ msgstr "Ajustes"
 msgid "Forminator Forms - GSheetConnector"
 msgstr "Formularios de forminador - GSheetConnector"
 
-#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:117
+#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:129
 msgid "Select"
 msgstr "Seleccionar"
 
@@ -77,11 +77,11 @@ msgstr ""
 "El nombre del feed ya existe en la lista, introduzca el nombre único del "
 "feed."
 
-#: includes/class-gs-formntr-utility.php:105
+#: includes/class-gs-formntr-utility.php:104
 msgid "There's something wrong with your code..."
 msgstr "Hay algo mal con tu código..."
 
-#: includes/class-gs-formntr-utility.php:242
+#: includes/class-gs-formntr-utility.php:241
 msgid "Administrator"
 msgstr "Administrador"
 
@@ -173,109 +173,118 @@ msgstr "Volver a la lista de feeds"
 msgid "Edit Feed and Integrate with Google Sheets"
 msgstr "Editar feed e integrarlo con Hojas de cálculo de Google"
 
-#: includes/pages/edit-feed.php:62
-msgid "Sheet Name:"
-msgstr "Nombre de la hoja:"
+#: includes/pages/edit-feed.php:57
+#, fuzzy
+msgid ""
+"Easily edit your feed settings and connect your form submissions directly to "
+"Google Sheets for real-time data management."
+msgstr ""
+"Edita fácilmente la configuración de tu feed y conecta los envíos de tus "
+"formularios directamente a Hojas de cálculo de Google para la gestión de "
+"datos en tiempo real."
 
-#: includes/pages/edit-feed.php:65
-msgid "Sheet ID:"
-msgstr "ID de la hoja:"
-
-#: includes/pages/edit-feed.php:68
-msgid "Tab Name:"
-msgstr "Nombre de la pestaña:"
-
-#: includes/pages/edit-feed.php:71
-msgid "Tab ID:"
-msgstr "ID de pestaña:"
-
-#: includes/pages/edit-feed.php:75
-msgid "Sheet URL:"
-msgstr "URL de la hoja:"
-
-#: includes/pages/edit-feed.php:81
-msgid "View in Google Sheets"
-msgstr "Ver en Hojas de cálculo de Google"
-
-#: includes/pages/edit-feed.php:89
-msgid "Save Changes"
-msgstr "Guardar cambios"
-
-#: includes/pages/edit-feed.php:110
-msgid "Auto Sheet and Tab Names"
-msgstr "Nombres automáticos de hojas y pestañas"
-
-#: includes/pages/edit-feed.php:111 includes/pages/edit-feed.php:181
-#: includes/pages/edit-feed.php:187 includes/pages/edit-feed.php:276
-#: includes/pages/edit-feed.php:287 includes/pages/edit-feed.php:304
-#: includes/pages/edit-feed.php:323 includes/pages/edit-feed.php:339
-#: includes/pages/edit-feed.php:355
-msgid "PRO"
-msgstr "PRO"
-
-#: includes/pages/edit-feed.php:115
-msgid "Google Spreadsheet Name"
-msgstr "Nombre de la hoja de cálculo de Google"
-
-#: includes/pages/edit-feed.php:119
-msgid "Create New"
-msgstr "Crear Nuevo"
-
-#: includes/pages/edit-feed.php:132
-msgid "Google Sheet Tab Name"
-msgstr "Nombre de la pestaña Hoja de cálculo de Google"
-
-#: includes/pages/edit-feed.php:148
-msgid "Create Spreadsheet"
-msgstr "Crear hoja de cálculo"
-
-#: includes/pages/edit-feed.php:162
+#: includes/pages/edit-feed.php:58 includes/pages/edit-feed.php:174
 msgid "Click here"
 msgstr "Haga clic aquí"
 
-#: includes/pages/edit-feed.php:163
+#: includes/pages/edit-feed.php:67
+msgid "Sheet Name"
+msgstr "Nombre de la hoja"
+
+#: includes/pages/edit-feed.php:72
+msgid "Sheet ID"
+msgstr "ID de hoja"
+
+#: includes/pages/edit-feed.php:77
+msgid "Tab Name"
+msgstr "Nombre de la pestaña"
+
+#: includes/pages/edit-feed.php:82
+msgid "Tab ID"
+msgstr "ID de la pestaña"
+
+#: includes/pages/edit-feed.php:87
+msgid "Sheet URL:"
+msgstr "URL de la hoja:"
+
+#: includes/pages/edit-feed.php:93
+msgid "View in Google Sheets"
+msgstr "Ver en Hojas de cálculo de Google"
+
+#: includes/pages/edit-feed.php:101
+msgid "Save Changes"
+msgstr "Guardar cambios"
+
+#: includes/pages/edit-feed.php:122
+msgid "Auto Sheet and Tab Names"
+msgstr "Nombres automáticos de hojas y pestañas"
+
+#: includes/pages/edit-feed.php:123 includes/pages/edit-feed.php:193
+#: includes/pages/edit-feed.php:286 includes/pages/edit-feed.php:297
+#: includes/pages/edit-feed.php:314 includes/pages/edit-feed.php:333
+#: includes/pages/edit-feed.php:349 includes/pages/edit-feed.php:363
+msgid "PRO"
+msgstr "PRO"
+
+#: includes/pages/edit-feed.php:127
+msgid "Google Spreadsheet Name"
+msgstr "Nombre de la hoja de cálculo de Google"
+
+#: includes/pages/edit-feed.php:131
+msgid "Create New"
+msgstr "Crear Nuevo"
+
+#: includes/pages/edit-feed.php:144
+msgid "Google Sheet Tab Name"
+msgstr "Nombre de la pestaña Hoja de cálculo de Google"
+
+#: includes/pages/edit-feed.php:160
+msgid "Create Spreadsheet"
+msgstr "Crear hoja de cálculo"
+
+#: includes/pages/edit-feed.php:175
 msgid "to fetch sheets detail for \"Forms Feed Settings\"."
 msgstr ""
 "para obtener los detalles de las hojas para \"Configuración del feed de "
 "formularios\"."
 
-#: includes/pages/edit-feed.php:180
+#: includes/pages/edit-feed.php:192
 msgid "Field List"
 msgstr "Lista de campos"
 
-#: includes/pages/edit-feed.php:186
+#: includes/pages/edit-feed.php:197
 msgid "Special Mail Tags"
 msgstr "Etiquetas de correo especiales"
 
-#: includes/pages/edit-feed.php:198
+#: includes/pages/edit-feed.php:208
 msgid "Select All"
 msgstr "Seleccionar todo"
 
-#: includes/pages/edit-feed.php:275
+#: includes/pages/edit-feed.php:285
 msgid "Header Settings"
 msgstr "Ajustes de Cabecera"
 
-#: includes/pages/edit-feed.php:286
+#: includes/pages/edit-feed.php:296
 msgid "Freeze Header"
 msgstr "Encabezado de congelación"
 
-#: includes/pages/edit-feed.php:303
+#: includes/pages/edit-feed.php:313
 msgid "Header - Font Settings"
 msgstr "Encabezado - Configuración de fuente"
 
-#: includes/pages/edit-feed.php:322
+#: includes/pages/edit-feed.php:332
 msgid "Sheet Background Color"
 msgstr "Color de fondo de la hoja"
 
-#: includes/pages/edit-feed.php:338
+#: includes/pages/edit-feed.php:348
 msgid "Row - Font Settings"
 msgstr "Fila - Configuración de fuente"
 
-#: includes/pages/edit-feed.php:347
-msgid "Sync Entries."
-msgstr "Sincronizar entradas."
+#: includes/pages/edit-feed.php:358
+msgid "Sync Entries"
+msgstr "Sincronizar entradas"
 
-#: includes/pages/edit-feed.php:352
+#: includes/pages/edit-feed.php:360
 msgid "Click Here to Sync Entries."
 msgstr "Haga clic aquí para sincronizar las entradas."
 
@@ -341,27 +350,27 @@ msgstr "Versión PRO disponible"
 msgid "Activated"
 msgstr "Activado"
 
-#: includes/pages/google-sheet-settings.php:44
+#: includes/pages/google-sheet-settings.php:51
 msgid "DASHBOARD"
 msgstr "ESCRITORIO"
 
-#: includes/pages/google-sheet-settings.php:50
+#: includes/pages/google-sheet-settings.php:58
 msgid "Integration"
 msgstr "Integración"
 
-#: includes/pages/google-sheet-settings.php:51
+#: includes/pages/google-sheet-settings.php:59
 msgid "Form Feed"
 msgstr "Feed de formularios"
 
-#: includes/pages/google-sheet-settings.php:52
+#: includes/pages/google-sheet-settings.php:60
 msgid "General Settings"
 msgstr "Configuración general"
 
-#: includes/pages/google-sheet-settings.php:53
+#: includes/pages/google-sheet-settings.php:61
 msgid "System Status"
 msgstr "Estado del sistema"
 
-#: includes/pages/google-sheet-settings.php:54
+#: includes/pages/google-sheet-settings.php:62
 msgid "Extensions"
 msgstr "Extensiones"
 
@@ -378,8 +387,32 @@ msgid "No Forminator Forms are connected with Google Sheets."
 msgstr ""
 "Ningún formulario de forminador está conectado con Hojas de cálculo de Google"
 
+#: includes/pages/gs-formntr-integration.php:42
+#, fuzzy
+#| msgid "Google Sheet Integration"
+msgid "Forminator - Google Sheet Integration"
+msgstr "Integración con Google Sheet"
+
+#: includes/pages/gs-formntr-integration.php:43
+#, fuzzy
+msgid ""
+"Choose your Google API Setting from the dropdown. You can select Use "
+"Existing Client/Secret Key (Auto Google API Configuration) or Use Manual "
+"Client/Secret Key (Use Your Google API Configuration - Pro Version). After "
+"saving, the related integration settings will appear, and you can complete "
+"the setup."
+msgstr ""
+"Elige la configuración de la API de Google en el menú desplegable. Puede "
+"seleccionar Usar cliente/clave secreta existente (Configuración automática "
+"de la API de Google) o Usar cliente manual/clave secreta (Usar la "
+"configuración de la API de Google - Versión Pro). Después de guardar, "
+"aparecerá la configuración de integración relacionada y podrá completar la "
+"configuración."
+
 #: includes/pages/gs-formntr-integration.php:47
-msgid "Choose Google API Setting :"
+#, fuzzy
+#| msgid "Choose Google API Setting :"
+msgid "Choose Google API Setting  "
 msgstr "Elija la configuración de la API de Google:"
 
 #: includes/pages/gs-formntr-integration.php:52
@@ -400,13 +433,9 @@ msgstr ""
 msgid "Upgrade To PRO"
 msgstr "Actualizar a Pro"
 
-#: includes/pages/gs-formntr-integration.php:64
-msgid ""
-"Manual Client/Secret Key (Use Your Google API Configuration) method is "
-"available in the PRO version of the plugin."
-msgstr ""
-"El método manual de cliente/clave secreta (use su configuración de API de "
-"Google) está disponible en la versión PRO del complemento."
+#: includes/pages/gs-formntr-integration.php:75
+msgid "click here"
+msgstr "clic aquí"
 
 #: includes/pages/gs-formntr-integration.php:82
 msgid "Authenticate with your Google account, follow these steps:"
@@ -441,37 +470,27 @@ msgid ""
 msgstr ""
 "Esto permitirá que la integración acceda a su Google Drive y Google Sheets."
 
-#: includes/pages/gs-formntr-integration.php:106
+#: includes/pages/gs-formntr-integration.php:102
 msgid "Google Access Code"
 msgstr "Código de acceso de Google"
 
-#: includes/pages/gs-formntr-integration.php:114
+#: includes/pages/gs-formntr-integration.php:110
 msgid "Currently Active"
 msgstr "Actualmente activo"
 
-#: includes/pages/gs-formntr-integration.php:116
+#: includes/pages/gs-formntr-integration.php:112
 msgid "Deactivate"
 msgstr "Desactivar"
 
-#: includes/pages/gs-formntr-integration.php:121
-msgid ""
-"On deactivation, all your data saved with authentication\n"
-"                        will be removed and you need to reauthenticate with "
-"your google account."
-msgstr ""
-"En la desactivación, todos sus datos guardados con autenticación\n"
-"                        se eliminará y tendrás que volver a autenticarte con "
-"tu cuenta de Google."
-
-#: includes/pages/gs-formntr-integration.php:133
+#: includes/pages/gs-formntr-integration.php:124
 msgid "Click Sign in with Google"
 msgstr "Haz clic en Iniciar sesión con Google"
 
-#: includes/pages/gs-formntr-integration.php:150
+#: includes/pages/gs-formntr-integration.php:138
 msgid "Save & Authenticate"
 msgstr "Guardar y autenticar"
 
-#: includes/pages/gs-formntr-integration.php:167
+#: includes/pages/gs-formntr-integration.php:155
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
@@ -481,15 +500,15 @@ msgstr ""
 "Sheets desde su cuenta de Google. Desactive la autenticación y vuelva a "
 "autenticar con los permisos."
 
-#: includes/pages/gs-formntr-integration.php:172
+#: includes/pages/gs-formntr-integration.php:160
 msgid "Also,"
 msgstr "Además"
 
-#: includes/pages/gs-formntr-integration.php:174
+#: includes/pages/gs-formntr-integration.php:162
 msgid "Click Here "
 msgstr "Haga clic aquí "
 
-#: includes/pages/gs-formntr-integration.php:175
+#: includes/pages/gs-formntr-integration.php:163
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
@@ -497,12 +516,16 @@ msgstr ""
 "y si muestra \"GSheetConnector for WP Contact Forms\" en Aplicaciones de "
 "terceros con acceso a la cuenta, elimínelo."
 
-#: includes/pages/gs-formntr-integration.php:193
-#, php-format
-msgid "Connected email account: <u>%s</u>"
-msgstr "Cuenta de correo electrónico conectada:   <u>%s </u>"
+#: includes/pages/gs-formntr-integration.php:181
+msgid "Connected email account"
+msgstr "Cuenta de correo electrónico conectada: %s"
 
-#: includes/pages/gs-formntr-integration.php:201
+#: includes/pages/gs-formntr-integration.php:187
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: includes/pages/gs-formntr-integration.php:195
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
@@ -510,7 +533,7 @@ msgstr ""
 "¡Algo anda mal! Es posible que su código de autorización sea incorrecto o "
 "haya caducado. Desactívelo y vuelva a autenticarlo. "
 
-#: includes/pages/gs-formntr-integration.php:213
+#: includes/pages/gs-formntr-integration.php:205
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
@@ -520,15 +543,15 @@ msgstr ""
 "servidores, todo se procesa y almacena en su servidor. Nos tomamos muy en "
 "serio su privacidad y nos aseguramos de que nunca se haga un uso indebido."
 
-#: includes/pages/gs-formntr-integration.php:215
+#: includes/pages/gs-formntr-integration.php:205
 msgid "Learn more."
 msgstr "Leer más."
 
-#: includes/pages/gs-formntr-integration.php:269
+#: includes/pages/gs-formntr-integration.php:259
 msgid "No errors found."
 msgstr "No se encontraron errores."
 
-#: includes/pages/gs-formntr-integration.php:273
+#: includes/pages/gs-formntr-integration.php:263
 msgid "No log file exists as no errors are generated."
 msgstr "No existe ningún archivo de registro, ya que no se generan errores."
 
@@ -596,6 +619,22 @@ msgstr "GSheetConnector"
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/westerndeal/"
 msgstr "https://profiles.wordpress.org/westerndeal/"
+
+#~ msgid ""
+#~ "Manual Client/Secret Key (Use Your Google API Configuration) method is "
+#~ "available in the PRO version of the plugin."
+#~ msgstr ""
+#~ "El método manual de cliente/clave secreta (use su configuración de API de "
+#~ "Google) está disponible en la versión PRO del complemento."
+
+#~ msgid ""
+#~ "On deactivation, all your data saved with authentication\n"
+#~ "                        will be removed and you need to reauthenticate "
+#~ "with your google account."
+#~ msgstr ""
+#~ "En la desactivación, todos sus datos guardados con autenticación\n"
+#~ "                        se eliminará y tendrás que volver a autenticarte "
+#~ "con tu cuenta de Google."
 
 #~ msgid "<img style='width:30px;margin-right: 10px;' src='"
 #~ msgstr "<img style='width:30px; margen derecho: 10px;' src='"
@@ -775,9 +814,6 @@ msgstr "https://profiles.wordpress.org/westerndeal/"
 
 #~ msgid "Forminator- "
 #~ msgstr "Forminador- "
-
-#~ msgid "Google Sheet Integration"
-#~ msgstr "Integración con Google Sheet"
 
 #~ msgid "Debug Log"
 #~ msgstr "Registro de depuración"

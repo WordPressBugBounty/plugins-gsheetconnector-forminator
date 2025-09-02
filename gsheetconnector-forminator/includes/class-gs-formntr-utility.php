@@ -56,15 +56,14 @@ class GS_FORMNTR_Free_Utility
      *
      */
 
-    public function logger($message)
-    {
-        if (WP_DEBUG === true) {
-            if (is_array($message) || is_object($message)) {
-                GS_FORMNTR_Free_Utility::frmgs_debug_log($message->getMessage());
-            } else {
-                GS_FORMNTR_Free_Utility::frmgs_debug_log($message->getMessage());
-            }
+    public function logger( $message ) {
+    if ( WP_DEBUG === true ) {
+        if ( is_array( $message ) || is_object( $message ) ) {
+        error_log( print_r( $message, true ) );
+        } else {
+        error_log( $message );
         }
+    }
     }
 
     /**

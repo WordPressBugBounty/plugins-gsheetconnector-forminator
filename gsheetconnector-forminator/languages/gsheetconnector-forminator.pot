@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-08-12 20:18+0530\n"
+"POT-Creation-Date: 2025-09-02 17:16+0530\n"
 "PO-Revision-Date: 2024-07-23 13:14+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Forminator Forms - GSheetConnector"
 msgstr ""
 
-#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:117
+#: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:129
 msgid "Select"
 msgstr ""
 
@@ -71,11 +71,11 @@ msgstr ""
 msgid "Feed name already exists in the list, Please enter unique name of feed."
 msgstr ""
 
-#: includes/class-gs-formntr-utility.php:105
+#: includes/class-gs-formntr-utility.php:104
 msgid "There's something wrong with your code..."
 msgstr ""
 
-#: includes/class-gs-formntr-utility.php:242
+#: includes/class-gs-formntr-utility.php:241
 msgid "Administrator"
 msgstr ""
 
@@ -165,107 +165,112 @@ msgstr ""
 msgid "Edit Feed and Integrate with Google Sheets"
 msgstr ""
 
-#: includes/pages/edit-feed.php:62
-msgid "Sheet Name:"
+#: includes/pages/edit-feed.php:57
+msgid ""
+"Easily edit your feed settings and connect your form submissions directly to "
+"Google Sheets for real-time data management."
 msgstr ""
 
-#: includes/pages/edit-feed.php:65
-msgid "Sheet ID:"
-msgstr ""
-
-#: includes/pages/edit-feed.php:68
-msgid "Tab Name:"
-msgstr ""
-
-#: includes/pages/edit-feed.php:71
-msgid "Tab ID:"
-msgstr ""
-
-#: includes/pages/edit-feed.php:75
-msgid "Sheet URL:"
-msgstr ""
-
-#: includes/pages/edit-feed.php:81
-msgid "View in Google Sheets"
-msgstr ""
-
-#: includes/pages/edit-feed.php:89
-msgid "Save Changes"
-msgstr ""
-
-#: includes/pages/edit-feed.php:110
-msgid "Auto Sheet and Tab Names"
-msgstr ""
-
-#: includes/pages/edit-feed.php:111 includes/pages/edit-feed.php:181
-#: includes/pages/edit-feed.php:187 includes/pages/edit-feed.php:276
-#: includes/pages/edit-feed.php:287 includes/pages/edit-feed.php:304
-#: includes/pages/edit-feed.php:323 includes/pages/edit-feed.php:339
-#: includes/pages/edit-feed.php:355
-msgid "PRO"
-msgstr ""
-
-#: includes/pages/edit-feed.php:115
-msgid "Google Spreadsheet Name"
-msgstr ""
-
-#: includes/pages/edit-feed.php:119
-msgid "Create New"
-msgstr ""
-
-#: includes/pages/edit-feed.php:132
-msgid "Google Sheet Tab Name"
-msgstr ""
-
-#: includes/pages/edit-feed.php:148
-msgid "Create Spreadsheet"
-msgstr ""
-
-#: includes/pages/edit-feed.php:162
+#: includes/pages/edit-feed.php:58 includes/pages/edit-feed.php:174
 msgid "Click here"
 msgstr ""
 
-#: includes/pages/edit-feed.php:163
+#: includes/pages/edit-feed.php:67
+msgid "Sheet Name"
+msgstr ""
+
+#: includes/pages/edit-feed.php:72
+msgid "Sheet ID"
+msgstr ""
+
+#: includes/pages/edit-feed.php:77
+msgid "Tab Name"
+msgstr ""
+
+#: includes/pages/edit-feed.php:82
+msgid "Tab ID"
+msgstr ""
+
+#: includes/pages/edit-feed.php:87
+msgid "Sheet URL:"
+msgstr ""
+
+#: includes/pages/edit-feed.php:93
+msgid "View in Google Sheets"
+msgstr ""
+
+#: includes/pages/edit-feed.php:101
+msgid "Save Changes"
+msgstr ""
+
+#: includes/pages/edit-feed.php:122
+msgid "Auto Sheet and Tab Names"
+msgstr ""
+
+#: includes/pages/edit-feed.php:123 includes/pages/edit-feed.php:193
+#: includes/pages/edit-feed.php:286 includes/pages/edit-feed.php:297
+#: includes/pages/edit-feed.php:314 includes/pages/edit-feed.php:333
+#: includes/pages/edit-feed.php:349 includes/pages/edit-feed.php:363
+msgid "PRO"
+msgstr ""
+
+#: includes/pages/edit-feed.php:127
+msgid "Google Spreadsheet Name"
+msgstr ""
+
+#: includes/pages/edit-feed.php:131
+msgid "Create New"
+msgstr ""
+
+#: includes/pages/edit-feed.php:144
+msgid "Google Sheet Tab Name"
+msgstr ""
+
+#: includes/pages/edit-feed.php:160
+msgid "Create Spreadsheet"
+msgstr ""
+
+#: includes/pages/edit-feed.php:175
 msgid "to fetch sheets detail for \"Forms Feed Settings\"."
 msgstr ""
 
-#: includes/pages/edit-feed.php:180
+#: includes/pages/edit-feed.php:192
 msgid "Field List"
 msgstr ""
 
-#: includes/pages/edit-feed.php:186
+#: includes/pages/edit-feed.php:197
 msgid "Special Mail Tags"
 msgstr ""
 
-#: includes/pages/edit-feed.php:198
+#: includes/pages/edit-feed.php:208
 msgid "Select All"
 msgstr ""
 
-#: includes/pages/edit-feed.php:275
+#: includes/pages/edit-feed.php:285
 msgid "Header Settings"
 msgstr ""
 
-#: includes/pages/edit-feed.php:286
+#: includes/pages/edit-feed.php:296
 msgid "Freeze Header"
 msgstr ""
 
-#: includes/pages/edit-feed.php:303
+#: includes/pages/edit-feed.php:313
 msgid "Header - Font Settings"
 msgstr ""
 
-#: includes/pages/edit-feed.php:322
+#: includes/pages/edit-feed.php:332
 msgid "Sheet Background Color"
 msgstr ""
 
-#: includes/pages/edit-feed.php:338
+#: includes/pages/edit-feed.php:348
 msgid "Row - Font Settings"
 msgstr ""
 
-#: includes/pages/edit-feed.php:347
-msgid "Sync Entries."
+#: includes/pages/edit-feed.php:358
+msgid "Sync Entries"
 msgstr ""
 
-#: includes/pages/edit-feed.php:352
+#: includes/pages/edit-feed.php:360
 msgid "Click Here to Sync Entries."
 msgstr ""
 
@@ -331,27 +336,27 @@ msgstr ""
 msgid "Activated"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:44
+#: includes/pages/google-sheet-settings.php:51
 msgid "DASHBOARD"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:50
+#: includes/pages/google-sheet-settings.php:58
 msgid "Integration"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:51
+#: includes/pages/google-sheet-settings.php:59
 msgid "Form Feed"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:52
+#: includes/pages/google-sheet-settings.php:60
 msgid "General Settings"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:53
+#: includes/pages/google-sheet-settings.php:61
 msgid "System Status"
 msgstr ""
 
-#: includes/pages/google-sheet-settings.php:54
+#: includes/pages/google-sheet-settings.php:62
 msgid "Extensions"
 msgstr ""
 
@@ -367,8 +372,21 @@ msgstr ""
 msgid "No Forminator Forms are connected with Google Sheets."
 msgstr ""
 
+#: includes/pages/gs-formntr-integration.php:42
+msgid "Forminator - Google Sheet Integration"
+msgstr ""
+
+#: includes/pages/gs-formntr-integration.php:43
+msgid ""
+"Choose your Google API Setting from the dropdown. You can select Use "
+"Existing Client/Secret Key (Auto Google API Configuration) or Use Manual "
+"Client/Secret Key (Use Your Google API Configuration - Pro Version). After "
+"saving, the related integration settings will appear, and you can complete "
+"the setup."
+msgstr ""
+
 #: includes/pages/gs-formntr-integration.php:47
-msgid "Choose Google API Setting :"
+msgid "Choose Google API Setting  "
 msgstr ""
 
 #: includes/pages/gs-formntr-integration.php:52
@@ -385,10 +403,8 @@ msgstr ""
 msgid "Upgrade To PRO"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:64
-msgid ""
-"Manual Client/Secret Key (Use Your Google API Configuration) method is "
-"available in the PRO version of the plugin."
+#: includes/pages/gs-formntr-integration.php:75
+msgid "click here"
 msgstr ""
 
 #: includes/pages/gs-formntr-integration.php:82
@@ -421,81 +437,78 @@ msgid ""
 "Sheets."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:106
+#: includes/pages/gs-formntr-integration.php:102
 msgid "Google Access Code"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:114
+#: includes/pages/gs-formntr-integration.php:110
 msgid "Currently Active"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:116
+#: includes/pages/gs-formntr-integration.php:112
 msgid "Deactivate"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:121
-msgid ""
-"On deactivation, all your data saved with authentication\n"
-"                        will be removed and you need to reauthenticate with "
-"your google account."
-msgstr ""
-
-#: includes/pages/gs-formntr-integration.php:133
+#: includes/pages/gs-formntr-integration.php:124
 msgid "Click Sign in with Google"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:150
+#: includes/pages/gs-formntr-integration.php:138
 msgid "Save & Authenticate"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:167
+#: includes/pages/gs-formntr-integration.php:155
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
 "Re-Authenticate again with the permissions."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:172
+#: includes/pages/gs-formntr-integration.php:160
 msgid "Also,"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:174
+#: includes/pages/gs-formntr-integration.php:162
 msgid "Click Here "
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:175
+#: includes/pages/gs-formntr-integration.php:163
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:193
-#, php-format
-msgid "Connected email account: <u>%s</u>"
+#: includes/pages/gs-formntr-integration.php:181
+msgid "Connected email account"
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:201
+#: includes/pages/gs-formntr-integration.php:187
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: includes/pages/gs-formntr-integration.php:195
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:213
+#: includes/pages/gs-formntr-integration.php:205
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
 "extremely seriously and ensure it is never misused."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:215
+#: includes/pages/gs-formntr-integration.php:205
 msgid "Learn more."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:269
+#: includes/pages/gs-formntr-integration.php:259
 msgid "No errors found."
 msgstr ""
 
-#: includes/pages/gs-formntr-integration.php:273
+#: includes/pages/gs-formntr-integration.php:263
 msgid "No log file exists as no errors are generated."
 msgstr ""
 
