@@ -3,6 +3,10 @@
 if (! defined('ABSPATH')) {
     exit();
 }
+// 🔒 Prevent Subscribers from seeing sensitive info
+if ( ! current_user_can( 'manage_options' ) ) {
+    wp_die( __( 'You do not have permission to access this page.', 'gsheetconnector-for-elementor-forms' ) );
+}
 
 $formtr_gs_tools_service = new GS_FORMNTR_Init();
 ?>

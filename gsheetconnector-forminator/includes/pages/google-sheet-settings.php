@@ -34,7 +34,7 @@ $plugin_version = defined('GS_FORMNTR_VERSION') ? GS_FORMNTR_VERSION : 'N/A';
         <a href="https://www.gsheetconnector.com/"><i></i></a>
     </div>
     <h1 class="gsheet-logo-text">
-        <span><?php echo esc_html("Forminator GSheetConnector", 'gsheetconnector-forminator'); ?></span>
+        <span><?php echo esc_html("GSheetConnector for Forminator Forms", 'gsheetconnector-forminator'); ?></span>
         <small><?php echo esc_html("Version :", 'gsheetconnector-forminator'); ?>
             <?php echo esc_html($plugin_version, 'gsheetconnector-forminator'); ?> </small>
     </h1>
@@ -54,13 +54,13 @@ $plugin_version = defined('GS_FORMNTR_VERSION') ? GS_FORMNTR_VERSION : 'N/A';
 </div>
 
     <?php
-    $tabs = array(
-        'integration' => __('Integration', 'gsheetconnector-forminator'),
-        'google-sheet' => __('Form Feed', 'gsheetconnector-forminator'),
-        'general-settings' => __('General Settings', 'gsheetconnector-forminator'),
-        'system-status' => __('System Status', 'gsheetconnector-forminator'),
-        'extensions' => __('Extensions', 'gsheetconnector-forminator'),
-    );
+  $tabs = array(
+    'integration'      => esc_html( __('Integration', 'gsheetconnector-forminator') ),
+    'google-sheet'     => esc_html( __('Form Feed', 'gsheetconnector-forminator') ),
+    'general-settings' => esc_html( __('General Settings', 'gsheetconnector-forminator') ),
+    'system-status'    => esc_html( __('System Status', 'gsheetconnector-forminator') ),
+    'extensions'       => esc_html( __('Extensions', 'gsheetconnector-forminator') ),
+);
 
     echo '<div id="icon-themes" class="icon32"><br></div>';
     echo '<div class="nav-tab-wrapper">';

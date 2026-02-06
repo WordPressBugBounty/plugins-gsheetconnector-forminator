@@ -40,7 +40,7 @@ if (isset($_GET['code'])) {
 <div class="card-formntr">
 	
 	<h2><?php echo esc_html__('Forminator - Google Sheet Integration', 'gsheetconnector-forminator'); ?></h2>
-	<p><?php echo esc_html__('Choose your Google API Setting from the dropdown. You can select Use Existing Client/Secret Key (Auto Google API Configuration) or Use Manual Client/Secret Key (Use Your Google API Configuration - Pro Version). After saving, the related integration settings will appear, and you can complete the setup.', 'gsheetconnector-forminator'); ?></p>
+	<p><?php echo esc_html__('Choose your Google API Setting from the dropdown. You can select Use Existing Client/Secret Key (Auto Google API Configuration) or Use Manual Client/Secret Key (Use Your Google API Configuration - Pro Version) or Use Service Account (Recommended- Pro Version) . After saving, the related integration settings will appear, and you can complete the setup.', 'gsheetconnector-forminator'); ?></p>
 	
 	<div class="row">
 	
@@ -54,8 +54,11 @@ if (isset($_GET['code'])) {
             <option value="formntr_manual" disabled="">
                 <?php echo esc_html__('Use Manual Client/Secret Key (Use Your Google API Configuration) (Upgrade To PRO)', 'gsheetconnector-forminator'); ?>
             </option>
+             <option value="formntr_service" disabled="">
+                <?php echo esc_html__('Service Account (Recommended) (Upgrade To PRO)', 'gsheetconnector-forminator'); ?>
+            </option>
         </select>
-    <a
+                 <a
                 href="https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
                 target="_blank"><input type="button" name="save-method-api-formntr" id=""
                     value="<?php esc_attr_e('Upgrade To PRO', 'gsheetconnector-forminator'); ?>" class="update-btn " /></a>
@@ -72,7 +75,7 @@ if (isset($_GET['code'])) {
                  <?php echo esc_html('Google Sheet Integration - Use Existing Client/Secret Key (Auto Google API Configuration)', 'gsheetconnector-forminator'); ?>  
             </h2>
 			
-			<p><?php echo esc_html('Automatic integration allows you to connect Gravity Forms with Google Sheets using built-in Google API configuration. By authorizing your Google account, the plugin will handle API setup and authentication automatically, enabling seamless form data sync. Learn more in the documentation', 'gsheetconnector-forminator'); ?> <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/integration-with-google-existing-method" target="_blank" ><?php echo esc_html__('click here', 'gsheetconnector-forminator'); ?></a>.</p>
+			<p><?php echo esc_html('Automatic integration allows you to connect Forminator Forms with Google Sheets using built-in Google API configuration. By authorizing your Google account, the plugin will handle API setup and authentication automatically, enabling seamless form data sync. Learn more in the documentation', 'gsheetconnector-forminator'); ?> <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/integration-with-google-existing-method" target="_blank" ><?php echo esc_html__('click here', 'gsheetconnector-forminator'); ?></a>.</p>
             
             <div class="inside">
 
@@ -178,7 +181,7 @@ if (isset($_GET['code'])) {
 							<label> <?php
                             printf(
                                 // Translators: %s is the connected email account address.
-                                wp_kses_post(__('Connected email account', 'gsheetconnector-forminator')),
+                                wp_kses_post(__('Connected Email Account', 'gsheetconnector-forminator')),
                                 esc_html($email_account)
                             ); ?></label>
                             <?php
@@ -301,13 +304,26 @@ if (isset($_GET['code'])) {
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/" target="_blank">
+                        <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/plugin-settings-pro-version" target="_blank">
                             <div>
                                 <button class="icon-button">
                                     <span class="dashicons dashicons-chart-bar"></span>
                                 </button>
                                 <strong><?php echo esc_html("Multi Languages", 'gsheetconnector-forminator'); ?></strong>
                                 <p><?php echo esc_html("This plugin supports multi-languages as well!", 'gsheetconnector-forminator'); ?>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/plugin-settings-free-version" target="_blank">
+                            <div>
+                                <button class="icon-button">
+                                    <span class="dashicons dashicons-download"></span>
+                                </button>
+                                <strong><?php echo esc_html("Support Wordpress multisites", 'gsheetconnector-forminator'); ?></strong>
+                                <p><?php echo esc_html("With the use of a Multisite, you’ll also have a new level of user-available: the Super
+              Admin.", 'gsheetconnector-forminator'); ?>
                                 </p>
                             </div>
                         </a>
@@ -329,7 +345,7 @@ if (isset($_GET['code'])) {
                             <span class="dashicons dashicons-book"></span>
                             <div>
                                 <strong><?php echo esc_html("Online Documentation", 'gsheetconnector-forminator'); ?></strong>
-                                <p><?php echo esc_html("Understand all the capabilities of Forminator GSheetConnector", 'gsheetconnector-forminator'); ?>
+                                <p><?php echo esc_html("Understand all the capabilities of GSheetConnector for Forminator Forms", 'gsheetconnector-forminator'); ?>
                                 </p>
                             </div>
                         </a>

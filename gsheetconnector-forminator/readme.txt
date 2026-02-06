@@ -1,12 +1,13 @@
 === GSheetConnector for Forminator Forms ===
 Contributors: westerndeal, abdullah17, gsheetconnector
 Donate link: https://www.paypal.me/WesternDeal
-Author URL: https://profiles.wordpress.org/westerndeal/
+Author URL: https://www.gsheetconnector.com/
 Tags: forminator, forminator google sheet, forminator forms google sheet, google sheet forminator, wordpress google sheet
-Tested up to: 6.8
+Docs: https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector
+Tested up to: 6.9
 Requires at least: 5.6
 Requires PHP: 7.4
-Stable tag: 1.0.16
+Stable tag: 1.0.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,8 +109,10 @@ Enjoy!
 2. Create a form.
 3. How to create feeds and display the Sheet name and Tab name.
 4. Entering the Field Header Names Manually in the Connected Sheet and Submitting the form.
-5. System Status.
-6. Extensions.
+5. General Settings.
+6. System Status.
+7. Extensions.
+
 
 🚀How to Install, Authenticate and Integrate Contact Form with your Google Sheet.
 
@@ -132,34 +135,38 @@ Enjoy!
 
 == Changelog ==	
 
+
+= 1.0.17 (21-11-2025) =
+- Added: Added new CSS and updated the UI.
+
 = 1.0.16 (02-09-2025) =
-Fixed: CSS and HTML UI — removed extra images, resolved responsive issues, updated FontAwesome files, and included missing fonts.
+- Fixed: CSS and HTML UI — removed extra images, resolved responsive issues, updated FontAwesome files, and included missing fonts.
 
 = 1.0.15 (12-08-2025) =
-Fixed: Warnings and errors reported by Plugin Check.
-Fixed: Missing function comments for better code readability.
-Fixed: Duplicate feed name check to ensure unique entries with error feedback.
-Added: Old extension page replaced with new design.
-Added: General Settings tab in plugin settings.
-Changed: Moved logs to the uploads folder for better file organization.
+- Fixed: Warnings and errors reported by Plugin Check.
+- Fixed: Missing function comments for better code readability.
+- Fixed: Duplicate feed name check to ensure unique entries with error feedback.
+- Added: Old extension page replaced with new design.
+- Added: General Settings tab in plugin settings.
+- Changed: Moved logs to the uploads folder for better file organization.
 
 = 1.0.14 (22-04-2025) =
-Added: Moved saving of credentials to database for Auto API Integration.
+- Added: Moved saving of credentials to database for Auto API Integration.
 
 = 1.0.13 (20-02-2025) =
-Fixed: Vulnerability issues.
+- Fixed: Vulnerability issues.
 
 = 1.0.12 (05-02-2025) =
-Fixed: Minor UI changes.
+- Fixed: Minor UI changes.
 
 = 1.0.11 (17-11-2024) =
-Fixed: File not found error.
+- Fixed: File not found error.
 
 = 1.0.10 (15-11-2024) =
-Fixed: Incorrect values saving to sheet for Checkbox, Radio and Dropdown fields.
-Fixed: Dashboard Widget.
-Fixed: Copy to clipboard not coping the data under System Info tab.
-Updated: CSS and JS files.
+- Fixed: Incorrect values saving to sheet for Checkbox, Radio and Dropdown fields.
+- Fixed: Dashboard Widget.
+- Fixed: Copy to clipboard not coping the data under System Info tab.
+- Updated: CSS and JS files.
 
 = 1.0.9 (12-08-2024) =
 Added: Display a notification when authentication expires.
@@ -179,12 +186,12 @@ Added: Display a notification when authentication expires.
 - Added: Compatible with Forminator GSheetConnector PRO.
 
 = 1.0.4 =
-* Fixed : Fixed validate parent plugin exists or not then show alert message display issue.
+- Fixed : Fixed validate parent plugin exists or not then show alert message display issue.
 
 = 1.0.3 =
-* Fixed : Databse prefix issue fixed.
-* Fixed : Value starts with += fixed.
-* Fixed : Resolved active plugins show issue in system status tab.
+- Fixed : Databse prefix issue fixed.
+- Fixed : Value starts with += fixed.
+- Fixed : Resolved active plugins show issue in system status tab.
 
 = 1.0.2 =
 * Redesigned the System status interface.

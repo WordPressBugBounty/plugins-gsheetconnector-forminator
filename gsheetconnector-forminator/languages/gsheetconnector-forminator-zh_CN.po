@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-09-02 17:19+0530\n"
-"PO-Revision-Date: 2025-09-02 17:20+0530\n"
+"POT-Creation-Date: 2025-11-21 18:03+0530\n"
+"PO-Revision-Date: 2025-11-21 18:03+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -53,9 +53,10 @@ msgstr "谷歌表格"
 msgid "Settings"
 msgstr "设置"
 
-#: gsheetconnector-forminator.php:637
-msgid "Forminator Forms - GSheetConnector"
-msgstr "Forminator 表单 - GSheetConnector"
+#. Plugin Name of the plugin/theme
+#: gsheetconnector-forminator.php:637 includes/pages/admin-footer.php:8
+msgid "GSheetConnector for Forminator Forms"
+msgstr "用于 Forminator 表单的 GSheetConnector"
 
 #: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:129
 msgid "Select"
@@ -86,10 +87,6 @@ msgid "Please rate"
 msgstr "请评价"
 
 #: includes/pages/admin-footer.php:8
-msgid "Forminator GSheetConnector"
-msgstr "Forminator GSheet连接器"
-
-#: includes/pages/admin-footer.php:8
 msgid "WordPress.org"
 msgstr "WordPress.org"
 
@@ -110,10 +107,6 @@ msgid "Docs"
 msgstr "文档"
 
 #: includes/pages/admin-footer.php:19
-msgid "VIP Circle"
-msgstr "VIP Circle"
-
-#: includes/pages/admin-footer.php:20
 msgid "Free Plugins"
 msgstr "免费插件"
 
@@ -170,12 +163,11 @@ msgid "Edit Feed and Integrate with Google Sheets"
 msgstr "编辑 Feed 并与 Google 表格集成"
 
 #: includes/pages/edit-feed.php:57
-#, fuzzy
 msgid ""
 "Easily edit your feed settings and connect your form submissions directly to "
 "Google Sheets for real-time data management."
 msgstr ""
-"轻松编辑您的提要设置并将您的表单提交直接连接到 Google 表格以进行实时数据管"
+"轻松编辑您的信息流设置，并将表单提交内容直接连接至Google表格，实现实时数据管"
 "理。"
 
 #: includes/pages/edit-feed.php:58 includes/pages/edit-feed.php:174
@@ -199,8 +191,8 @@ msgid "Tab ID"
 msgstr "标签ID"
 
 #: includes/pages/edit-feed.php:87
-msgid "Sheet URL:"
-msgstr "工作表 URL："
+msgid "Sheet URL"
+msgstr "工作表 URL"
 
 #: includes/pages/edit-feed.php:93
 msgid "View in Google Sheets"
@@ -380,27 +372,22 @@ msgid "No Forminator Forms are connected with Google Sheets."
 msgstr "没有 Forminator 表单与 Google 表格相关联"
 
 #: includes/pages/gs-formntr-integration.php:42
-#, fuzzy
-#| msgid "Google Sheet Integration"
 msgid "Forminator - Google Sheet Integration"
-msgstr "Google 表格集成"
+msgstr "Forminator - Google 表格集成"
 
 #: includes/pages/gs-formntr-integration.php:43
-#, fuzzy
 msgid ""
 "Choose your Google API Setting from the dropdown. You can select Use "
 "Existing Client/Secret Key (Auto Google API Configuration) or Use Manual "
-"Client/Secret Key (Use Your Google API Configuration - Pro Version). After "
-"saving, the related integration settings will appear, and you can complete "
-"the setup."
+"Client/Secret Key (Use Your Google API Configuration - Pro Version) or Use "
+"Service Account (Recommended- Pro Version) . After saving, the related "
+"integration settings will appear, and you can complete the setup."
 msgstr ""
-"从下拉列表中选择您的 Google API 设置。您可以选择使用现有客户端/密钥（自动 "
-"Google API 配置）或使用手动客户端/密钥（使用您的 Google API 配置 - 专业版）。"
-"保存后，会出现相关的集成设置，您可以完成设置。"
+"从下拉菜单中选择 Google API 设置。你可以选择使用现有客户端/秘钥（自动 Google "
+"API 配置）或使用手动客户端/秘钥（使用你的 Google API 配置 - 专业版）或使用服"
+"务账户（建议使用 - 专业版）。保存后，将显示相关的集成设置，然后即可完成设置。"
 
 #: includes/pages/gs-formntr-integration.php:47
-#, fuzzy
-#| msgid "Choose Google API Setting :"
 msgid "Choose Google API Setting  "
 msgstr "选择 Google API 设置："
 
@@ -414,65 +401,69 @@ msgid ""
 "PRO)"
 msgstr "使用手动客户端/密钥（使用您的 Google API 配置）（升级到 PRO）"
 
-#: includes/pages/gs-formntr-integration.php:61
+#: includes/pages/gs-formntr-integration.php:58
+msgid "Service Account (Recommended) (Upgrade To PRO)"
+msgstr "服务帐户（推荐）（升级到 PRO）"
+
+#: includes/pages/gs-formntr-integration.php:64
 msgid "Upgrade To PRO"
 msgstr "升级到专业版"
 
-#: includes/pages/gs-formntr-integration.php:75
+#: includes/pages/gs-formntr-integration.php:78
 msgid "click here"
 msgstr "点击这里"
 
-#: includes/pages/gs-formntr-integration.php:82
+#: includes/pages/gs-formntr-integration.php:85
 msgid "Authenticate with your Google account, follow these steps:"
 msgstr "使用您的 Google 帐户进行身份验证，请按照以下步骤操作："
 
-#: includes/pages/gs-formntr-integration.php:85
+#: includes/pages/gs-formntr-integration.php:88
 msgid "Click on the \"Sign In With Google\" button."
 msgstr "点击“使用 Google 登录”按钮。"
 
-#: includes/pages/gs-formntr-integration.php:87
+#: includes/pages/gs-formntr-integration.php:90
 msgid "Grant permissions for the following:"
 msgstr "授予以下权限："
 
-#: includes/pages/gs-formntr-integration.php:89
+#: includes/pages/gs-formntr-integration.php:92
 msgid "Google Drive"
 msgstr "谷歌云盘"
 
-#: includes/pages/gs-formntr-integration.php:90
+#: includes/pages/gs-formntr-integration.php:93
 msgid "Google Sheets"
 msgstr "Google表格"
 
-#: includes/pages/gs-formntr-integration.php:93
+#: includes/pages/gs-formntr-integration.php:96
 msgid "Ensure that you enable the checkbox for each of these services."
 msgstr "* 确保为其中每一项服务启用复选框。"
 
-#: includes/pages/gs-formntr-integration.php:96
+#: includes/pages/gs-formntr-integration.php:99
 msgid ""
 "This will allow the integration to access your Google Drive and Google "
 "Sheets."
 msgstr "这将允许集成访问您的 Google Drive 和 Google 表格。"
 
-#: includes/pages/gs-formntr-integration.php:102
+#: includes/pages/gs-formntr-integration.php:105
 msgid "Google Access Code"
 msgstr "Google 访问代码"
 
-#: includes/pages/gs-formntr-integration.php:110
+#: includes/pages/gs-formntr-integration.php:113
 msgid "Currently Active"
 msgstr "目前活跃的"
 
-#: includes/pages/gs-formntr-integration.php:112
+#: includes/pages/gs-formntr-integration.php:115
 msgid "Deactivate"
 msgstr "停用"
 
-#: includes/pages/gs-formntr-integration.php:124
+#: includes/pages/gs-formntr-integration.php:127
 msgid "Click Sign in with Google"
 msgstr "点击通过 Google 登录"
 
-#: includes/pages/gs-formntr-integration.php:138
+#: includes/pages/gs-formntr-integration.php:141
 msgid "Save & Authenticate"
 msgstr "保存并验证"
 
-#: includes/pages/gs-formntr-integration.php:155
+#: includes/pages/gs-formntr-integration.php:158
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
@@ -481,15 +472,15 @@ msgstr ""
 "出了点问题！看起来您没有从您的Google帐户中获得Google Drive和Google Sheets的许"
 "可。请停用身份验证，然后使用权限重新进行身份验证。"
 
-#: includes/pages/gs-formntr-integration.php:160
+#: includes/pages/gs-formntr-integration.php:163
 msgid "Also,"
 msgstr "还，   "
 
-#: includes/pages/gs-formntr-integration.php:162
+#: includes/pages/gs-formntr-integration.php:165
 msgid "Click Here "
 msgstr "点击这里 "
 
-#: includes/pages/gs-formntr-integration.php:163
+#: includes/pages/gs-formntr-integration.php:166
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
@@ -497,22 +488,22 @@ msgstr ""
 "如果它在具有帐户访问权限的第三方应用程序下显示“GSheetConnector for WP "
 "Contact Forms”，则将其删除。"
 
-#: includes/pages/gs-formntr-integration.php:181
-msgid "Connected email account"
+#: includes/pages/gs-formntr-integration.php:184
+msgid "Connected Email Account"
 msgstr "关联的电子邮件帐户："
 
-#: includes/pages/gs-formntr-integration.php:187
+#: includes/pages/gs-formntr-integration.php:190
 #, php-format
 msgid "%s"
 msgstr "%s"
 
-#: includes/pages/gs-formntr-integration.php:195
+#: includes/pages/gs-formntr-integration.php:198
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
 msgstr "出了点问题！您的授权码可能错误或已过期。请停用并重新进行身份验证。 "
 
-#: includes/pages/gs-formntr-integration.php:205
+#: includes/pages/gs-formntr-integration.php:208
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
@@ -521,39 +512,43 @@ msgstr ""
 "我们不会将您的Google帐户中的任何数据存储在我们的服务器上，所有内容都会在您的"
 "服务器上处理和存储。我们非常重视您的隐私，并确保绝不会被滥用。"
 
-#: includes/pages/gs-formntr-integration.php:205
+#: includes/pages/gs-formntr-integration.php:208
 msgid "Learn more."
 msgstr "了解更多。"
 
-#: includes/pages/gs-formntr-integration.php:259
+#: includes/pages/gs-formntr-integration.php:262
 msgid "No errors found."
 msgstr "没有发现错误."
 
-#: includes/pages/gs-formntr-integration.php:263
+#: includes/pages/gs-formntr-integration.php:266
 msgid "No log file exists as no errors are generated."
 msgstr "不存在日志文件，因为不会生成任何错误。"
 
-#: includes/pages/gs-formntr-systeminfo.php:11
+#: includes/pages/gs-formntr-systeminfo.php:8
+msgid "You do not have permission to access this page."
+msgstr "您没有权限访问此页面。"
+
+#: includes/pages/gs-formntr-systeminfo.php:15
 msgid "System Info"
 msgstr "系统信息"
 
-#: includes/pages/gs-formntr-systeminfo.php:12
+#: includes/pages/gs-formntr-systeminfo.php:16
 msgid "Copy System Info to Clipboard"
 msgstr "将系统信息复制到剪贴板"
 
-#: includes/pages/gs-formntr-systeminfo.php:19
+#: includes/pages/gs-formntr-systeminfo.php:23
 msgid "Error Log"
 msgstr "错误日志"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid "If you have"
 msgstr "如果你有"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid "WP_DEBUG_LOG"
 msgstr "WP_DEBUG_LOG"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid ""
 "enabled, errors are stored in a log file. Here you can find the last 100 "
 "lines in reversed order so that you or the GSheetConnector support team can "
@@ -562,25 +557,23 @@ msgstr ""
 "启用后，错误将存储在日志文件中。在这里，您可以以相反的顺序找到最后 100 行，以"
 "便您或 GSheetConnector 支持团队可以轻松查看它。无法在此处编辑文件。"
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:25
 msgid "Copy Error Log to Clipboard"
 msgstr "将错误日志复制到剪贴板"
 
-#: includes/pages/gs-formntr-systeminfo.php:22
+#: includes/pages/gs-formntr-systeminfo.php:26
 msgid "Clear"
 msgstr "清除"
 
-#: includes/pages/gs-formntr-systeminfo.php:28
+#: includes/pages/gs-formntr-systeminfo.php:32
 msgid "Copied"
 msgstr "复制"
 
-#. Plugin Name of the plugin/theme
-msgid "GSheetConnector for Forminator Forms"
-msgstr "用于 Forminator 表单的 GSheetConnector"
-
 #. Plugin URI of the plugin/theme
-msgid "https://www.gsheetconnector.com"
-msgstr "https://www.gsheetconnector.com/"
+msgid ""
+"https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
+msgstr ""
+"https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
 
 #. Description of the plugin/theme
 msgid "Send your Forminator Forms data to your Google Sheets spreadsheet."
@@ -591,8 +584,20 @@ msgid "GSheetConnector"
 msgstr "GSheet连接器"
 
 #. Author URI of the plugin/theme
-msgid "https://profiles.wordpress.org/westerndeal/"
-msgstr "https://profiles.wordpress.org/westerndeal/"
+msgid "https://www.gsheetconnector.com/"
+msgstr "https://www.gsheetconnector.com/"
+
+#~ msgid "Forminator Forms - GSheetConnector"
+#~ msgstr "Forminator 表单 - GSheetConnector"
+
+#~ msgid "Forminator GSheetConnector"
+#~ msgstr "Forminator GSheet连接器"
+
+#~ msgid "VIP Circle"
+#~ msgstr "VIP Circle"
+
+#~ msgid "https://profiles.wordpress.org/westerndeal/"
+#~ msgstr "https://profiles.wordpress.org/westerndeal/"
 
 #~ msgid ""
 #~ "Manual Client/Secret Key (Use Your Google API Configuration) method is "

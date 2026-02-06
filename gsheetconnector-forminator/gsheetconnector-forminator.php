@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: GSheetConnector for Forminator Forms
- * Plugin URI: https://www.gsheetconnector.com
+ * Plugin URI: https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro
  * Description: Send your Forminator Forms data to your Google Sheets spreadsheet.
  * Author: GSheetConnector
- * Author URI: https://profiles.wordpress.org/westerndeal/
- * Version: 1.0.16
+ * Author URI: https://www.gsheetconnector.com/
+ * Version: 1.0.17
  * Text Domain: gsheetconnector-forminator
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -94,8 +94,8 @@ if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-for
 
 
 // Declare some global constants
-define('GS_FORMNTR_VERSION', '1.0.16');
-define('GS_FORMNTR_DB_VERSION', '1.0.16');
+define('GS_FORMNTR_VERSION', '1.0.17');
+define('GS_FORMNTR_DB_VERSION', '1.0.17');
 define('GS_FORMNTR_ROOT', dirname(__FILE__));
 define('GS_FORMNTR_URL', plugins_url('/', __FILE__));
 define('GS_FORMNTR_BASE_FILE', basename(dirname(__FILE__)) . '/gsheetconnector-forminator.php');
@@ -634,7 +634,7 @@ class GS_FORMNTR_Init
 
     public function add_formntr_gs_connector_summary_widget()
     {
-        $title = "<img style='width:30px;margin-right: 10px;' src='" . GS_FORMNTR_URL . "assets/img/forminator-gsc.png'><span>" . __('Forminator Forms - GSheetConnector', 'gsheetconnector-forminator') . "</span>";
+        $title = "<img style='width:30px;margin-right: 10px;' src='" . GS_FORMNTR_URL . "assets/img/forminator-gsc.svg'><span>" . __('GSheetConnector for Forminator Forms', 'gsheetconnector-forminator') . "</span>";
         wp_add_dashboard_widget('formntr_gs_dashboard', $title, array($this, 'formntr_gs_connector_summary_dashboard'));
     }
 
@@ -705,6 +705,7 @@ class GS_FORMNTR_Init
         $system_info .= '<div id="info-container" class="info-content" style="display:none;">';
         $system_info .= '<h3>GSheetConnector</h3>';
         $system_info .= '<table>';
+        $system_info .= '<tr><td>Plugin Name</td><td>GSheetConnector for Forminator Forms</td></tr>';
         $system_info .= '<tr><td>Plugin Version</td><td>' . esc_html($plugin_version) . '</td></tr>';
         $system_info .= '<tr><td>Plugin Subscription Plan</td><td>' . esc_html($subscription_plan) . '</td></tr>';
         $system_info .= '<tr><td>Connected Email Account</td><td>' . $connected_email . '</td></tr>';

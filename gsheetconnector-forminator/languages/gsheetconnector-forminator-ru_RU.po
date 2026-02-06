@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-09-02 17:19+0530\n"
-"PO-Revision-Date: 2025-09-02 17:19+0530\n"
+"POT-Creation-Date: 2025-11-21 18:03+0530\n"
+"PO-Revision-Date: 2025-11-21 18:05+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -56,9 +56,10 @@ msgstr "Лист Google"
 msgid "Settings"
 msgstr "Настройки"
 
-#: gsheetconnector-forminator.php:637
-msgid "Forminator Forms - GSheetConnector"
-msgstr "Форминатор форм - GSheetConnector"
+#. Plugin Name of the plugin/theme
+#: gsheetconnector-forminator.php:637 includes/pages/admin-footer.php:8
+msgid "GSheetConnector for Forminator Forms"
+msgstr "GSheetConnector для форм Forminator"
 
 #: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:129
 msgid "Select"
@@ -90,10 +91,6 @@ msgid "Please rate"
 msgstr "Пожалуйста, оцените"
 
 #: includes/pages/admin-footer.php:8
-msgid "Forminator GSheetConnector"
-msgstr "Forminator GSheetConnector"
-
-#: includes/pages/admin-footer.php:8
 msgid "WordPress.org"
 msgstr "WordPress.org"
 
@@ -114,10 +111,6 @@ msgid "Docs"
 msgstr "Документы"
 
 #: includes/pages/admin-footer.php:19
-msgid "VIP Circle"
-msgstr "VIP-кружок"
-
-#: includes/pages/admin-footer.php:20
 msgid "Free Plugins"
 msgstr "Бесплатные плагины"
 
@@ -174,14 +167,12 @@ msgid "Edit Feed and Integrate with Google Sheets"
 msgstr "Редактирование ленты и интеграция с Google Таблицами"
 
 #: includes/pages/edit-feed.php:57
-#, fuzzy
 msgid ""
 "Easily edit your feed settings and connect your form submissions directly to "
 "Google Sheets for real-time data management."
 msgstr ""
-"Легко редактируйте настройки фида и подключайте отправленные формы "
-"непосредственно к Google Таблицам для управления данными в режиме реального "
-"времени."
+"Легко редактируйте настройки своего фида и подключайте отправленные формы "
+"напрямую к Google Sheets для управления данными в режиме реального времени."
 
 #: includes/pages/edit-feed.php:58 includes/pages/edit-feed.php:174
 msgid "Click here"
@@ -204,7 +195,7 @@ msgid "Tab ID"
 msgstr "ID вкладки"
 
 #: includes/pages/edit-feed.php:87
-msgid "Sheet URL:"
+msgid "Sheet URL"
 msgstr "URL-адрес листа"
 
 #: includes/pages/edit-feed.php:93
@@ -387,29 +378,26 @@ msgid "No Forminator Forms are connected with Google Sheets."
 msgstr "Формы Forminator не связаны с Google Таблицами."
 
 #: includes/pages/gs-formntr-integration.php:42
-#, fuzzy
-#| msgid "Google Sheet Integration"
 msgid "Forminator - Google Sheet Integration"
-msgstr "Интеграция с Google Таблицами"
+msgstr "Forminator — интеграция с Google Sheet"
 
 #: includes/pages/gs-formntr-integration.php:43
-#, fuzzy
 msgid ""
 "Choose your Google API Setting from the dropdown. You can select Use "
 "Existing Client/Secret Key (Auto Google API Configuration) or Use Manual "
-"Client/Secret Key (Use Your Google API Configuration - Pro Version). After "
-"saving, the related integration settings will appear, and you can complete "
-"the setup."
+"Client/Secret Key (Use Your Google API Configuration - Pro Version) or Use "
+"Service Account (Recommended- Pro Version) . After saving, the related "
+"integration settings will appear, and you can complete the setup."
 msgstr ""
-"Выберите настройки Google API из раскрывающегося списка. Вы можете выбрать "
-"«Использовать существующий клиент/секретный ключ» (автоматическая настройка "
-"Google API) или «Использовать вручную клиент/секретный ключ» (использовать "
-"конфигурацию Google API — версия Pro). После сохранения появятся "
-"соответствующие настройки интеграции, и вы сможете завершить настройку."
+"Выберите настройки Google API из выпадающего списка. Вы можете выбрать "
+"«Использовать существующий ключ клиента/секретный ключ (автоматическая "
+"настройка Google API)», «Использовать ручной ключ клиента/секретный ключ "
+"(использовать настройки Google API — версия Pro)» или «Использовать "
+"служебную учетную запись (рекомендуется — версия Pro)». После сохранения "
+"появятся соответствующие настройки интеграции, и вы сможете завершить "
+"настройку."
 
 #: includes/pages/gs-formntr-integration.php:47
-#, fuzzy
-#| msgid "Choose Google API Setting :"
 msgid "Choose Google API Setting  "
 msgstr "Выберите настройку Google API"
 
@@ -427,41 +415,45 @@ msgstr ""
 "Используйте ручной клиент/секретный ключ (используйте конфигурацию Google "
 "API) (обновите до PRO)"
 
-#: includes/pages/gs-formntr-integration.php:61
+#: includes/pages/gs-formntr-integration.php:58
+msgid "Service Account (Recommended) (Upgrade To PRO)"
+msgstr "Служебная учетная запись (рекомендуется) (обновление до PRO)"
+
+#: includes/pages/gs-formntr-integration.php:64
 msgid "Upgrade To PRO"
 msgstr " Обновить до PRO"
 
-#: includes/pages/gs-formntr-integration.php:75
+#: includes/pages/gs-formntr-integration.php:78
 msgid "click here"
 msgstr "нажмите здесь"
 
-#: includes/pages/gs-formntr-integration.php:82
+#: includes/pages/gs-formntr-integration.php:85
 msgid "Authenticate with your Google account, follow these steps:"
 msgstr ""
 "Чтобы пройти аутентификацию с помощью учетной записи Google, выполните "
 "следующие действия:"
 
-#: includes/pages/gs-formntr-integration.php:85
+#: includes/pages/gs-formntr-integration.php:88
 msgid "Click on the \"Sign In With Google\" button."
 msgstr "Нажмите на кнопку «Войти через Google»."
 
-#: includes/pages/gs-formntr-integration.php:87
+#: includes/pages/gs-formntr-integration.php:90
 msgid "Grant permissions for the following:"
 msgstr "Предоставьте разрешения на следующие действия:"
 
-#: includes/pages/gs-formntr-integration.php:89
+#: includes/pages/gs-formntr-integration.php:92
 msgid "Google Drive"
 msgstr "Google Диск"
 
-#: includes/pages/gs-formntr-integration.php:90
+#: includes/pages/gs-formntr-integration.php:93
 msgid "Google Sheets"
 msgstr "Google Таблицы"
 
-#: includes/pages/gs-formntr-integration.php:93
+#: includes/pages/gs-formntr-integration.php:96
 msgid "Ensure that you enable the checkbox for each of these services."
 msgstr "* Убедитесь, что вы установили флажок для каждой из этих услуг."
 
-#: includes/pages/gs-formntr-integration.php:96
+#: includes/pages/gs-formntr-integration.php:99
 msgid ""
 "This will allow the integration to access your Google Drive and Google "
 "Sheets."
@@ -469,27 +461,27 @@ msgstr ""
 "Это позволит интеграции получить доступ к вашим Google Диску и Google "
 "Таблицам."
 
-#: includes/pages/gs-formntr-integration.php:102
+#: includes/pages/gs-formntr-integration.php:105
 msgid "Google Access Code"
 msgstr "Код доступа Google"
 
-#: includes/pages/gs-formntr-integration.php:110
+#: includes/pages/gs-formntr-integration.php:113
 msgid "Currently Active"
 msgstr "Активный сейчас"
 
-#: includes/pages/gs-formntr-integration.php:112
+#: includes/pages/gs-formntr-integration.php:115
 msgid "Deactivate"
 msgstr "Деактивировать"
 
-#: includes/pages/gs-formntr-integration.php:124
+#: includes/pages/gs-formntr-integration.php:127
 msgid "Click Sign in with Google"
 msgstr "Нажмите Войти через Google"
 
-#: includes/pages/gs-formntr-integration.php:138
+#: includes/pages/gs-formntr-integration.php:141
 msgid "Save & Authenticate"
 msgstr "Сохранение и аутентификация"
 
-#: includes/pages/gs-formntr-integration.php:155
+#: includes/pages/gs-formntr-integration.php:158
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
@@ -499,15 +491,15 @@ msgstr ""
 "Drive и Google Sheets из своей учетной записи Google. Пожалуйста, отключите "
 "аутентификацию и снова пройдите повторную аутентификацию с разрешениями."
 
-#: includes/pages/gs-formntr-integration.php:160
+#: includes/pages/gs-formntr-integration.php:163
 msgid "Also,"
 msgstr "Тоже"
 
-#: includes/pages/gs-formntr-integration.php:162
+#: includes/pages/gs-formntr-integration.php:165
 msgid "Click Here "
 msgstr "Клик здесь "
 
-#: includes/pages/gs-formntr-integration.php:163
+#: includes/pages/gs-formntr-integration.php:166
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
@@ -515,18 +507,16 @@ msgstr ""
 "и если он отображает «GSheetConnector для контактных форм WP» в разделе "
 "Сторонние приложения с доступом к учетной записи, удалите его."
 
-#: includes/pages/gs-formntr-integration.php:181
-#, fuzzy
-#| msgid "Connected email account: <u>%s</u>"
-msgid "Connected email account"
-msgstr "Подключенная учетная запись электронной почты:"
+#: includes/pages/gs-formntr-integration.php:184
+msgid "Connected Email Account"
+msgstr "Подключенная учетная запись электронной почты: %s"
 
-#: includes/pages/gs-formntr-integration.php:187
+#: includes/pages/gs-formntr-integration.php:190
 #, php-format
 msgid "%s"
 msgstr "%s"
 
-#: includes/pages/gs-formntr-integration.php:195
+#: includes/pages/gs-formntr-integration.php:198
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
@@ -535,7 +525,7 @@ msgstr ""
 "сроком действия. Пожалуйста, деактивируйте и выполните повторную "
 "аутентификацию еще раз. "
 
-#: includes/pages/gs-formntr-integration.php:205
+#: includes/pages/gs-formntr-integration.php:208
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
@@ -546,39 +536,43 @@ msgstr ""
 "относимся к вашей конфиденциальности и гарантируем, что она никогда не будет "
 "использована не по назначению."
 
-#: includes/pages/gs-formntr-integration.php:205
+#: includes/pages/gs-formntr-integration.php:208
 msgid "Learn more."
 msgstr "Узнать больше."
 
-#: includes/pages/gs-formntr-integration.php:259
+#: includes/pages/gs-formntr-integration.php:262
 msgid "No errors found."
 msgstr "Ошибок не найдено."
 
-#: includes/pages/gs-formntr-integration.php:263
+#: includes/pages/gs-formntr-integration.php:266
 msgid "No log file exists as no errors are generated."
 msgstr "Файл журнала не существует, так как ошибки не генерируются."
 
-#: includes/pages/gs-formntr-systeminfo.php:11
+#: includes/pages/gs-formntr-systeminfo.php:8
+msgid "You do not have permission to access this page."
+msgstr "У вас нет разрешения для доступа к этой странице."
+
+#: includes/pages/gs-formntr-systeminfo.php:15
 msgid "System Info"
 msgstr "Системная информация"
 
-#: includes/pages/gs-formntr-systeminfo.php:12
+#: includes/pages/gs-formntr-systeminfo.php:16
 msgid "Copy System Info to Clipboard"
 msgstr "Копировать информацию о системе в буфер обмена"
 
-#: includes/pages/gs-formntr-systeminfo.php:19
+#: includes/pages/gs-formntr-systeminfo.php:23
 msgid "Error Log"
 msgstr "Лог ошибок"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid "If you have"
 msgstr "Если у вас есть"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid "WP_DEBUG_LOG"
 msgstr "WP_DEBUG_LOG"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid ""
 "enabled, errors are stored in a log file. Here you can find the last 100 "
 "lines in reversed order so that you or the GSheetConnector support team can "
@@ -588,25 +582,23 @@ msgstr ""
 "100 строк в обратном порядке, чтобы вы или служба поддержки GSheetConnector "
 "могли легко их просмотреть. Файл здесь не может быть отредактирован."
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:25
 msgid "Copy Error Log to Clipboard"
 msgstr "Копирование журнала ошибок в буфер обмена"
 
-#: includes/pages/gs-formntr-systeminfo.php:22
+#: includes/pages/gs-formntr-systeminfo.php:26
 msgid "Clear"
 msgstr "Очистить"
 
-#: includes/pages/gs-formntr-systeminfo.php:28
+#: includes/pages/gs-formntr-systeminfo.php:32
 msgid "Copied"
 msgstr "Скопировано"
 
-#. Plugin Name of the plugin/theme
-msgid "GSheetConnector for Forminator Forms"
-msgstr "GSheetConnector для форм Forminator"
-
 #. Plugin URI of the plugin/theme
-msgid "https://www.gsheetconnector.com"
-msgstr "https://www.gsheetconnector.com/"
+msgid ""
+"https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
+msgstr ""
+"https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
 
 #. Description of the plugin/theme
 msgid "Send your Forminator Forms data to your Google Sheets spreadsheet."
@@ -617,8 +609,20 @@ msgid "GSheetConnector"
 msgstr "GSheetКоннектор"
 
 #. Author URI of the plugin/theme
-msgid "https://profiles.wordpress.org/westerndeal/"
-msgstr "https://profiles.wordpress.org/westerndeal/"
+msgid "https://www.gsheetconnector.com/"
+msgstr "https://www.gsheetconnector.com/"
+
+#~ msgid "Forminator Forms - GSheetConnector"
+#~ msgstr "Форминатор форм - GSheetConnector"
+
+#~ msgid "Forminator GSheetConnector"
+#~ msgstr "Forminator GSheetConnector"
+
+#~ msgid "VIP Circle"
+#~ msgstr "VIP-кружок"
+
+#~ msgid "https://profiles.wordpress.org/westerndeal/"
+#~ msgstr "https://profiles.wordpress.org/westerndeal/"
 
 #~ msgid ""
 #~ "Manual Client/Secret Key (Use Your Google API Configuration) method is "

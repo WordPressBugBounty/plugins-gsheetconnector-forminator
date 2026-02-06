@@ -35,7 +35,7 @@ if (!empty($authenticated) && $per == "valid") {
 if ($show_setting == 1) {
     ?>
     <div class="from-feed-header">
-        <img class="custom-image-feed" src="<?php echo esc_url(GS_FORMNTR_URL . '/assets/img/gsc-forminator.png'); ?>"
+        <img class="custom-image-feed" src="<?php echo esc_url(GS_FORMNTR_URL . '/assets/img/forminator-gsc.svg'); ?>"
             alt="Logo" class="logo">
         <div class="forms-counter"><span id="num-forms"><?php echo esc_html($num_forms); ?></span>
             <?php echo esc_html('Active Forms', 'gsheetconnector-forminator'); ?>

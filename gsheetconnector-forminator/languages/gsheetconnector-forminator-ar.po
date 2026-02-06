@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GSheetConnector for Forminator Forms\n"
-"POT-Creation-Date: 2025-09-02 17:16+0530\n"
-"PO-Revision-Date: 2025-09-02 17:17+0530\n"
+"POT-Creation-Date: 2025-11-21 17:59+0530\n"
+"PO-Revision-Date: 2025-11-21 17:59+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -55,9 +55,10 @@ msgstr "عنوان URL لورقة جوجل"
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: gsheetconnector-forminator.php:637
-msgid "Forminator Forms - GSheetConnector"
-msgstr "نماذج الثقب - GSheetConnector"
+#. Plugin Name of the plugin/theme
+#: gsheetconnector-forminator.php:637 includes/pages/admin-footer.php:8
+msgid "GSheetConnector for Forminator Forms"
+msgstr "GSheetConnector لنماذج التزوير"
 
 #: includes/class-gs-formntr-processes.php:221 includes/pages/edit-feed.php:129
 msgid "Select"
@@ -88,10 +89,6 @@ msgid "Please rate"
 msgstr "يرجى التقييم"
 
 #: includes/pages/admin-footer.php:8
-msgid "Forminator GSheetConnector"
-msgstr "فورميناتور جي شيت كونكتور"
-
-#: includes/pages/admin-footer.php:8
 msgid "WordPress.org"
 msgstr "WordPress.org"
 
@@ -112,10 +109,6 @@ msgid "Docs"
 msgstr "مستندات"
 
 #: includes/pages/admin-footer.php:19
-msgid "VIP Circle"
-msgstr "دائرة كبار الشخصيات"
-
-#: includes/pages/admin-footer.php:20
 msgid "Free Plugins"
 msgstr "إضافات مجانية"
 
@@ -200,8 +193,8 @@ msgid "Tab ID"
 msgstr "تبويب ID"
 
 #: includes/pages/edit-feed.php:87
-msgid "Sheet URL:"
-msgstr "عنوان URL للورقة:"
+msgid "Sheet URL"
+msgstr "عنوان URL للورقة"
 
 #: includes/pages/edit-feed.php:93
 msgid "View in Google Sheets"
@@ -388,14 +381,15 @@ msgstr "WPForms - تكامل ورقة جوجل"
 msgid ""
 "Choose your Google API Setting from the dropdown. You can select Use "
 "Existing Client/Secret Key (Auto Google API Configuration) or Use Manual "
-"Client/Secret Key (Use Your Google API Configuration - Pro Version). After "
-"saving, the related integration settings will appear, and you can complete "
-"the setup."
+"Client/Secret Key (Use Your Google API Configuration - Pro Version) or Use "
+"Service Account (Recommended- Pro Version) . After saving, the related "
+"integration settings will appear, and you can complete the setup."
 msgstr ""
-"اختر إعداد Google API من القائمة المنسدلة. يمكنك اختيار استخدام المفتاح "
-"السري / العميل الحالي (الضبط التلقائي لواجهة برمجة تطبيقات Google) أو "
-"استخدام العميل اليدوي / المفتاح السري (استخدام تهيئة Google API - الإصدار "
-"الاحترافي). بعد الحفظ ، ستظهر إعدادات التكامل ذات الصلة ، ويمكنك إكمال "
+"اختر إعداد Google API الخاص بك من القائمة المنسدلة. يمكنك اختيار استخدام "
+"مفتاح العميل/المفتاح السري الحالي (تكوين واجهة برمجة تطبيقات جوجل التلقائية) "
+"أو استخدام مفتاح العميل/المفتاح السري اليدوي (استخدام تكوين واجهة برمجة "
+"تطبيقات جوجل الخاصة بك - الإصدار المحترف) أو استخدام حساب الخدمة (موصى به - "
+"الإصدار المحترف). بعد الحفظ، ستظهر إعدادات التكامل ذات الصلة، ويمكنك إكمال "
 "الإعداد."
 
 #: includes/pages/gs-formntr-integration.php:47
@@ -416,65 +410,69 @@ msgstr ""
 "استخدم العميل اليدوي / المفتاح السري (استخدم تكوين واجهة برمجة تطبيقات "
 "Google) (الترقية إلى PRO)"
 
-#: includes/pages/gs-formntr-integration.php:61
+#: includes/pages/gs-formntr-integration.php:58
+msgid "Service Account (Recommended) (Upgrade To PRO)"
+msgstr "حساب الخدمة (موصى به) (الترقية إلى PRO)"
+
+#: includes/pages/gs-formntr-integration.php:64
 msgid "Upgrade To PRO"
 msgstr "الترقية إلى الاصدار المدفوع"
 
-#: includes/pages/gs-formntr-integration.php:75
+#: includes/pages/gs-formntr-integration.php:78
 msgid "click here"
 msgstr "اضغط هنا"
 
-#: includes/pages/gs-formntr-integration.php:82
+#: includes/pages/gs-formntr-integration.php:85
 msgid "Authenticate with your Google account, follow these steps:"
 msgstr "المصادقة باستخدام حساب Google الخاص بك ، اتبع الخطوات التالية:"
 
-#: includes/pages/gs-formntr-integration.php:85
+#: includes/pages/gs-formntr-integration.php:88
 msgid "Click on the \"Sign In With Google\" button."
 msgstr "انقر فوق الزر \"تسجيل الدخول باستخدام Google\"."
 
-#: includes/pages/gs-formntr-integration.php:87
+#: includes/pages/gs-formntr-integration.php:90
 msgid "Grant permissions for the following:"
 msgstr "منح أذونات لما يلي:"
 
-#: includes/pages/gs-formntr-integration.php:89
+#: includes/pages/gs-formntr-integration.php:92
 msgid "Google Drive"
 msgstr "غوغل درايف"
 
-#: includes/pages/gs-formntr-integration.php:90
+#: includes/pages/gs-formntr-integration.php:93
 msgid "Google Sheets"
 msgstr "جداول بيانات جوجل"
 
-#: includes/pages/gs-formntr-integration.php:93
+#: includes/pages/gs-formntr-integration.php:96
 msgid "Ensure that you enable the checkbox for each of these services."
 msgstr "* تأكد من تمكين خانة الاختيار لكل من هذه الخدمات."
 
-#: includes/pages/gs-formntr-integration.php:96
+#: includes/pages/gs-formntr-integration.php:99
 msgid ""
 "This will allow the integration to access your Google Drive and Google "
 "Sheets."
 msgstr "سيسمح هذا للتكامل بالوصول إلى Google Drive وجداول بيانات Google."
 
-#: includes/pages/gs-formntr-integration.php:102
+#: includes/pages/gs-formntr-integration.php:105
 msgid "Google Access Code"
 msgstr "رمز الوصول إلى جوجل"
 
-#: includes/pages/gs-formntr-integration.php:110
+#: includes/pages/gs-formntr-integration.php:113
 msgid "Currently Active"
 msgstr "نشط حاليا"
 
-#: includes/pages/gs-formntr-integration.php:112
+#: includes/pages/gs-formntr-integration.php:115
 msgid "Deactivate"
 msgstr "تعطيل"
 
-#: includes/pages/gs-formntr-integration.php:124
+#: includes/pages/gs-formntr-integration.php:127
 msgid "Click Sign in with Google"
 msgstr "انقر على تسجيل الدخول باستخدام Google"
 
-#: includes/pages/gs-formntr-integration.php:138
+#: includes/pages/gs-formntr-integration.php:141
 msgid "Save & Authenticate"
 msgstr "حفظ ومصادقة"
 
-#: includes/pages/gs-formntr-integration.php:155
+#: includes/pages/gs-formntr-integration.php:158
 msgid ""
 "Something went wrong! It looks you have not given the permission of Google "
 "Drive and Google Sheets from your google account.Please Deactivate Auth and "
@@ -484,15 +482,15 @@ msgstr ""
 "google الخاص بك. يرجى إلغاء تنشيط المصادقة وإعادة المصادقة مرة أخرى باستخدام "
 "الأذونات."
 
-#: includes/pages/gs-formntr-integration.php:160
+#: includes/pages/gs-formntr-integration.php:163
 msgid "Also,"
 msgstr "أيضًا"
 
-#: includes/pages/gs-formntr-integration.php:162
+#: includes/pages/gs-formntr-integration.php:165
 msgid "Click Here "
 msgstr "اضغط هنا "
 
-#: includes/pages/gs-formntr-integration.php:163
+#: includes/pages/gs-formntr-integration.php:166
 msgid ""
 "and if it displays GSheetConnector for WP Contact Forms\" under Third-party "
 "apps with account access then remove it."
@@ -500,16 +498,16 @@ msgstr ""
 "وإذا كان يعرض \"GSheetConnector لنماذج جهات اتصال WP\" ضمن تطبيقات الجهات "
 "الخارجية التي يمكنها الوصول إلى الحساب ، فقم بإزالته."
 
-#: includes/pages/gs-formntr-integration.php:181
-msgid "Connected email account"
+#: includes/pages/gs-formntr-integration.php:184
+msgid "Connected Email Account"
 msgstr "حساب البريد الإلكتروني المتصل: %s"
 
-#: includes/pages/gs-formntr-integration.php:187
+#: includes/pages/gs-formntr-integration.php:190
 #, php-format
 msgid "%s"
 msgstr "%s"
 
-#: includes/pages/gs-formntr-integration.php:195
+#: includes/pages/gs-formntr-integration.php:198
 msgid ""
 "Something wrong ! Your Auth Code may be wrong or expired. Please deactivate "
 "and do Re-Authentication again. "
@@ -517,7 +515,7 @@ msgstr ""
 "شيء خاطئ! قد يكون رمز المصادقة الخاص بك خاطئا أو منتهي الصلاحية. يرجى إلغاء "
 "التنشيط وإعادة المصادقة مرة أخرى. "
 
-#: includes/pages/gs-formntr-integration.php:205
+#: includes/pages/gs-formntr-integration.php:208
 msgid ""
 "We do not store any of the data from your Google account on our servers, "
 "everything is processed & stored on your server. We take your privacy "
@@ -527,39 +525,43 @@ msgstr ""
 "كل شيء وتخزينه على الخادم الخاص بك. نحن نأخذ خصوصيتك على محمل الجد ونضمن عدم "
 "إساءة استخدامها أبدا."
 
-#: includes/pages/gs-formntr-integration.php:205
+#: includes/pages/gs-formntr-integration.php:208
 msgid "Learn more."
 msgstr "اعرف المزيد."
 
-#: includes/pages/gs-formntr-integration.php:259
+#: includes/pages/gs-formntr-integration.php:262
 msgid "No errors found."
 msgstr "لم يتم العثور على أخطاء."
 
-#: includes/pages/gs-formntr-integration.php:263
+#: includes/pages/gs-formntr-integration.php:266
 msgid "No log file exists as no errors are generated."
 msgstr "لا يوجد ملف سجل حيث لا يتم إنشاء أي أخطاء."
 
-#: includes/pages/gs-formntr-systeminfo.php:11
+#: includes/pages/gs-formntr-systeminfo.php:8
+msgid "You do not have permission to access this page."
+msgstr "ليس لديك إذن للوصول إلى هذه الصفحة."
+
+#: includes/pages/gs-formntr-systeminfo.php:15
 msgid "System Info"
 msgstr "معلومات النظام"
 
-#: includes/pages/gs-formntr-systeminfo.php:12
+#: includes/pages/gs-formntr-systeminfo.php:16
 msgid "Copy System Info to Clipboard"
 msgstr "نسخ معلومات النظام إلى الحافظة"
 
-#: includes/pages/gs-formntr-systeminfo.php:19
+#: includes/pages/gs-formntr-systeminfo.php:23
 msgid "Error Log"
 msgstr "سجل الأخطاء"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid "If you have"
 msgstr "إذا كان لديك"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid "WP_DEBUG_LOG"
 msgstr "سجل تصحيح أخطاء الفسفور الأبيض"
 
-#: includes/pages/gs-formntr-systeminfo.php:20
+#: includes/pages/gs-formntr-systeminfo.php:24
 msgid ""
 "enabled, errors are stored in a log file. Here you can find the last 100 "
 "lines in reversed order so that you or the GSheetConnector support team can "
@@ -569,25 +571,23 @@ msgstr ""
 "عكسي حتى تتمكن أنت أو فريق دعم GSheetConnector من مشاهدتها بسهولة. لا يمكن "
 "تحرير الملف هنا."
 
-#: includes/pages/gs-formntr-systeminfo.php:21
+#: includes/pages/gs-formntr-systeminfo.php:25
 msgid "Copy Error Log to Clipboard"
 msgstr "نسخ سجل الأخطاء إلى الحافظة"
 
-#: includes/pages/gs-formntr-systeminfo.php:22
+#: includes/pages/gs-formntr-systeminfo.php:26
 msgid "Clear"
 msgstr "مسح"
 
-#: includes/pages/gs-formntr-systeminfo.php:28
+#: includes/pages/gs-formntr-systeminfo.php:32
 msgid "Copied"
 msgstr "تم النسخ"
 
-#. Plugin Name of the plugin/theme
-msgid "GSheetConnector for Forminator Forms"
-msgstr "GSheetConnector لنماذج التزوير"
-
 #. Plugin URI of the plugin/theme
-msgid "https://www.gsheetconnector.com"
-msgstr "https://www.gsheetconnector.com"
+msgid ""
+"https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
+msgstr ""
+"https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro"
 
 #. Description of the plugin/theme
 msgid "Send your Forminator Forms data to your Google Sheets spreadsheet."
@@ -598,8 +598,20 @@ msgid "GSheetConnector"
 msgstr "جموصل شيت"
 
 #. Author URI of the plugin/theme
-msgid "https://profiles.wordpress.org/westerndeal/"
-msgstr "https://profiles.wordpress.org/westerndeal/"
+msgid "https://www.gsheetconnector.com/"
+msgstr "https://www.gsheetconnector.com"
+
+#~ msgid "Forminator Forms - GSheetConnector"
+#~ msgstr "نماذج الثقب - GSheetConnector"
+
+#~ msgid "Forminator GSheetConnector"
+#~ msgstr "فورميناتور جي شيت كونكتور"
+
+#~ msgid "VIP Circle"
+#~ msgstr "دائرة كبار الشخصيات"
+
+#~ msgid "https://profiles.wordpress.org/westerndeal/"
+#~ msgstr "https://profiles.wordpress.org/westerndeal/"
 
 #~ msgid ""
 #~ "Manual Client/Secret Key (Use Your Google API Configuration) method is "

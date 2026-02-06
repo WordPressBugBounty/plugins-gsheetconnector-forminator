@@ -55,7 +55,7 @@ $form = $form_settings->fields;
         </h2>
 		
 		<p><?php echo esc_html(__('Easily edit your feed settings and connect your form submissions directly to Google Sheets for real-time data management.', 'gsheetconnector-forminator')); ?> 
-			<a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/integration-with-google-manual-method" target="_blank"><?php echo esc_html(__('Click here', 'gsheetconnector-forminator')); ?></a>.</p>
+			<a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector/plugin-settings-free-version" target="_blank"><?php echo esc_html(__('Click here', 'gsheetconnector-forminator')); ?></a>.</p>
 
         <form id="edit-feed-form" method="post">
             <input type="hidden" id="edit-feed-id" name="edit_feed_id" value="<?php echo esc_attr($feed_id); ?>">
@@ -84,7 +84,7 @@ $form = $form_settings->fields;
             </div>
             <?php if (!empty($sheet_id)) { ?>
 			<div class="row">
-                <label for="edit-tab-id"><?php echo esc_html(__('Sheet URL:', 'gsheetconnector-forminator')); ?></label>
+                <label for="edit-tab-id"><?php echo esc_html(__('Sheet URL', 'gsheetconnector-forminator')); ?></label>
             <?php
 // Generate the Google Sheets link
 $link = "https://docs.google.com/spreadsheets/d/" . $sheet_id . "/edit#gid=" . $tab_id;
