@@ -3,11 +3,10 @@ Contributors: westerndeal, abdullah17, gsheetconnector
 Donate link: https://www.paypal.me/WesternDeal
 Author URL: https://www.gsheetconnector.com/
 Tags: forminator, forminator google sheet, forminator forms google sheet, google sheet forminator, wordpress google sheet
-Docs: https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector
-Tested up to: 6.9
+Tested up to: 7.0
 Requires at least: 5.6
 Requires PHP: 7.4
-Stable tag: 1.0.17
+Stable tag: 1.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +134,12 @@ Enjoy!
 
 == Changelog ==	
 
+= 1.0.18 (12-06-2026) =
+* Fixed: Multi-select field data synchronization with Google Sheets.
+* Fixed: Name field mapping for Prefix, First Name, Middle Name, and Last Name fields.
+* Fixed: Group and Repeater field handling to store values in both individual columns and a combined field.
+* Fixed: Post Data field mapping to correctly sync Post Title, Post Content, and Post Excerpt to Google Sheets.
+* Fixed: Group and single Calculation field value synchronization with Google Sheets.
 
 = 1.0.17 (21-11-2025) =
 - Added: Added new CSS and updated the UI.

@@ -61,15 +61,19 @@ class GS_FORMNTR_Service
     {
 
         $data = array();
+        $subject_data = array();
         $feeds_details = array();
+        $grouped_subject = array();
 
         try {
             $Forminator_API = new Forminator_API();
             $form_settings = $Forminator_API->get_form($form_id);
+
             $form = $form_settings->fields;
 
             $form_field_label = [];
             $form_field_labels = array();
+
 
             foreach ($form as $item) {
                 if (isset($item->raw['field_label'])) {
@@ -77,22 +81,131 @@ class GS_FORMNTR_Service
                     $form_field_labels[] = $item->raw['field_label'];
                 }
             }
+            $group_labels = array();
+
+            foreach ($form as $item) {
+
+                if (
+                    isset($item->raw['type']) &&
+                    $item->raw['type'] === 'group'
+                ) {
+
+                    $group_labels[$item->slug] = $item->raw['field_label'];
+                }
+            }
+
 
             foreach ($field_data_array as $key => $value) {
 
                 $field_value = "";
                 $field_label = (isset($form_field_label[$value['name']]) && $form_field_label[$value['name']] != "")
-                    ? $form_field_label[$value['name']]
-                    : $value['name'];
+                ? $form_field_label[$value['name']]
+                : $value['name'];
+
+                if (
+                    isset($value['name']) &&
+                    strpos($value['name'], 'calculation-') === 0
+                ) {
+
+                    $calc_value = is_array($value['value'])
+                    ? ($value['value']['formatting_result'] ?? implode(',', $value['value']))
+                    : $value['value'];
+
+                  // calculation-5-2 => calculation-5
+                    $parent_slug = preg_replace('/-\d+$/', '', $value['name']);
+
+                    $field_label = $form_field_label[$parent_slug]
+                    ?? $form_field_label[$value['name']]
+                    ?? $parent_slug;
+
+                    if (!isset($grouped_subject[$field_label])) {
+                        $grouped_subject[$field_label] = array();
+                    }
+
+                    $grouped_subject[$field_label][] = $calc_value;
+
+                    continue;
+                }
+
+
+                if (!empty($value['field_array']['parent_group'])) {
+
+                    $label = $value['field_array']['field_label'] ?? $value['name'];
+
+                    if (
+                        isset($value['field_type']) &&
+                        $value['field_type'] === 'radio'
+                    ) {
+
+                        $selected_value = $value['value'];
+                        $field_value = $selected_value;
+
+                        foreach ($value['field_array']['options'] as $option) {
+
+                            if ($option['value'] === $selected_value) {
+                                $field_value = $option['label'];
+                                break;
+                            }
+                        }
+                    } elseif (
+                        isset($value['field_type']) &&
+                        $value['field_type'] === 'checkbox'
+                    ) {
+
+                        $field_value = is_array($value['value'])
+                        ? implode(', ', $value['value'])
+                        : $value['value'];
+                    } else {
+
+                        $field_value = is_array($value['value'])
+                        ? implode(', ', $value['value'])
+                        : $value['value'];
+                    }
+
+                    if (!isset($grouped_subject[$label])) {
+                        $grouped_subject[$label] = array();
+                    }
+
+                    $grouped_subject[$label][] = $field_value;
+
+                    continue;
+                }
+
 
                 if (isset($value['field_type']) && $value['field_type'] === 'select') {
-                    $selected_value = $value['value'];
-                    foreach ($value['field_array']['options'] as $option) {
-                        if ($option['value'] === $selected_value) {
-                            $field_value = $option['label'];
-                            break;
+
+                    if (is_array($value['value'])) {
+
+                        $field_value = implode(', ', $value['value']);
+                    } else {
+
+                        $selected_value = $value['value'];
+
+                        foreach ($value['field_array']['options'] as $option) {
+
+                            if ($option['value'] === $selected_value) {
+                                $field_value = $option['label'];
+                                break;
+                            }
                         }
                     }
+                } elseif (isset($value['field_type']) && $value['field_type'] === 'postdata') {
+
+                    $post_mapping = [
+                        'post-title'   => $value['field_array']['post_title_label'] ?? 'Post Title',
+                        'post-content' => $value['field_array']['post_content_label'] ?? 'Post Content',
+                        'post-excerpt' => $value['field_array']['post_excerpt_label'] ?? 'Post Excerpt',
+                    ];
+
+                    foreach ($post_mapping as $field_key => $field_label) {
+
+                        if (isset($value['value'][$field_key])) {
+
+                            $data[$field_label] = $value['value'][$field_key];
+                        }
+                    }
+
+                    continue;
                 } elseif (isset($value['field_type']) && $value['field_type'] === 'radio') {
                     $selected_value = $value['value'];
                     foreach ($value['field_array']['options'] as $option) {
@@ -106,6 +219,23 @@ class GS_FORMNTR_Service
                         $field_value = implode(':', $value['value']);
                     } elseif (isset($value['field_type']) && $value['field_type'] === 'upload') {
                         $field_value = $value['value']['file']['name'];
+                    } elseif (isset($value['field_type']) && $value['field_type'] === 'name') {
+
+                        $name_mapping = [
+                            'prefix'      => $value['field_array']['prefix_label'] ?? 'Prefix',
+                            'first-name'  => $value['field_array']['fname_label'] ?? 'First Name',
+                            'middle-name' => $value['field_array']['mname_label'] ?? 'Middle Name',
+                            'last-name'   => $value['field_array']['lname_label'] ?? 'Last Name',
+                        ];
+
+                        foreach ($name_mapping as $value_key => $header_label) {
+
+                            if (isset($value['value'][$value_key])) {
+                                $data[$header_label] = $value['value'][$value_key];
+                            }
+                        }
+
+                        continue;
                     } elseif (isset($value['field_type']) && $value['field_type'] === 'address') {
                         if (isset($value['field_array'])) {
                             $address_mapping = [
@@ -124,8 +254,8 @@ class GS_FORMNTR_Service
                         }
                     } else {
                         $field_value = isset($value['value']['formatting_result'])
-                            ? $value['value']['formatting_result']
-                            : implode(',', $value['value']);
+                        ? $value['value']['formatting_result']
+                        : implode(',', $value['value']);
                     }
                 } else {
                     $field_value = $value['value'];
@@ -140,6 +270,22 @@ class GS_FORMNTR_Service
                 }
             }
 
+            if (!empty($grouped_subject)) {
+
+         
+                $subject_parts = array();
+
+                foreach ($grouped_subject as $label => $values) {
+
+                    $combined_value = implode(' | ', $values);
+
+                    $data[$label] = $combined_value;
+
+                    $subject_parts[] = $label . ' : ' . $combined_value;
+                }
+
+                $data['Subject'] = implode(' | ', $subject_parts);
+            }
 
             // Replace 'meta_key_name' with the actual name of the meta key you want to retrieve the meta ID for
             $meta_key_name = 'forminator_forms_feed';
@@ -156,7 +302,10 @@ class GS_FORMNTR_Service
                 ARRAY_A
             );
             $feedIdsArr = array_column($results, 'meta_id');
-            $feedIds = implode(',', $feedIdsArr);
+            if (empty($feedIdsArr)) {
+                return $field_data_array;
+            }
+            $feedIds = implode(',', array_map('intval', $feedIdsArr));
             // Loop through the results to extract the meta values
             $meta_values = array();
             foreach ($results as $result) {
@@ -209,8 +358,7 @@ class GS_FORMNTR_Service
                     // Pass the date and time to the data array using the headers
                     $data[$manual_date_header] = $local_date;
                     $data[$manual_time_header] = $local_time;
-
-
+                   
 
                     // Add the row to Google Sheets
                     $doc->add_row($data, $field_data_array);
@@ -235,8 +383,8 @@ class GS_FORMNTR_Service
         try {
             check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
             $feedId = isset($_POST['feed_id'])
-                ? intval(sanitize_text_field(wp_unslash($_POST['feed_id'])))
-                : 0;
+            ? intval(sanitize_text_field(wp_unslash($_POST['feed_id'])))
+            : 0;
 
 
 
@@ -289,7 +437,7 @@ class GS_FORMNTR_Service
     public function execute_post_data()
     {
         try {
-           
+
             if (isset($_POST['execute-edit-feed-forminator'])) {
                 // nonce check
                 if (
@@ -411,12 +559,12 @@ class GS_FORMNTR_Service
 
                 // Sanitize input
                 $feed_name = isset($_POST['feed_name'])
-                    ? sanitize_text_field(wp_unslash($_POST['feed_name']))
-                    : '';
+                ? sanitize_text_field(wp_unslash($_POST['feed_name']))
+                : '';
 
                 $form_id = isset($_GET['form_id'])
-                    ? intval(sanitize_text_field(wp_unslash($_GET['form_id'])))
-                    : '';
+                ? intval(sanitize_text_field(wp_unslash($_GET['form_id'])))
+                : '';
 
                 if ($form_id != "") {
                     $meta_key = 'forminator_forms_feed';
@@ -536,7 +684,7 @@ class GS_FORMNTR_Service
                 FROM {$wpdb->prefix}posts AS p
                 JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
                 WHERE pm.meta_key = %s
-                  AND p.post_type = %s
+                AND p.post_type = %s
                 ",
                 'forminator_forms_feed',
                 'forminator_forms'
