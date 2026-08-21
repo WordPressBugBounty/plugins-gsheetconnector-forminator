@@ -1,10 +1,10 @@
-=== GSheetConnector for Forminator Forms ===
-Contributors: westerndeal, abdullah17, gsheetconnector
+=== GSheetConnector – Forminator Google Sheets Connector, Export Forminator Submissions ===
+Contributors: westerndeal, abdullah17
 Donate link: https://www.paypal.me/WesternDeal
 Author URL: https://www.gsheetconnector.com/
 Tags: forminator, forminator google sheet, forminator forms google sheet, google sheet forminator, wordpress google sheet
-Tested up to: 7.0
 Requires at least: 5.6
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.0.18
 License: GPLv2 or later
