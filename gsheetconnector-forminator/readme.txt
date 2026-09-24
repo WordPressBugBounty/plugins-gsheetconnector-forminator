@@ -1,12 +1,12 @@
 === GSheetConnector – Forminator Google Sheets Connector, Export Forminator Submissions ===
-Contributors: westerndeal, abdullah17
+Contributors: westerndeal, abdullah17, gsheetconnector
 Donate link: https://www.paypal.me/WesternDeal
 Author URL: https://www.gsheetconnector.com/
 Tags: forminator, forminator google sheet, forminator forms google sheet, google sheet forminator, wordpress google sheet
 Requires at least: 5.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.18
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -132,14 +132,24 @@ Enjoy!
 
 [FREE VERSIONS CAN BE DOWNLOADED FROM HERE](https://profiles.wordpress.org/westerndeal/#content-plugins)
 
-== Changelog ==	
+== Changelog ==
+
+=  2.0.0 (24-09-2026) =
+- Added: Introduced a refreshed and more intuitive user interface for an improved user experience.
+- Added: Introduced a new Dashboard tab for quick access to plugin information and key details.
+- Added: Added a Notification Bar to display important updates, alerts, and relevant information.
+- Added: Introduced dedicated forminatorgs_feeds and forminatorgs_feedmeta database tables for improved feed data management.
+- Enhanced: Redesigned and improved the Feed Settings interface for better usability and navigation.
+- Enhanced: Migrated existing feed settings from WordPress posts and postmeta tables to the newly introduced dedicated feed tables.
+- Fixed: Resolved a compatibility issue related to PCP.
+- Removed: Removed the unused lib directory from the plugin package.
 
 = 1.0.18 (12-06-2026) =
-* Fixed: Multi-select field data synchronization with Google Sheets.
-* Fixed: Name field mapping for Prefix, First Name, Middle Name, and Last Name fields.
-* Fixed: Group and Repeater field handling to store values in both individual columns and a combined field.
-* Fixed: Post Data field mapping to correctly sync Post Title, Post Content, and Post Excerpt to Google Sheets.
-* Fixed: Group and single Calculation field value synchronization with Google Sheets.
+- Fixed: Multi-select field data synchronization with Google Sheets.
+- Fixed: Name field mapping for Prefix, First Name, Middle Name, and Last Name fields.
+- Fixed: Group and Repeater field handling to store values in both individual columns and a combined field.
+- Fixed: Post Data field mapping to correctly sync Post Title, Post Content, and Post Excerpt to Google Sheets.
+- Fixed: Group and single Calculation field value synchronization with Google Sheets.
 
 = 1.0.17 (21-11-2025) =
 - Added: Added new CSS and updated the UI.
@@ -199,30 +209,30 @@ Added: Display a notification when authentication expires.
 - Fixed : Resolved active plugins show issue in system status tab.
 
 = 1.0.2 =
-* Redesigned the System status interface.
+- Redesigned the System status interface.
 
-* UI Changes: The user interface has been revamped for a more intuitive and user-friendly experience.
+- UI Changes: The user interface has been revamped for a more intuitive and user-friendly experience.
 
-* Authorization Control And Enhancement : Google Sheet Link .
+- Authorization Control And Enhancement : Google Sheet Link .
 
-* Fixed Freemius Activation Issue In Multi_site  Network.
+- Fixed Freemius Activation Issue In Multi_site  Network.
 
-* Fixed : Resolved debugging view, open and close link systematically.
+- Fixed : Resolved debugging view, open and close link systematically.
 
-* Added : For user without Google Drive and Google Sheets permissions displayed error message.
+- Added : For user without Google Drive and Google Sheets permissions displayed error message.
 
-* Added : Get Code button has replaced with the Sign in with Google button.
+- Added : Get Code button has replaced with the Sign in with Google button.
 
 = 1.0.1 =
-* Fixed Vulnerability: The plugin's authentication and authorization mechanisms have been enhanced to ensure data security. 
+- Fixed Vulnerability: The plugin's authentication and authorization mechanisms have been enhanced to ensure data security. 
 
-* System Status Tab: It assists in troubleshooting and ensuring smooth operation.
+- System Status Tab: It assists in troubleshooting and ensuring smooth operation.
 
-* UI Changes: The user interface has been revamped for a more intuitive and user-friendly experience.
+- UI Changes: The user interface has been revamped for a more intuitive and user-friendly experience.
 
-* Authorization Control: ensures that only authorized personnel can access and interact with sensitive data and functionalities within the plugin.
+- Authorization Control: ensures that only authorized personnel can access and interact with sensitive data and functionalities within the plugin.
 
-* Freemius Integration.
+- Freemius Integration.
 
 = 1.0.0 =
-* First public release
+- First public release

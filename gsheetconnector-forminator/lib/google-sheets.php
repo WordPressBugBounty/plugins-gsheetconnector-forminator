@@ -2,52 +2,211 @@
 
 if (!defined('ABSPATH'))
     exit;
-
-include_once(plugin_dir_path(__FILE__) . 'vendor/autoload.php');
-
 class FORMI_GSC_googlesheet
 {
 
     private $token;
     private $spreadsheet;
     private $worksheet;
-    private static $instance;
-
     /**
      *  Set things up.
      *  @since 1.0.15
      */
 
     public function __construct() {}
+ 
+      /**
+    * Thin wrapper around wp_remote_request() for Google REST calls.
+    *
+    * @param string $method HTTP method.
+    * @param string $url    Full REST endpoint URL.
+    * @param string $token  Bearer access token.
+    * @param array  $args   Extra wp_remote_request() args (body/headers).
+    * @return array|WP_Error Decoded JSON body, or WP_Error on failure.
+    */
+   private static function request($method, $url, $token, $args = array())
+   {
+      $args['method']  = $method;
+      $args['headers'] = array_merge(
+         array(
+            'Authorization' => 'Bearer ' . $token,
+            'Content-Type'  => 'application/json',
+         ),
+         isset($args['headers']) ? $args['headers'] : array()
+      );
 
-    /**
-     * Sets the Google_Client instance.
-     *
-     * @param Google_Client|null $instance Google Client instance or null.
-     * @since 1.0.15
-     */
+      if (isset($args['body']) && is_array($args['body'])) {
+         $args['body'] = wp_json_encode($args['body']);
+      }
 
-    public static function setInstance(Google_Client $instance = null)
-    {
-        self::$instance = $instance;
-    }
+      $response = wp_remote_request($url, $args);
 
-    /**
-     * Retrieves the Google_Client instance.
-     *
-     * @return Google_Client
-     * @throws LogicException If no instance is set.
-     * @since 1.0.15
-     */
+      if (is_wp_error($response)) {
+         return $response;
+      }
 
-    public static function getInstance()
-    {
-        if (is_null(self::$instance)) {
-            throw new LogicException("Invalid Client");
-        }
+      $code = wp_remote_retrieve_response_code($response);
+      $body = json_decode(wp_remote_retrieve_body($response), true);
 
-        return self::$instance;
-    }
+      if ($code < 200 || $code >= 300) {
+         $message = isset($body['error']['message']) ? $body['error']['message'] : 'Unknown Google API error.';
+         return new WP_Error('gsc_api_error', $message, array('status' => $code, 'body' => $body));
+      }
+
+      return $body;
+   }
+
+
+    private static function base64url($data)
+   {
+      return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+   }
+
+
+    private static function creds()
+   {
+   return is_multisite()
+   ? get_site_option('forminatorgsc_api_creds')
+   : get_option('forminatorgsc_api_creds');
+   }
+
+
+
+   /**
+    * Retrieve the client ID/secret pair to use for OAuth requests.
+    *
+    * @return array{0: string, 1: string} [client_id, client_secret]
+    */
+   private static function client_credentials()
+   {
+      $creds           = self::creds();
+      $newClientSecret = get_option('is_new_client_secret_FORMINGSC');
+
+      $clientId     = ($newClientSecret == 1) ? $creds['client_id_web'] : $creds['client_id_desk'];
+      $clientSecret = ($newClientSecret == 1) ? $creds['client_secret_web'] : $creds['client_secret_desk'];
+
+      return array($clientId, $clientSecret);
+   }
+
+
+   /**
+    * Fetch a spreadsheet's sheet/tab metadata via the Sheets REST API.
+    *
+    * @param string $spreadsheet_id Google Spreadsheet ID.
+    * @return array|WP_Error List of sheet entries (each with a `properties` array), or WP_Error on failure.
+    */
+   private function get_spreadsheet_meta($spreadsheet_id)
+   {
+      $url = 'https://sheets.googleapis.com/v4/spreadsheets/' . rawurlencode($spreadsheet_id) . '?fields=' . rawurlencode('sheets.properties');
+
+      $body = self::request('GET', $url, $this->token);
+
+      if (is_wp_error($body)) {
+         return $body;
+      }
+
+      return isset($body['sheets']) ? $body['sheets'] : array();
+   }
+
+
+
+   /**
+ * Preauthorize Google Client using the provided OAuth access code.
+ *
+ * Retrieves stored API credentials, initializes the Google Client,
+ * exchanges the access code for an access token, and stores it.
+ *
+ * @param string $access_code OAuth authorization code.
+ * @return void
+ */
+//constructed on call
+   public static function preauth($access_code)
+   {
+
+      try {
+         $creds = self::creds();
+         if (!$creds) return;
+
+         $response = wp_remote_post(
+            'https://oauth2.googleapis.com/token',
+            [
+            'body' => [
+               'code'          => $access_code,
+               'client_id'     => $creds['client_id_web'],
+               'client_secret' => $creds['client_secret_web'],
+               'redirect_uri'  => 'https://oauth.gsheetconnector.com',
+               'grant_type'    => 'authorization_code'
+            ]
+            ]
+         );
+         if (is_wp_error($response)) {
+            return false;
+         }
+
+         $body = json_decode(wp_remote_retrieve_body($response), true);
+         if (!is_array($body)) {
+            $body = [];
+         }
+
+         self::updateToken($body);
+
+         return !empty($body['access_token']);
+      } catch (Exception $e) {
+         GS_FORMNTR_Free_Utility::frmgs_debug_log('[Auth Exception]. ' . $e->getMessage());
+         throw new LogicException('Auth error: ' . esc_html($e->getMessage()));
+      }
+   }
+
+
+
+/**
+ * Update and store the OAuth access token.
+ *
+ * Adds expiration time, validates required scopes,
+ * and saves token data in WordPress options.
+ *
+ * @param array $tokenData Token data returned from Google OAuth.
+ * @return void
+ */
+ public static function updateToken($tokenData)
+   {
+      $expires_in = isset($tokenData['expires_in']) ? intval($tokenData['expires_in']) : 0;
+      $tokenData['expire'] = time() + $expires_in;
+      try {
+
+         if (isset($tokenData['scope'])) {
+            $permission = explode(" ", $tokenData['scope']);
+            if ((in_array("https://www.googleapis.com/auth/drive.metadata.readonly", $permission)) && (in_array("https://www.googleapis.com/auth/spreadsheets", $permission))) {
+               update_option('gs_formntr_verify', 'valid');
+            } else {
+               update_option('gs_formntr_verify', 'invalid-auth');
+
+                // Log permission error to error logs
+                 if (class_exists('GSCFORMNTR_Free_Error_Logs')) {
+                  GSCFORMNTR_Free_Error_Logs::log_to_db(
+                    'Google_Auth_Permission_Error',
+                    403,
+                    'Google Drive and Google Sheets permissions not granted',
+                    [
+                      'error_type' => 'Missing Permissions',
+                      'message' => 'User did not grant Google Drive and/or Google Sheets permissions during OAuth authentication',
+                      'granted_scopes' => $tokenData['scope'] ?? '',
+                      'required_drive_scope' => 'https://www.googleapis.com/auth/drive.file OR https://www.googleapis.com/auth/drive.metadata.readonly',
+                      'required_sheets_scope' => 'https://www.googleapis.com/auth/spreadsheets',
+                    ]
+                  );
+                }
+            }
+         }
+         $tokenJson = json_encode($tokenData);
+         update_option('gs_formntr_token', $tokenJson);
+
+
+      } catch (Exception $e) {
+         	GS_FORMNTR_Free_Utility::frmgs_debug_log("Token write fail! - " . $e->getMessage());
+      }
+   }
+
 
     /**
      * Generates a token for the user and refreshes it if expired.
@@ -57,87 +216,23 @@ class FORMI_GSC_googlesheet
 
     public static function get_auth_url($frmingsc_clientId = '', $frmingsc_clientSecert = '')
     {
-        $frmingsc_client = new Google_Client();
-        $frmingsc_client->setScopes(Google_Service_Sheets::SPREADSHEETS_READONLY);
-        $frmingsc_client->setScopes(Google_Service_Drive::DRIVE_METADATA_READONLY);
-        $frmingsc_client->addScope(Google_Service_Sheets::SPREADSHEETS);
-        $frmingsc_client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
-        $frmingsc_client->setClientId($frmingsc_clientId);
-        $frmingsc_client->setClientSecret($frmingsc_clientSecert);
-        $frmingsc_client->setRedirectUri(esc_html(admin_url('admin.php?page=wpfrmin-google-sheet-config')));
-        $frmingsc_client->setAccessType('offline');
-        $frmingsc_client->setApprovalPrompt('force');
-        try {
-            $frmingsc_auth_url = $frmingsc_client->createAuthUrl();
-            return $frmingsc_auth_url;
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        $params = array(
+            'client_id'       => $frmingsc_clientId,
+            'redirect_uri'    => admin_url('admin.php?page=wpfrmin-google-sheet-config'),
+            'response_type'   => 'code',
+            'access_type'     => 'offline',
+            'approval_prompt' => 'force',
+            'scope'           => implode(' ', array(
+                'https://www.googleapis.com/auth/drive.metadata.readonly',
+                'https://www.googleapis.com/auth/spreadsheets',
+                'https://www.googleapis.com/auth/userinfo.email',
+            )),
+        );
+
+        return 'https://accounts.google.com/o/oauth2/v2/auth?' . http_build_query($params);
     }
 
-    /**
-     * Performs pre-authorization by exchanging the access code for an access token.
-     *
-     * Fetches API credentials, initializes Google Client, sets scopes, and updates the token.
-     *
-     * @param string $access_code Google authorization code.
-     * @since 1.0.15
-     */
 
-    public static function preauth($access_code)
-    {
-        if (is_multisite()) {
-            // Fetch API creds
-            $api_creds = get_site_option('forminatorgsc_api_creds');
-        } else {
-            // Fetch API creds
-            $api_creds = get_option('forminatorgsc_api_creds');
-        }
-        $newClientSecret = get_option('is_new_client_secret_FORMINGSC');
-        $clientId = ($newClientSecret == 1) ? $api_creds['client_id_web'] : $api_creds['client_id_desk'];
-        $clientSecret = ($newClientSecret == 1) ? $api_creds['client_secret_web'] : $api_creds['client_secret_desk'];
-
-        $client = new Google_Client();
-        $client->setClientId($clientId);
-        $client->setClientSecret($clientSecret);
-        $client->setRedirectUri('https://oauth.gsheetconnector.com');
-        $client->setScopes(Google_Service_Sheets::SPREADSHEETS);
-        $client->setScopes(Google_Service_Drive::DRIVE_METADATA_READONLY);
-        $client->setScopes(Google_Service_Oauth2::USERINFO_EMAIL);
-        $client->setAccessType('offline');
-        $token = $client->fetchAccessTokenWithAuthCode($access_code);
-        $tokenData = $client->getAccessToken();
-
-        FORMI_GSC_googlesheet::updateToken($tokenData);
-    }
-
-    /**
-     * Updates the token data in the WordPress options table.
-     * 
-     * @param array $tokenData The token data to update.
-     * @since 1.0.15
-     * */
-
-    public static function updateToken($tokenData)
-    {
-        $expires_in = isset($tokenData['expires_in']) ? intval($tokenData['expires_in']) : 0;
-        $tokenData['expire'] = time() + $expires_in;
-        try {
-            $tokenJson = json_encode($tokenData);
-            update_option('gs_formntr_token', $tokenJson);
-            if (isset($tokenData['scope'])) {
-                $permission = explode(" ", $tokenData['scope']);
-                if ((in_array("https://www.googleapis.com/auth/drive.metadata.readonly", $permission)) && (in_array("https://www.googleapis.com/auth/spreadsheets", $permission))) {
-                    update_option('gs_formntr_verify', 'valid');
-                } else {
-                    update_option('gs_formntr_verify', 'invalid-auth');
-                }
-            }
-            //resolved - google sheet permission issues - END
-        } catch (Exception $e) {
-            GS_FORMNTR_Free_Utility::frmgs_debug_log("Token write fail! - " . $e->getMessage());
-        }
-    }
 
     /**
      * Authenticates the user with Google Sheets API.
@@ -160,45 +255,44 @@ class FORMI_GSC_googlesheet
         }
 
         try {
-            $client = new Google_Client();
-
-
             if ($maunal_setting == '1') {
-                $gs_frmin_client_id = get_option('gs_frmin_client_id');
-                $gs_frmin_secret_id = get_option('gs_frmin_secret_id');
-                $client->setClientId($gs_frmin_client_id);
-                $client->setClientSecret($gs_frmin_secret_id);
+                $clientId     = get_option('gs_frmin_client_id');
+                $clientSecret = get_option('gs_frmin_secret_id');
             } else {
-                if (is_multisite()) {
-                    // Fetch API creds
-                    $api_creds = get_site_option('forminatorgsc_api_creds');
-                } else {
-                    // Fetch API creds
-                    $api_creds = get_option('forminatorgsc_api_creds');
-                }
-
-                $newClientSecret = get_option('is_new_client_secret_FORMINGSC');
-                $clientId = ($newClientSecret == 1) ? $api_creds['client_id_web'] : $api_creds['client_id_desk'];
-                $clientSecret = ($newClientSecret == 1) ? $api_creds['client_secret_web'] : $api_creds['client_secret_desk'];
-
-                $client->setClientId($clientId);
-                $client->setClientSecret($clientSecret);
+                list($clientId, $clientSecret) = self::client_credentials();
             }
 
+            $response = wp_remote_post(
+                'https://oauth2.googleapis.com/token',
+                array(
+                    'body' => array(
+                        'refresh_token' => $tokenData['refresh_token'],
+                        'client_id'     => $clientId,
+                        'client_secret' => $clientSecret,
+                        'grant_type'    => 'refresh_token',
+                    ),
+                )
+            );
 
-            $client->setScopes(Google_Service_Sheets::SPREADSHEETS);
-            $client->setScopes(Google_Service_Drive::DRIVE_METADATA_READONLY);
-            $client->refreshToken($tokenData['refresh_token']);
-            $client->setAccessType('offline');
+            if (is_wp_error($response)) {
+                throw new Exception($response->get_error_message());
+            }
 
+            $refreshed = json_decode(wp_remote_retrieve_body($response), true);
+
+            if (empty($refreshed['access_token'])) {
+                throw new Exception(isset($refreshed['error_description']) ? $refreshed['error_description'] : 'Unknown error refreshing token.');
+            }
+
+            // Google does not resend the refresh token on a refresh grant; keep the existing one.
+            $refreshed['refresh_token'] = $tokenData['refresh_token'];
 
             if ($maunal_setting == '1')
-                FORMI_GSC_googlesheet::updateToken_manual($tokenData);
+                FORMI_GSC_googlesheet::updateToken_manual($refreshed);
             else
-                FORMI_GSC_googlesheet::updateToken($tokenData);
+                FORMI_GSC_googlesheet::updateToken($refreshed);
 
-
-            self::setInstance($client);
+            $this->token = $refreshed['access_token'];
         } catch (Exception $e) {
             GS_FORMNTR_Free_Utility::frmgs_debug_log($e->getMessage());
             throw new LogicException("Auth, Error fetching OAuth2 access token, message: " . esc_html($e->getMessage()));
@@ -223,26 +317,7 @@ class FORMI_GSC_googlesheet
         }
     }
 
-    // public function get_user_data()
-    // {
-    //     $client = self::getInstance();
-
-    //     $results = $this->get_spreadsheets();
-
-    //     echo '<pre>';
-    //     print_r($results);
-    //     echo '</pre>';
-    //     $spreadsheets = $this->get_worktabs('1mRuDMnZveDFQrmzHM9s5YkPA4F_dZkHJ1Gh81BvYB2k');
-    //     echo '<pre>';
-    //     print_r($spreadsheets);
-    //     echo '</pre>';
-    //     $this->setSpreadsheetId('1mRuDMnZveDFQrmzHM9s5YkPA4F_dZkHJ1Gh81BvYB2k');
-    //     $this->setWorkTabId('Foglio1');
-    //     $worksheetTab = $this->list_rows();
-    //     echo '<pre>';
-    //     print_r($worksheetTab);
-    //     echo '</pre>';
-    // }
+ 
     //preg_match is a key of error handle in this case
 
     /**
@@ -297,32 +372,46 @@ class FORMI_GSC_googlesheet
     /**
      * Adds a new row to the Google Sheet.
      *
-     * @param array $data Row data to insert.
+     * @param array $data             Row data to insert.
+     * @param array $field_data_array  Original Forminator field data (returned as-is).
+     * @param int   $feed_status       Feed status: 1 = enabled (send), 0 = disabled (skip). Default 1.
      * @since 1.0.15
      */
 
-    public function add_row($data, $field_data_array)
+    public function add_row($data, $field_data_array, $feed_status = 1)
     {
         try {
 
-            $client = self::getInstance();
-            $service = new Google_Service_Sheets($client);
+            // Only push the submission to Google Sheets when the feed is enabled.
+            if ((int) $feed_status === 0) {
+                return $field_data_array;
+            }
+
             $spreadsheetId = $this->getSpreadsheetId();
-            $work_sheets = $service->spreadsheets->get($spreadsheetId);
+            $work_sheets = $this->get_spreadsheet_meta($spreadsheetId);
+
+            if (is_wp_error($work_sheets)) {
+                GS_FORMNTR_Free_Utility::frmgs_debug_log($work_sheets->get_error_message());
+                return $field_data_array;
+            }
 
             if (!empty($work_sheets) && !empty($data)) {
                 foreach ($work_sheets as $sheet) {
-                    $properties = $sheet->getProperties();
-                    $sheet_id = $properties->getSheetId();
+                    $properties = isset($sheet['properties']) ? $sheet['properties'] : array();
+                    $sheet_id = isset($properties['sheetId']) ? $properties['sheetId'] : null;
 
                     $worksheet_id = $this->getWorkTabId();
 
                     if ($sheet_id == $worksheet_id) {
-                        $worksheet_id = $properties->getTitle();
-                        $worksheetCell = $service->spreadsheets_values->get($spreadsheetId, $worksheet_id . "!1:1");
+                        $tab_name = $properties['title'];
+
+                        $header_url = 'https://sheets.googleapis.com/v4/spreadsheets/' . rawurlencode($spreadsheetId)
+                            . '/values/' . rawurlencode($tab_name . '!1:1');
+                        $worksheetCell = self::request('GET', $header_url, $this->token);
+
                         $insert_data = array();
-                        if (isset($worksheetCell->values[0])) {
-                            foreach ($worksheetCell->values[0] as $k => $name) {
+                        if (!is_wp_error($worksheetCell) && isset($worksheetCell['values'][0])) {
+                            foreach ($worksheetCell['values'][0] as $k => $name) {
                                 if (isset($data[$name]) && $data[$name] != '') {
                                     $insert_data[] = $data[$name];
                                 } else {
@@ -331,10 +420,11 @@ class FORMI_GSC_googlesheet
                             }
                         }
 
-                        $tab_name = $worksheet_id;
                         $full_range = $tab_name . "!A1:Z";
-                        $response = $service->spreadsheets_values->get($spreadsheetId, $full_range);
-                        $get_values = $response->getValues();
+                        $values_url = 'https://sheets.googleapis.com/v4/spreadsheets/' . rawurlencode($spreadsheetId)
+                            . '/values/' . rawurlencode($full_range);
+                        $response = self::request('GET', $values_url, $this->token);
+                        $get_values = (!is_wp_error($response) && isset($response['values'])) ? $response['values'] : null;
 
                         if ($get_values) {
                             $row = count($get_values) + 1;
@@ -343,22 +433,17 @@ class FORMI_GSC_googlesheet
                         }
                         $range = $tab_name . "!A" . $row . ":Z";
 
-                        $range_new = $worksheet_id;
-
-                        // Create the value range Object
-                        $valueRange = new Google_Service_Sheets_ValueRange();
-
-                        // set values of inserted data
-                        $valueRange->setValues(["values" => $insert_data]);
-
-                        // Add two values
-                        // Then you need to add configuration
-                        $conf = ["valueInputOption" => "USER_ENTERED", "insertDataOption" => "INSERT_ROWS"];
-                        $conf = ["valueInputOption" => "USER_ENTERED"];
-
                         // append the spreadsheet(add new row in the sheet)
-                        // $result = $service->spreadsheets_values->append( $spreadsheetId, $range_new, $valueRange, $conf );
-                        $result = $service->spreadsheets_values->append($spreadsheetId, $range, $valueRange, $conf);
+                        $append_url = 'https://sheets.googleapis.com/v4/spreadsheets/' . rawurlencode($spreadsheetId)
+                            . '/values/' . rawurlencode($range) . ':append?valueInputOption=USER_ENTERED';
+
+                        $result = self::request('POST', $append_url, $this->token, array(
+                            'body' => array('values' => array($insert_data)),
+                        ));
+
+                        if (is_wp_error($result)) {
+                            GS_FORMNTR_Free_Utility::frmgs_debug_log($result->get_error_message());
+                        }
                     }
                 }
             }
@@ -379,15 +464,20 @@ class FORMI_GSC_googlesheet
     {
         $all_sheets = array();
         try {
-            $client = self::getInstance();
+            $url = 'https://www.googleapis.com/drive/v3/files?' . http_build_query(array(
+                'q'      => "mimeType='application/vnd.google-apps.spreadsheet'",
+                'fields' => 'files(id,name,kind)',
+            ));
 
-            $service = new Google_Service_Drive($client);
+            $results = self::request('GET', $url, $this->token);
 
-            $optParams = array(
-                'q' => "mimeType='application/vnd.google-apps.spreadsheet'"
-            );
-            $results = $service->files->listFiles($optParams);
-            foreach ($results->files as $spreadsheet) {
+            if (is_wp_error($results)) {
+                GS_FORMNTR_Free_Utility::frmgs_debug_log($results->get_error_message());
+                return null;
+            }
+
+            $files = isset($results['files']) ? $results['files'] : array();
+            foreach ($files as $spreadsheet) {
                 if (isset($spreadsheet['kind']) && $spreadsheet['kind'] == 'drive#file') {
                     $all_sheets[] = array(
                         'id' => $spreadsheet['id'],
@@ -413,15 +503,18 @@ class FORMI_GSC_googlesheet
     {
         $work_tabs_list = array();
         try {
-            $client = self::getInstance();
-            $service = new Google_Service_Sheets($client);
-            $work_sheets = $service->spreadsheets->get($spreadsheet_id);
+            $work_sheets = $this->get_spreadsheet_meta($spreadsheet_id);
+
+            if (is_wp_error($work_sheets)) {
+                GS_FORMNTR_Free_Utility::frmgs_debug_log($work_sheets->get_error_message());
+                return null;
+            }
 
             foreach ($work_sheets as $sheet) {
-                $properties = $sheet->getProperties();
+                $properties = isset($sheet['properties']) ? $sheet['properties'] : array();
                 $work_tabs_list[] = array(
-                    'id' => $properties->getSheetId(),
-                    'title' => $properties->getTitle(),
+                    'id' => isset($properties['sheetId']) ? $properties['sheetId'] : null,
+                    'title' => isset($properties['title']) ? $properties['title'] : '',
                 );
             }
         } catch (Exception $e) {
@@ -513,14 +606,18 @@ class FORMI_GSC_googlesheet
     {
 
         try {
-            $client = $this->getInstance();
-
-            if (!$client) {
+            if (empty($this->token)) {
                 return false;
             }
 
-            $service = new Google_Service_Oauth2($client);
-            $user = $service->userinfo->get();
+            $user = self::request('GET', 'https://www.googleapis.com/oauth2/v2/userinfo', $this->token);
+
+            if (is_wp_error($user)) {
+                GS_FORMNTR_Free_Utility::frmgs_debug_log(__METHOD__ . " Error in fetching user info: \n " . $user->get_error_message());
+                return false;
+            }
+
+            $user = (object) $user;
         } catch (Exception $e) {
             GS_FORMNTR_Free_Utility::frmgs_debug_log(__METHOD__ . " Error in fetching user info: \n " . $e->getMessage());
             return false;
@@ -571,7 +668,7 @@ class FORMI_GSC_googlesheet
     }
 
     /**
-     * Retrieves the Google Client instance for API communication.
+     * Builds the Google OAuth2 authorization URL.
      *
      * @since 1.0.15
      *
@@ -579,53 +676,13 @@ class FORMI_GSC_googlesheet
      * @param string $gscfrmin_clientId     Google Client ID.
      * @param string $gscfrmin_clientSecret Google Client Secret.
      *
-     * @return Google_Client|false Google Client instance or false on failure.
+     * @return string|false Authorization URL, or false on failure.
      */
 
     public static function getClient_auth($flag = 0, $gscfrmin_clientId = '', $gscfrmin_clientSecert = '')
     {
-        $gscfrmin_client = new Google_Client();
-        $gscfrmin_client->setApplicationName('Manage frmin Forms with Google Spreadsheet');
-        $gscfrmin_client->setScopes(Google_Service_Sheets::SPREADSHEETS_READONLY);
-        $gscfrmin_client->setScopes(Google_Service_Drive::DRIVE_METADATA_READONLY);
-        $gscfrmin_client->addScope(Google_Service_Sheets::SPREADSHEETS);
-        $gscfrmin_client->addScope('https://www.googleapis.com/auth/userinfo.email');
-        //$gscfrmin_client->addScope( 'https://www.googleapis.com/auth/userinfo.profile' );
-        $gscfrmin_client->setClientId($gscfrmin_clientId);
-        $gscfrmin_client->setClientSecret($gscfrmin_clientSecert);
-        $gscfrmin_client->setRedirectUri(esc_html(admin_url('admin.php?page=wpfrmin-google-sheet-config')));
-        $gscfrmin_client->setAccessType('offline');
-        $gscfrmin_client->setApprovalPrompt('force');
         try {
-            if (empty($gscfrmin_auth_token)) {
-                $gscfrmin_auth_url = $gscfrmin_client->createAuthUrl();
-                return $gscfrmin_auth_url;
-            }
-            if (!empty($gscfrmin_gscfrmin_accessToken)) {
-                $gscfrmin_accessToken = json_decode($gscfrmin_gscfrmin_accessToken, true);
-            } else {
-                if (empty($gscfrmin_auth_token)) {
-                    $gscfrmin_auth_url = $gscfrmin_client->createAuthUrl();
-                    return $gscfrmin_auth_url;
-                }
-            }
-
-            $gscfrmin_client->setAccessToken($gscfrmin_accessToken);
-            // Refresh the token if it's expired.
-            if ($gscfrmin_client->isAccessTokenExpired()) {
-                // save refresh token to some variable
-                $gscfrmin_refreshTokenSaved = $gscfrmin_client->getRefreshToken();
-                $gscfrmin_client->fetchAccessTokenWithRefreshToken($gscfrmin_client->getRefreshToken());
-                // pass access token to some variable
-                $gscfrmin_accessTokenUpdated = $gscfrmin_client->getAccessToken();
-                // append refresh token
-                $gscfrmin_accessTokenUpdated['refresh_token'] = $gscfrmin_refreshTokenSaved;
-                //Set the new acces token
-                $gscfrmin_accessToken = $gscfrmin_refreshTokenSaved;
-                gscfrmin::gscfrmin_update_option('frminsheets_google_accessToken', json_encode($gscfrmin_accessTokenUpdated));
-                $gscfrmin_accessToken = json_decode(json_encode($gscfrmin_accessTokenUpdated), true);
-                $gscfrmin_client->setAccessToken($gscfrmin_accessToken);
-            }
+            return self::get_auth_url($gscfrmin_clientId, $gscfrmin_clientSecert);
         } catch (Exception $e) {
             if ($flag) {
                 GS_FORMNTR_Free_Utility::frmgs_debug_log($e->getMessage());
@@ -634,7 +691,6 @@ class FORMI_GSC_googlesheet
                 return false;
             }
         }
-        return $gscfrmin_client;
     }
 
     /**
@@ -648,22 +704,21 @@ class FORMI_GSC_googlesheet
 
     public static function revokeToken_auto($access_code)
     {
-        if (is_multisite()) {
-            // Fetch API creds
-            $api_creds = get_site_option('forminatorgsc_api_creds');
-        } else {
-            // Fetch API creds
-            $api_creds = get_option('forminatorgsc_api_creds');
-        }
-        $newClientSecret = get_option('is_new_client_secret_FORMINGSC');
-        $clientId = ($newClientSecret == 1) ? $api_creds['client_id_web'] : $api_creds['client_id_desk'];
-        $clientSecret = ($newClientSecret == 1) ? $api_creds['client_secret_web'] : $api_creds['client_secret_desk'];
-
-        $client = new Google_Client();
-        $client->setClientId($clientId);
-        $client->setClientSecret($clientSecret);
         $tokendecode = json_decode($access_code);
-        $token = $tokendecode->access_token;
-        $client->revokeToken($token);
+
+        if (empty($tokendecode->access_token)) {
+            return;
+        }
+
+        $response = wp_remote_post(
+            'https://oauth2.googleapis.com/revoke',
+            array(
+                'body' => array('token' => $tokendecode->access_token),
+            )
+        );
+
+        if (is_wp_error($response)) {
+            GS_FORMNTR_Free_Utility::frmgs_debug_log($response->get_error_message());
+        }
     }
 }

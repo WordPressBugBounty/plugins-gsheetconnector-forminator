@@ -59,8 +59,10 @@ class GS_FORMNTR_Free_Utility
     public function logger( $message ) {
     if ( WP_DEBUG === true ) {
         if ( is_array( $message ) || is_object( $message ) ) {
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r, WordPress.PHP.DevelopmentFunctions.error_log_error_log -- intentional debug logger, gated behind WP_DEBUG; print_r() used with true (return, not echo) to serialize arrays/objects for logging.
         error_log( print_r( $message, true ) );
         } else {
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log, WordPress.PHP.DevelopmentFunctions.error_log_error_log -- intentional debug logger, gated behind WP_DEBUG; logs plain string messages only.
         error_log( $message );
         }
     }
@@ -177,44 +179,10 @@ class GS_FORMNTR_Free_Utility
 
     public static function frmgs_debug_log($error)
     {
-        if (!function_exists('WP_Filesystem')) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-        }
-        global $wp_filesystem;
-        if (!WP_Filesystem()) {
-            return;
-        }
-        $upload_dir = wp_upload_dir();
-        $log_dir = trailingslashit($upload_dir['basedir']) . 'gsc-forminator-logs/';
-        $log_file = get_option('frmgs_debug_log');
-        $timestamp = gmdate('Y-m-d H:i:s') . "\t PHP " . phpversion() . "\t";
-        try {
-            if (!$wp_filesystem->is_dir($log_dir)) {
-                $wp_filesystem->mkdir($log_dir, FS_CHMOD_DIR);
-            }
-            // Protect directory with .htaccess
-            $wp_filesystem->put_contents($log_dir . '.htaccess', "Deny from all\n", FS_CHMOD_FILE);
-            $old_file = $log_dir . 'log.txt';
-            if ($wp_filesystem->exists($old_file)) {
-                $wp_filesystem->delete($old_file);
-            }
-            $log_message = is_array($error) || is_object($error)
-                ? $timestamp . wp_json_encode($error) . "\r\n"
-                : $timestamp . $error . "\r\n";
-            if (!empty($log_file) && $wp_filesystem->exists($log_file)) {
-                $existing = $wp_filesystem->get_contents($log_file);
-                $wp_filesystem->put_contents($log_file, $existing . $log_message, FS_CHMOD_FILE);
-            } else {
-                $new_log_file = $log_dir . 'log-' . uniqid() . '.txt';
-                $log_content = "Log created at " . gmdate('Y-m-d H:i:s') . "\r\n" . $log_message;
-                if ($wp_filesystem->put_contents($new_log_file, $log_content, FS_CHMOD_FILE)) {
-                    update_option('frmgs_debug_log', $new_log_file);
-                }
-            }
-        } catch (Exception $e) {
-            GS_FORMNTR_Free_Utility::frmgs_debug_log('Exception in frmgs_debug_log: ' . $e->getMessage());
-            return;
-        }
+         /** Insert error login in table */
+      if (class_exists('GSCFORMNTR_Free_Error_Logs')) {
+         GSCFORMNTR_Free_Error_Logs::formntr_log_from_debug($error);
+      }
     }
 
     /**

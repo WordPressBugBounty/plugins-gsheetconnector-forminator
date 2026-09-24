@@ -214,19 +214,66 @@ jQuery(document).ready(function ($) {
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.getElementById("form-search");
   const formList = document.getElementById("form-list");
+
+  // Bail out quietly if either element isn't on this page
+  if (!searchInput || !formList) {
+    return;
+  }
+
   const forms = formList.getElementsByClassName("add-feed-row");
 
   searchInput.addEventListener("input", function () {
     const filter = searchInput.value.toLowerCase();
     Array.from(forms).forEach(function (form) {
-      const formName = form
-        .querySelector(".form-name")
-        .textContent.toLowerCase();
-      if (formName.includes(filter)) {
-        form.style.display = "";
-      } else {
-        form.style.display = "none";
+      const nameEl = form.querySelector(".form-name");
+      if (!nameEl) return; // guard in case a row is missing .form-name too
+
+      const formName = nameEl.textContent.toLowerCase();
+      form.style.display = formName.includes(filter) ? "" : "none";
+    });
+  });
+});
+
+
+/** Copy debug log  */
+jQuery(document).ready(function ($) {
+  $("#formntr-copy-logs").on("click", function (e) {
+    e.preventDefault();
+
+    var rows = $("table tbody tr");
+    var copyText = "";
+
+    if (!rows.length) {
+      console.log("No error logs found.");
+      return;
+    }
+
+    rows.each(function () {
+      var cols = $(this).find("td");
+
+      if (cols.length >= 4) {
+        copyText += $(cols[0]).text().trim() + "\n"; /* Date */
+        copyText += $(cols[1]).text().trim() + "\n"; /* Type */
+        copyText += $(cols[2]).text().trim() + "\n"; /* Message */
+        copyText += $(cols[3]).text().trim() + "\n"; /* File */
+        copyText += "----------------------------------------\n\n";
       }
     });
+
+    /*  Temporary textarea copy */
+    var tempTextarea = $("<textarea>");
+    $("body").append(tempTextarea);
+    tempTextarea.val(copyText).select();
+    document.execCommand("copy");
+    tempTextarea.remove();
+
+    /*  Show success message */
+    var $msg = $(".gsc-copy-msg");
+
+    $msg.text("Copied successfully").removeClass("d-none");
+
+    setTimeout(function () {
+      $msg.addClass("d-none");
+    }, 3000);
   });
 });

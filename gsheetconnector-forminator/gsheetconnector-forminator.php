@@ -6,7 +6,7 @@
  * Description: Send your Forminator Forms data to your Google Sheets spreadsheet.
  * Author: GSheetConnector
  * Author URI: https://www.gsheetconnector.com/
- * Version: 1.0.18
+ * Version: 2.0.0
  * Text Domain: gsheetconnector-forminator
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -22,12 +22,27 @@ if (GS_FORMNTR_Init::gscfrmn_is_pugin_active('GS_FORMNTR_Init_PRO')) {
     return;
 }
 
+define('GS_FORMNTR_VERSION', '2.0.0');
+define('GS_FORMNTR_DB_VERSION', '2.0.0');
+define('GS_FORMNTR_ROOT', dirname(__FILE__));
+define('GS_FORMNTR_URL', plugins_url('/', __FILE__));
+define('GS_FORMNTR_BASE_FILE', basename(dirname(__FILE__)) . '/gsheetconnector-forminator.php');
+define('GS_FORMNTR_BASE_NAME', plugin_basename(__FILE__));
+define('GS_FORMNTR_PATH', plugin_dir_path(__FILE__)); //use for include files to other files
+define('GS_FORMNTR_CURRENT_THEME', get_stylesheet_directory());
+define('GS_FORMNTR_API_URL', 'https://oauth.gsheetconnector.com/api-cred.php');
+define('GS_FORMNTR_AUTH_REDIRECT_URI', admin_url('admin.php?page=formntr-gsheet-config&tab=integration'));
+define('GS_FORMNTR_AUTH_PLUGIN_NAME', 'frmingsheetconnector');
+define('GS_FORMNTR_AUTH_URL', 'https://oauth.gsheetconnector.com/index.php');
+define('GS_FORMNTR_TEXTDOMAIN', 'gsheetconnector-forminator');
+
 /*freemius*/
 if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-forminator/gsheetconnector-forminator.php')) {
     if (!function_exists('gfff_fs')) {
 
         // Create a helper function for easy SDK access.
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Freemius SDK boilerplate; this is the standard Freemius-generated accessor naming convention, not part of this plugin's own public API.
         function gfff_fs()
         {
             global $gfff_fs;
@@ -36,6 +51,7 @@ if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-for
                 // Include Freemius SDK.
                 require_once dirname(__FILE__) . '/lib/vendor/freemius/start.php';
 
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Freemius SDK boilerplate global paired with the gfff_fs() accessor; standard Freemius-generated naming convention.
                 $gfff_fs = fs_dynamic_init(array(
                     'id' => '13370',
                     'slug' => 'gsheetconnector-for-forminator-forms',
@@ -61,13 +77,14 @@ if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-for
         gfff_fs();
 
         // Signal that SDK was initiated.
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Freemius SDK boilerplate action hook, standard Freemius-generated naming convention; must not be renamed as it's a public extension point.
         do_action('gfff_fs_loaded');
     }
 
     /*freemius */
     /* Customizing the Opt Message Freemius  */
-
-    function gs_forminator_form_free_custom_connect_message_on_update(
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+    function gs_formntr_custom_connect_message_on_update( // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
         $message,
         $user_first_name,
         $plugin_title,
@@ -78,8 +95,8 @@ if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-for
         return sprintf(
             // translators: %1$s is the user's first name.
             __('Hey %1$s', 'gsheetconnector-forminator') . ',<br>' .
-            // translators: %2$s is the plugin title, %5$s is the Freemius link.
-            __('Please help us improve %2$s! If you opt-in, some data about your usage of %2$s will be sent to %5$s. If you skip this, that\'s okay! %2$s will still work just fine.', 'gsheetconnector-forminator'),
+                // translators: %2$s is the plugin title, %5$s is the Freemius link.
+                __('Please help us improve %2$s! If you opt-in, some data about your usage of %2$s will be sent to %5$s. If you skip this, that\'s okay! %2$s will still work just fine.', 'gsheetconnector-forminator'),
             $user_first_name,
             '<b>' . $plugin_title . '</b>',
             '<b>' . $user_login . '</b>',
@@ -88,39 +105,27 @@ if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-for
         );
     }
 
-    gfff_fs()->add_filter('connect_message_on_update', 'gs_forminator_form_free_custom_connect_message_on_update', 10, 6);
+    gfff_fs()->add_filter('connect_message_on_update', 'gs_formntr_custom_connect_message_on_update', 10, 6);
     /* End Customizing the Opt Message Freemius  */
 }
 /**/
 
 
-// Declare some global constants
-define('GS_FORMNTR_VERSION', '1.0.18');
-define('GS_FORMNTR_DB_VERSION', '1.0.18');
-define('GS_FORMNTR_ROOT', dirname(__FILE__));
-define('GS_FORMNTR_URL', plugins_url('/', __FILE__));
-define('GS_FORMNTR_BASE_FILE', basename(dirname(__FILE__)) . '/gsheetconnector-forminator.php');
-define('GS_FORMNTR_BASE_NAME', plugin_basename(__FILE__));
-define('GS_FORMNTR_PATH', plugin_dir_path(__FILE__)); //use for include files to other files
-define('GS_FORMNTR_CURRENT_THEME', get_stylesheet_directory());
-define('GS_FORMNTR_API_URL', 'https://oauth.gsheetconnector.com/api-cred.php');
-define('GS_FORMNTR_AUTH_REDIRECT_URI', admin_url('admin.php?page=formntr-gsheet-config'));
-define('GS_FORMNTR_AUTH_PLUGIN_NAME', 'frmingsheetconnector');
-define('GS_FORMNTR_AUTH_URL', 'https://oauth.gsheetconnector.com/index.php');
-// define('GS_FORMNTR_TEXTDOMAIN', 'gsheetconnector-forminator');
-// load_plugin_textdomain(GS_FORMNTR_TEXTDOMAIN, false, basename(dirname(__FILE__)) . '/languages');
 
 // Include Utility Classes
 if (!class_exists('GS_FORMNTR_Free_Utility')) {
     include(GS_FORMNTR_ROOT . '/includes/class-gs-formntr-utility.php');
 }
 
+// Feed storage abstraction (custom tables + legacy postmeta bridge)
+if (!class_exists('GS_FORMNTR_Feed_Store')) {
+    include(GS_FORMNTR_ROOT . '/includes/class-gs-formntr-feed-store.php');
+}
+
 //Include Library Files
-require_once GS_FORMNTR_ROOT . '/lib/vendor/autoload.php';
 include_once(GS_FORMNTR_ROOT . '/lib/google-sheets.php');
 if (!class_exists('GS_FORMNTR_Service')) {
     include_once(GS_FORMNTR_PATH . 'includes/class-gs-formntr-services.php');
-    //require_once GS_FORMNTR_PATH . 'includes/pages/forminator-panel.php';
 }
 
 class GS_FORMNTR_Init
@@ -148,6 +153,9 @@ class GS_FORMNTR_Init
         //run_on_upgrade
         add_action('admin_init', array($this, 'run_on_upgrade'));
 
+        // redirect to the dashboard right after the plugin is activated
+        add_action('admin_init', array($this, 'gs_formntr_activation_redirect'));
+
         // register admin menu under "Contact" > "Integration"
         add_action('admin_menu', array($this, 'register_gs_menu_pages'), 70);
 
@@ -162,6 +170,12 @@ class GS_FORMNTR_Init
 
         // Display widget to dashboard
         add_action('wp_dashboard_setup', array($this, 'add_formntr_gs_connector_summary_widget'));
+
+        /*  Add custom link for our plugin */
+        add_filter('plugin_action_links_' . GS_FORMNTR_BASE_NAME,  array($this, 'forminator_gs_connector_pro_plugin_action_links'));
+
+        /** For using Row Meta */
+        add_filter('plugin_row_meta', [$this, 'plugin_row_meta'], 10, 2);
     }
 
     /**
@@ -170,7 +184,6 @@ class GS_FORMNTR_Init
      * @return true/false    * 
      * @since 1.0.15
      */
-
     public static function gscfrmn_is_pugin_active($class)
     {
         if (class_exists($class)) {
@@ -201,8 +214,40 @@ class GS_FORMNTR_Init
                 return;
             }
         }
-        // for non-network sites only
         $this->run_for_site();
+
+        // flag a redirect to the dashboard on the next admin page load
+        // (skip for network-wide activation - there's no single site to land on)
+        if (!$network_wide) {
+            set_transient('gs_formntr_activation_redirect', true, 30);
+        }
+    }
+
+    /**
+     * Redirect to the plugin dashboard once, right after activation.
+     * @since 2.0.0
+     */
+
+    public function gs_formntr_activation_redirect()
+    {
+        if (!get_transient('gs_formntr_activation_redirect')) {
+            return;
+        }
+
+        delete_transient('gs_formntr_activation_redirect');
+
+        // don't redirect on bulk plugin activation or during AJAX/cron
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (isset($_GET['activate-multi']) || wp_doing_ajax() || (defined('DOING_CRON') && DOING_CRON)) {  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            return;
+        }
+
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        wp_safe_redirect(admin_url('admin.php?page=formntr-gsheet-config&tab=dashboard'));
+        exit;
     }
 
     /**
@@ -211,17 +256,13 @@ class GS_FORMNTR_Init
      * @since 1.0.15
      */
 
-    public function gs_formntr_deactivate($network_wide)
-    {
-    }
-
+    public function gs_formntr_deactivate($network_wide) {}
     /**
      *  Runs on plugin uninstall.
      *  a static class method or function can be used in an uninstall hook
      *
      *  @since 1.0.15
      */
-
     public static function gs_formntr_uninstall()
     {
         global $wpdb;
@@ -248,7 +289,6 @@ class GS_FORMNTR_Init
      * @access public
      * @since 1.0.15
      */
-
     public function validate_parent_plugin_exists()
     {
         $plugin = plugin_basename(__FILE__);
@@ -259,10 +299,6 @@ class GS_FORMNTR_Init
             if (isset($_GET['activate']) && check_admin_referer('activate-plugin_' . $plugin)) {
                 unset($_GET['activate']);
             }
-
-            // Redirect to the plugins page
-            // wp_redirect(admin_url('plugins.php'));
-            // exit; // Ensure that WordPress redirects immediately
         }
     }
 
@@ -281,7 +317,6 @@ class GS_FORMNTR_Init
             'type' => 'error',
             'message' => __('Forminator Google Sheet Connector Add-on requires Forminator plugin to be installed and activated.', 'gsheetconnector-forminator')
         ));
-
         echo wp_kses_post($plugin_error);
     }
 
@@ -289,7 +324,6 @@ class GS_FORMNTR_Init
      * Create/Register menu items for the plugin.
      * @since 1.0.15
      */
-
     public function register_gs_menu_pages()
     {
         $current_role = GS_FORMNTR_Free_Utility::instance()->get_current_user_role();
@@ -303,7 +337,6 @@ class GS_FORMNTR_Init
      * This method is called when the menu item "Google Sheets" is clicked.
      * @since 1.0.15
      */
-
     public function google_sheet_configuration()
     {
         include(GS_FORMNTR_PATH . "includes/pages/google-sheet-settings.php");
@@ -313,7 +346,6 @@ class GS_FORMNTR_Init
      * Load all the classes - as part of init action hook
      * @since 1.0.15
      */
-
     public function load_all_classes()
     {
         if (!class_exists('GS_Formntr_Processes')) {
@@ -325,6 +357,9 @@ class GS_FORMNTR_Init
         if (!class_exists('GS_Formntr_Extensions')) {
             include(GS_FORMNTR_PATH . 'includes/pages/extensions/gs-Formntr-extension-service.php');
         }
+        if (!class_exists('GSCFORMNTR_Free_Error_Logs')) {
+            include(GS_FORMNTR_PATH . 'includes/class-gs-formntr-error-logs.php');
+        }
     }
 
     /**
@@ -333,7 +368,6 @@ class GS_FORMNTR_Init
      * @access public
      * @since 1.0.15
      */
-
     public function load_css_and_js_files()
     {
         add_action('admin_print_styles', array($this, 'add_css_files'));
@@ -344,7 +378,6 @@ class GS_FORMNTR_Init
      * Enqueue CSS files
      * @since 1.0.15
      */
-
     public function add_css_files()
     {
         if (
@@ -354,27 +387,75 @@ class GS_FORMNTR_Init
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             && sanitize_text_field(wp_unslash($_GET['page'])) === 'formntr-gsheet-config'
         ) {
+            $gs_formntr_connector_css = GS_FORMNTR_ROOT . '/assets/css/gs-formntr-connector.css';
             wp_enqueue_style(
                 'gs-formntr-connector-css',
                 GS_FORMNTR_URL . 'assets/css/gs-formntr-connector.css',
-                GS_FORMNTR_VERSION,
-                true
+                array(),
+                file_exists($gs_formntr_connector_css) ? filemtime($gs_formntr_connector_css) : GS_FORMNTR_VERSION,
+                'all'
             );
+
+            /** New CSS added */
             wp_enqueue_style(
-                'font-awesome.min',
-                GS_FORMNTR_URL . 'assets/css/font-awesome.min.css',
+                'gs-formntr-extra-style',
+                GS_FORMNTR_URL . 'assets/css/extra-style.css',
+                array(),
                 GS_FORMNTR_VERSION,
-                true
+                'all'
             );
+
             wp_enqueue_style(
-                'gs-formntr-connector-css-font',
+                'gs-formntr-footer',
+                GS_FORMNTR_URL . 'assets/css/footer.css',
+                array(),
+                GS_FORMNTR_VERSION,
+                'all'
+            );
+
+            wp_enqueue_style(
+                'gs-formntr-global',
+                GS_FORMNTR_URL . 'assets/css/global.css',
+                array(),
+                GS_FORMNTR_VERSION,
+                'all'
+            );
+
+            wp_enqueue_style(
+                'gs-formntr-header',
+                GS_FORMNTR_URL . 'assets/css/header.css',
+                array(),
+                GS_FORMNTR_VERSION,
+                'all'
+            );
+
+            wp_enqueue_style(
+                'gs-formntr-pro-feature',
+                GS_FORMNTR_URL . 'assets/css/pro-feature.css',
+                array(),
+                GS_FORMNTR_VERSION,
+                'all'
+            );
+
+            wp_enqueue_style(
+                'gs-formntr-responsive',
+                GS_FORMNTR_URL . 'assets/css/responsive.css',
+                array(),
+                GS_FORMNTR_VERSION,
+                'all'
+            );
+
+            wp_enqueue_style(
+                'gs-formntr-fontawesome',
                 GS_FORMNTR_URL . 'assets/css/fontawesome.css',
+                array(),
                 GS_FORMNTR_VERSION,
-                true
+                'all'
             );
+
             wp_enqueue_style(
-                'gs-formntr-systeminfo',
-                GS_FORMNTR_URL . 'assets/css/gs-formntr-systeminfo.css',
+                'gs-formntr-fontawesome-min',
+                GS_FORMNTR_URL . 'assets/css/font-awesome.min.css',
                 array(),
                 GS_FORMNTR_VERSION,
                 'all'
@@ -397,11 +478,12 @@ class GS_FORMNTR_Init
                 && ($_GET['page'] == 'formntr-gsheet-config'))
         ) {
             wp_enqueue_script('jquery-ui-sortable');
+            $gs_formntr_connector_js = GS_FORMNTR_ROOT . '/assets/js/gs-formntr-connector.js';
             wp_enqueue_script(
                 'gs-formntr-connector',
                 GS_FORMNTR_URL . 'assets/js/gs-formntr-connector.js',
-                array(),
-                GS_FORMNTR_VERSION,
+                array('jquery'),
+                file_exists($gs_formntr_connector_js) ? filemtime($gs_formntr_connector_js) : GS_FORMNTR_VERSION,
                 true
             );
         }
@@ -462,6 +544,51 @@ class GS_FORMNTR_Init
         }
 
         update_site_option('gs_formntr_info', $google_sheet_info);
+
+        // Fetch and save the API credentails.
+        GS_FORMNTR_Free_Utility::instance()->save_api_credentials();
+
+        $this->create_debug_log_table();
+
+        // Custom feed tables: run dbDelta only when the stored DB version is
+        // behind (or missing), not on every admin request.
+        $stored_db_version = is_array($plugin_options) && isset($plugin_options['db_version'])
+            ? $plugin_options['db_version']
+            : '0';
+        if (version_compare($stored_db_version, GS_FORMNTR_DB_VERSION, '<')) {
+            GS_FORMNTR_Feed_Store::install();
+        }
+
+        // One-time back-fill from postmeta into the custom tables. Runs to
+        // completion here (re-runs on the next admin_init until finished).
+        // Self-guards once done.
+        wp_clear_scheduled_hook('gs_formntr_migrate_feeds_cron');
+        GS_FORMNTR_Feed_Store::migrate_all();
+    }
+
+
+    public function create_debug_log_table()
+    {
+
+        global $wpdb;
+
+        $table = $wpdb->prefix . 'gsformntr_error_logs';
+        $charset = $wpdb->get_charset_collate();
+
+        $sql = "CREATE TABLE {$table} (
+            id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+            error_id VARCHAR(191) NOT NULL,
+            code INT NOT NULL,
+            message TEXT NOT NULL,
+            details LONGTEXT NULL,
+            created_at DATETIME NOT NULL,
+            PRIMARY KEY (id),
+            KEY error_id (error_id),
+            KEY code (code)
+        ) {$charset};";
+
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+        dbDelta($sql);
     }
 
     /**
@@ -503,23 +630,6 @@ class GS_FORMNTR_Init
         GS_FORMNTR_Free_Utility::instance()->save_api_credentials();
     }
 
-    // public function upgrade_database_20() {
-    //   global $wpdb;
-
-    //   // look through each of the blogs and upgrade the DB
-    //   if (function_exists('is_multisite') && is_multisite()) {
-    //      //Get all blog ids;
-    //      $blog_ids = $wpdb->get_col("SELECT blog_id FROM {$wpdb->base_prefix}blogs");
-    //      foreach ($blog_ids as $blog_id) {
-    //         switch_to_blog($blog_id);
-    //         $this->upgrade_helper_20();
-    //         restore_current_blog();
-    //      }
-    //      return;
-    //   }
-    //   $this->upgrade_helper_20();
-    // }
-
     /**
      * Called on activation.
      * Creates the site_options (required for all the sites in a multi-site setup)
@@ -544,6 +654,14 @@ class GS_FORMNTR_Init
         }
         // Fetch and save the API credentails.
         GS_FORMNTR_Free_Utility::instance()->save_api_credentials();
+
+        /**Create error log table  */
+        $this->create_debug_log_table();
+
+        /** Custom feed tables + one-time back-fill from postmeta */
+        wp_clear_scheduled_hook('gs_formntr_migrate_feeds_cron');
+        GS_FORMNTR_Feed_Store::install();
+        GS_FORMNTR_Feed_Store::migrate_all();
     }
 
     /**
@@ -589,8 +707,15 @@ class GS_FORMNTR_Init
     private static function delete_for_site()
     {
         try {
-           
-            
+            // Only remove feed data if the site owner opted in via
+            // Settings > General > "Remove Data on Uninstall".
+            if ((int) get_option('gs_frmnt_unistall_plugin_settings') === 1) {
+                if (!class_exists('GS_FORMNTR_Feed_Store')) {
+                    include_once GS_FORMNTR_ROOT . '/includes/class-gs-formntr-feed-store.php';
+                }
+                GS_FORMNTR_Feed_Store::uninstall();
+                delete_option('gs_formntr_pro_feeds_migrated');
+            }
         } catch (Exception $e) {
             GS_FORMNTR_Free_Utility::frmgs_debug_log('Something went wrong: ' . $e->getMessage());
             return;
@@ -623,7 +748,7 @@ class GS_FORMNTR_Init
         unset($links['edit']);
         // Add our custom links to the returned array value.[16102021]
         return array_merge(array(
-            '<a href="' . admin_url('admin.php?page=forminator&tab=integration') . '">' . __('Settings', 'gsheetconnector-forminator') . '</a>'
+            '<a href="' . admin_url('admin.php?page=formntr-gsheet-config&tab=dashboard') . '">' . __('Settings', 'gsheetconnector-forminator') . '</a>'
         ), $links);
     }
 
@@ -644,388 +769,52 @@ class GS_FORMNTR_Init
      *
      * @since 1.0.15
      */
-
-
     public function formntr_gs_connector_summary_dashboard()
     {
         include_once(GS_FORMNTR_PATH . '/includes/pages/gs-formntr-dashboard-widget.php');
     }
 
-    /**
-     * Build System Information String
-     * @global object $wpdb
-     * @return string
-     * @since 1.0.15
-     */
 
-    public function get_formtr_system_info()
+    public function forminator_gs_connector_pro_plugin_action_links($links)
     {
-        global $wpdb;
-        // Get WordPress version
-        $wp_version = get_bloginfo('version');
-        // Get theme info
-        $theme_data = wp_get_theme();
-        $theme_name_version = $theme_data->get('Name') . ' ' . $theme_data->get('Version');
-        $parent_theme = $theme_data->get('Template');
+        /* Define the text for the "Upgrade to Pro" link */
+        $go_pro_text = esc_html__('Upgrade to Pro', 'gsheetconnector-forminator');
 
-        if (!empty($parent_theme)) {
-            $parent_theme_data = wp_get_theme($parent_theme);
-            $parent_theme_name_version = $parent_theme_data->get('Name') . ' ' . $parent_theme_data->get('Version');
-        } else {
-            $parent_theme_name_version = 'N/A';
+        /*  Check if the Pro version of the plugin is installed and activated */
+        if (is_plugin_active('gsheetconnector-forminator-pro/gsheetconnector-forminator-pro.php')) {
+            /*  If Pro version is active, return the links without adding the "Upgrade to Pro" link */
+            return $links;
         }
 
-        // Check plugin version and subscription plan
-        $plugin_version = defined('GS_FORMNTR_VERSION') ? GS_FORMNTR_VERSION : 'N/A';
-        $subscription_plan = 'FREE';
-
-        // Check Google Account Authentication
-        // $api_token = get_option('gs_token');
-        // $google_sheet = new CF7GSC_googlesheet_PRO();
-        // $email_account = $google_sheet->gsheet_print_google_account_email();
-
-        $api_token_auto = get_option('gs_formntr_token');
-
-        if (!empty($api_token_auto)) {
-            // The user is authenticated through the auto method
-            $google_sheet_auto = new FORMI_GSC_googlesheet();
-            $email_account_auto = $google_sheet_auto->gsheet_print_google_account_email();
-            $connected_email = !empty($email_account_auto) ? esc_html($email_account_auto) : 'Not Auth';
-        } else {
-            // Auto authentication is the only method available
-            $connected_email = 'Not Auth';
-        }
-
-        // Check Google Permission
-        $gs_verify_status = get_option('gs_formntr_verify');
-        $search_permission = ($gs_verify_status === 'valid') ? 'Given' : 'Not Given';
-
-        // Create the system info HTML
-        $system_info = '<div class="system-statuswc">';
-        $system_info .= '<h4><button id="show-info-button" class="info-button">GSheetConnector<span class="dashicons dashicons-arrow-down"></span></h4>';
-        $system_info .= '<div id="info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>GSheetConnector</h3>';
-        $system_info .= '<table>';
-        $system_info .= '<tr><td>Plugin Name</td><td>GSheetConnector for Forminator Forms</td></tr>';
-        $system_info .= '<tr><td>Plugin Version</td><td>' . esc_html($plugin_version) . '</td></tr>';
-        $system_info .= '<tr><td>Plugin Subscription Plan</td><td>' . esc_html($subscription_plan) . '</td></tr>';
-        $system_info .= '<tr><td>Connected Email Account</td><td>' . $connected_email . '</td></tr>';
-        if ($search_permission == "Given") {
-            $gscpclass = 'gscpermission-given';
-        } else {
-            $gscpclass = 'gscpermission-notgiven';
-        }
-
-        $system_info .= '<tr><td>Google Drive Permission</td><td class="' . $gscpclass . '">' . esc_html($search_permission) . '</td></tr>';
-        $system_info .= '<tr><td>Google Sheet Permission</td><td class="' . $gscpclass . '">' . esc_html($search_permission) . '</td></tr>';
-
-        //$system_info .= '<tr><td>Google Drive Permission</td><td>' . esc_html($search_permission) . '</td></tr>';
-        //        $system_info .= '<tr><td>Google Sheet Permission</td><td>' . esc_html($search_permission) . '</td></tr>';
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-        // Add WordPress info
-        // Create a button for WordPress info
-        $system_info .= '<h2><button id="show-wordpress-info-button" class="info-button">WordPress Info<span class="dashicons dashicons-arrow-down"></span></h2>';
-        $system_info .= '<div id="wordpress-info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>WordPress Info</h3>';
-        $system_info .= '<table>';
-        $system_info .= '<tr><td>Version</td><td>' . get_bloginfo('version') . '</td></tr>';
-        $system_info .= '<tr><td>Site Language</td><td>' . get_bloginfo('language') . '</td></tr>';
-        $system_info .= '<tr><td>Debug Mode</td><td>' . (WP_DEBUG ? 'Enabled' : 'Disabled') . '</td></tr>';
-        $system_info .= '<tr><td>Home URL</td><td>' . get_home_url() . '</td></tr>';
-        $system_info .= '<tr><td>Site URL</td><td>' . get_site_url() . '</td></tr>';
-        $system_info .= '<tr><td>Permalink structure</td><td>' . get_option('permalink_structure') . '</td></tr>';
-        $system_info .= '<tr><td>Is this site using HTTPS?</td><td>' . (is_ssl() ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>Is this a multisite?</td><td>' . (is_multisite() ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>Can anyone register on this site?</td><td>' . (get_option('users_can_register') ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>Is this site discouraging search engines?</td><td>' . (get_option('blog_public') ? 'No' : 'Yes') . '</td></tr>';
-        $system_info .= '<tr><td>Default comment status</td><td>' . get_option('default_comment_status') . '</td></tr>';
-
-        $server_ip = '';
-        if (isset($_SERVER['REMOTE_ADDR'])) {
-
-            $server_ip = sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR']));
-        }
-        if ($server_ip == '127.0.0.1' || $server_ip == '::1') {
-            $environment_type = 'localhost';
-        } else {
-            $environment_type = 'production';
-        }
-        $system_info .= '<tr><td>Environment type</td><td>' . esc_html($environment_type) . '</td></tr>';
-
-        $user_count = count_users();
-        $total_users = $user_count['total_users'];
-        $system_info .= '<tr><td>User Count</td><td>' . esc_html($total_users) . '</td></tr>';
-
-        $system_info .= '<tr><td>Communication with WordPress.org</td><td>' . (get_option('blog_publicize') ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-
-        // info about active theme
-        $active_theme = wp_get_theme();
-
-        $system_info .= '<h2><button id="show-active-info-button" class="info-button">Active Theme<span class="dashicons dashicons-arrow-down"></span></h2>';
-        $system_info .= '<div id="active-info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>Active Theme</h3>';
-        $system_info .= '<table>';
-        $system_info .= '<tr><td>Name</td><td>' . $active_theme->get('Name') . '</td></tr>';
-        $system_info .= '<tr><td>Version</td><td>' . $active_theme->get('Version') . '</td></tr>';
-        $system_info .= '<tr><td>Author</td><td>' . $active_theme->get('Author') . '</td></tr>';
-        $system_info .= '<tr><td>Author website</td><td>' . $active_theme->get('AuthorURI') . '</td></tr>';
-        $system_info .= '<tr><td>Theme directory location</td><td>' . $active_theme->get_template_directory() . '</td></tr>';
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-
-        // Get a list of other plugins you want to check compatibility with
-        $other_plugins = array(
-            'plugin-folder/plugin-file.php', // Replace with the actual plugin slug
-            // Add more plugins as needed
+        /*  Add the action link to the plugin page with green color styling */
+        $links['go_pro'] = sprintf(
+            '<a href="%s" target="_blank" class="gsheetconnector-pro-link" style="color: green;">%s</a>',
+            esc_url('https://www.gsheetconnector.com/forminator-forms-google-sheet-connector-pro'),
+            $go_pro_text
         );
 
-        // Network Active Plugins
-        if (is_multisite()) {
-            $network_active_plugins = get_site_option('active_sitewide_plugins', array());
-            if (!empty($network_active_plugins)) {
-                $system_info .= '<h2><button id="show-netplug-info-button" class="info-button">Network Active plugins<span class="dashicons dashicons-arrow-down"></span></h2>';
-                $system_info .= '<div id="netplug-info-container" class="info-content" style="display:none;">';
-                $system_info .= '<h3>Network Active plugins</h3>';
-                $system_info .= '<table>';
-                foreach ($network_active_plugins as $plugin => $plugin_data) {
-                    $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $plugin);
-                    $system_info .= '<tr><td>' . $plugin_data['Name'] . '</td><td>' . $plugin_data['Version'] . '</td></tr>';
-                }
-                // Add more network active plugin statuses here...
-                $system_info .= '</table>';
-                $system_info .= '</div>';
-            }
-        }
-        // Active plugins
-        $system_info .= '<h2><button id="show-acplug-info-button" class="info-button">Active plugins<span class="dashicons dashicons-arrow-down"></span></h2>';
-        $system_info .= '<div id="acplug-info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>Active plugins</h3>';
-        $system_info .= '<table>';
-
-        // Retrieve all active plugins data
-        $active_plugins_data = array();
-        $active_plugins = get_option('active_plugins', array());
-        foreach ($active_plugins as $plugin) {
-            $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $plugin);
-            $active_plugins_data[$plugin] = array(
-                'name' => $plugin_data['Name'],
-                'version' => $plugin_data['Version'],
-                'count' => 0, // Initialize the count to zero
-            );
-        }
-
-        // Count the number of active installations for each plugin
-        $all_plugins = get_plugins();
-        foreach ($all_plugins as $plugin_file => $plugin_data) {
-            if (array_key_exists($plugin_file, $active_plugins_data)) {
-                $active_plugins_data[$plugin_file]['count']++;
-            }
-        }
-
-        // Sort plugins based on the number of active installations (descending order)
-        uasort($active_plugins_data, function ($a, $b) {
-            return $b['count'] - $a['count'];
-        });
-
-        // Display the top 5 most used plugins
-        $counter = 0;
-        foreach ($active_plugins_data as $plugin_data) {
-            $system_info .= '<tr><td>' . $plugin_data['name'] . '</td><td>' . $plugin_data['version'] . '</td></tr>';
-            // $counter++;
-            // if ($counter >= 5) {
-            //     break;
-            // }
-        }
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-        // Webserver Configuration
-        $system_info .= '<h2><button id="show-server-info-button" class="info-button">Server<span class="dashicons dashicons-arrow-down"></span></h2>';
-        $system_info .= '<div id="server-info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>Server</h3>';
-        $system_info .= '<table>';
-        $system_info .= '<p>The options shown below relate to your server setup. If changes are required, you may need your web host’s assistance.</p>';
-        // Add Server information
-        $system_info .= '<tr><td>Server Architecture</td><td>' . esc_html(php_uname('s')) . '</td></tr>';
-
-        // $system_info .= '<tr><td>Web Server</td><td>' . esc_html($_SERVER['SERVER_SOFTWARE']) . '</td></tr>';
-        $server_software = '';
-        if (isset($_SERVER['SERVER_SOFTWARE'])) {
-            $server_software = sanitize_text_field(wp_unslash($_SERVER['SERVER_SOFTWARE']));
-        }
-
-        $system_info .= '<tr><td>Web Server</td><td>' . esc_html($server_software) . '</td></tr>';
-
-        $system_info .= '<tr><td>PHP Version</td><td>' . esc_html(phpversion()) . '</td></tr>';
-        $system_info .= '<tr><td>PHP SAPI</td><td>' . esc_html(php_sapi_name()) . '</td></tr>';
-        $system_info .= '<tr><td>PHP Max Input Variables</td><td>' . esc_html(ini_get('max_input_vars')) . '</td></tr>';
-        $system_info .= '<tr><td>PHP Time Limit</td><td>' . esc_html(ini_get('max_execution_time')) . ' seconds</td></tr>';
-        $system_info .= '<tr><td>PHP Memory Limit</td><td>' . esc_html(ini_get('memory_limit')) . '</td></tr>';
-        $system_info .= '<tr><td>Max Input Time</td><td>' . esc_html(ini_get('max_input_time')) . ' seconds</td></tr>';
-        $system_info .= '<tr><td>Upload Max Filesize</td><td>' . esc_html(ini_get('upload_max_filesize')) . '</td></tr>';
-        $system_info .= '<tr><td>PHP Post Max Size</td><td>' . esc_html(ini_get('post_max_size')) . '</td></tr>';
-        $system_info .= '<tr><td>cURL Version</td><td>' . esc_html(curl_version()['version']) . '</td></tr>';
-        $system_info .= '<tr><td>Is SUHOSIN Installed?</td><td>' . (extension_loaded('suhosin') ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>Is the Imagick Library Available?</td><td>' . (extension_loaded('imagick') ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>Are Pretty Permalinks Supported?</td><td>' . (get_option('permalink_structure') ? 'Yes' : 'No') . '</td></tr>';
-
-        global $wp_filesystem;
-
-        if (empty($wp_filesystem)) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-            WP_Filesystem();
-        }
-
-        $htaccess_path = ABSPATH . '.htaccess';
-
-        $is_writable = $wp_filesystem->exists($htaccess_path) && $wp_filesystem->is_writable($htaccess_path);
-
-        $system_info .= '<tr><td>.htaccess Rules</td><td>' . esc_html($is_writable ? 'Writable' : 'Non Writable') . '</td></tr>';
-
-        // $system_info .= '<tr><td>.htaccess Rules</td><td>' . esc_html(is_writable('.htaccess') ? 'Writable' : 'Non Writable') . '</td></tr>';
-
-        $system_info .= '<tr><td>Current Time</td><td>' . esc_html(current_time('mysql')) . '</td></tr>';
-        $system_info .= '<tr><td>Current UTC Time</td><td>' . esc_html(current_time('mysql', true)) . '</td></tr>';
-        $system_info .= '<tr><td>Current Server Time</td><td>' . esc_html(gmdate('Y-m-d H:i:s')) . '</td></tr>';
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-
-        // Database Configuration
-        $system_info .= '<h2><button id="show-database-info-button" class="info-button">Database<span class="dashicons dashicons-arrow-down"></span></h2>';
-        $system_info .= '<div id="database-info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>Database</h3>';
-        $system_info .= '<table>';
-        $database_extension = 'mysqli';
-        $database_server_version = $wpdb->db_server_info();
-        $database_client_version = $wpdb->db_version();
-        $database_username = DB_USER;
-        $database_host = DB_HOST;
-        $database_name = DB_NAME;
-        $table_prefix = $wpdb->prefix;
-        $database_charset = $wpdb->charset;
-        $database_collation = $wpdb->collate;
-        $max_allowed_packet_size = $wpdb->get_var("SHOW VARIABLES LIKE 'max_allowed_packet'");
-        $max_connections_number = $wpdb->get_var("SHOW VARIABLES LIKE 'max_connections'");
-
-        $system_info .= '<tr><td>Extension</td><td>' . esc_html($database_extension) . '</td></tr>';
-        $system_info .= '<tr><td>Server Version</td><td>' . esc_html($database_server_version) . '</td></tr>';
-        $system_info .= '<tr><td>Client Version</td><td>' . esc_html($database_client_version) . '</td></tr>';
-        $system_info .= '<tr><td>Database Username</td><td>' . esc_html($database_username) . '</td></tr>';
-        $system_info .= '<tr><td>Database Host</td><td>' . esc_html($database_host) . '</td></tr>';
-        $system_info .= '<tr><td>Database Name</td><td>' . esc_html($database_name) . '</td></tr>';
-        $system_info .= '<tr><td>Table Prefix</td><td>' . esc_html($table_prefix) . '</td></tr>';
-        $system_info .= '<tr><td>Database Charset</td><td>' . esc_html($database_charset) . '</td></tr>';
-        $system_info .= '<tr><td>Database Collation</td><td>' . esc_html($database_collation) . '</td></tr>';
-        $system_info .= '<tr><td>Max Allowed Packet Size</td><td>' . esc_html($max_allowed_packet_size) . '</td></tr>';
-        $system_info .= '<tr><td>Max Connections Number</td><td>' . esc_html($max_connections_number) . '</td></tr>';
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-
-        // wordpress constants
-        $system_info .= '<h2><button id="show-wrcons-info-button" class="info-button">WordPress Constants<span class="dashicons dashicons-arrow-down"></span></h2>';
-        $system_info .= '<div id="wrcons-info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>WordPress Constants</h3>';
-        $system_info .= '<table>';
-        // Add WordPress Constants information
-        $system_info .= '<tr><td>ABSPATH</td><td>' . esc_html(ABSPATH) . '</td></tr>';
-        $system_info .= '<tr><td>WP_HOME</td><td>' . esc_html(home_url()) . '</td></tr>';
-        $system_info .= '<tr><td>WP_SITEURL</td><td>' . esc_html(site_url()) . '</td></tr>';
-        $system_info .= '<tr><td>WP_CONTENT_DIR</td><td>' . esc_html(WP_CONTENT_DIR) . '</td></tr>';
-        $system_info .= '<tr><td>WP_PLUGIN_DIR</td><td>' . esc_html(WP_PLUGIN_DIR) . '</td></tr>';
-        $system_info .= '<tr><td>WP_MEMORY_LIMIT</td><td>' . esc_html(WP_MEMORY_LIMIT) . '</td></tr>';
-        $system_info .= '<tr><td>WP_MAX_MEMORY_LIMIT</td><td>' . esc_html(WP_MAX_MEMORY_LIMIT) . '</td></tr>';
-        $system_info .= '<tr><td>WP_DEBUG</td><td>' . (defined('WP_DEBUG') && WP_DEBUG ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>WP_DEBUG_DISPLAY</td><td>' . (defined('WP_DEBUG_DISPLAY') && WP_DEBUG_DISPLAY ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>SCRIPT_DEBUG</td><td>' . (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>WP_CACHE</td><td>' . (defined('WP_CACHE') && WP_CACHE ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>CONCATENATE_SCRIPTS</td><td>' . (defined('CONCATENATE_SCRIPTS') && CONCATENATE_SCRIPTS ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>COMPRESS_SCRIPTS</td><td>' . (defined('COMPRESS_SCRIPTS') && COMPRESS_SCRIPTS ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>COMPRESS_CSS</td><td>' . (defined('COMPRESS_CSS') && COMPRESS_CSS ? 'Yes' : 'No') . '</td></tr>';
-        // Manually define the environment type (example values: 'development', 'staging', 'production')
-        $environment_type = 'development';
-
-        // Display the environment type
-        $system_info .= '<tr><td>WP_ENVIRONMENT_TYPE</td><td>' . esc_html($environment_type) . '</td></tr>';
-
-        $system_info .= '<tr><td>WP_DEVELOPMENT_MODE</td><td>' . (defined('WP_DEVELOPMENT_MODE') && WP_DEVELOPMENT_MODE ? 'Yes' : 'No') . '</td></tr>';
-        $system_info .= '<tr><td>DB_CHARSET</td><td>' . esc_html(DB_CHARSET) . '</td></tr>';
-        $system_info .= '<tr><td>DB_COLLATE</td><td>' . esc_html(DB_COLLATE) . '</td></tr>';
-
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-
-        // Filesystem Permission
-        $system_info .= '<h2><button id="show-ftps-info-button" class="info-button">Filesystem Permission <span class="dashicons dashicons-arrow-down"></span></button></h2>';
-        $system_info .= '<div id="ftps-info-container" class="info-content" style="display:none;">';
-        $system_info .= '<h3>Filesystem Permission</h3>';
-        $system_info .= '<p>Shows whether WordPress is able to write to the directories it needs access to.</p>';
-        $system_info .= '<table>';
-        // Filesystem Permission information.
-        global $wp_filesystem;
-
-        if (empty($wp_filesystem)) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-            WP_Filesystem();
-        }
-
-        // Define the paths
-        $paths = array(
-            'The main WordPress directory' => ABSPATH,
-            'The wp-content directory' => WP_CONTENT_DIR,
-            'The uploads directory' => wp_upload_dir()['basedir'],
-            'The plugins directory' => WP_PLUGIN_DIR,
-            'The themes directory' => get_theme_root(),
-        );
-
-        // Loop through and check writability using WP_Filesystem
-        foreach ($paths as $label => $path) {
-            $writable = $wp_filesystem->exists($path) && $wp_filesystem->is_writable($path);
-            $system_info .= '<tr><td>' . esc_html($label) . '</td><td>' . esc_html($path) . '</td><td>' . esc_html($writable ? 'Writable' : 'Not Writable') . '</td></tr>';
-        }
-
-
-        $system_info .= '</table>';
-        $system_info .= '</div>';
-
-        return $system_info;
+        return $links;
     }
 
     /**
-     * Displays the last 100 lines from the debug log file in reversed order.
-     *
-     * @access public
-     * @since 1.0.15
-     */
+* Plugin row meta.
+*
+* Adds row meta links to the plugin list table
+*/
+public function plugin_row_meta($plugin_meta, $plugin_file)
+{
+  if (GS_FORMNTR_BASE_NAME === $plugin_file) {
+   $row_meta = [
+    'docs' => '<a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector" target="_blank" aria-label="' . esc_attr(esc_html__('View Documentation', 'gsheetconnector-forminator')) . '" target="_blank">' . esc_html__('Docs', 'gsheetconnector-forminator') . '</a>',
+    'ideo' => '<a href="https://wordpress.org/support/plugin/gsheetconnector-forminator/" aria-label="' . esc_attr(esc_html__('Get Support', 'gsheetconnector-forminator')) . '" target="_blank">' . esc_html__('Support', 'gsheetconnector-forminator') . '</a>',
+  ];
 
-    public function display_error_log()
-    {
-        // Define the path to your debug log file
-        $debug_log_file = WP_CONTENT_DIR . '/debug.log';
+  $plugin_meta = array_merge($plugin_meta, $row_meta);
+}
 
-        // Check if the debug log file exists
-        if (file_exists($debug_log_file)) {
-            // Read the contents of the debug log file
-            $debug_log_contents = file_get_contents($debug_log_file);
-
-            // Split the log content into an array of lines
-            $log_lines = explode("\n", $debug_log_contents);
-
-            // Get the last 100 lines in reversed order
-            $last_100_lines = array_slice(array_reverse($log_lines), 0, 100);
-
-            // Join the lines back together with line breaks
-            $last_100_log = implode("\n", $last_100_lines);
-
-            // Output the last 100 lines in reversed order in a textarea
-            ?>
-            <textarea class="errorlog" rows="20" cols="80"><?php echo esc_textarea($last_100_log); ?></textarea>
-            <?php
-        } else {
-            echo 'Debug log file not found.';
-        }
-    }
+return $plugin_meta;
+}
 }
 // Initialize the google sheet connector class
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $init = new GS_FORMNTR_Init();

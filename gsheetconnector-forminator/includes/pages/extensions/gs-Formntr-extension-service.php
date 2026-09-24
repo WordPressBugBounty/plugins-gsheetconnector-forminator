@@ -33,7 +33,7 @@ class GS_Formntr_Extensions
         add_action('wp_ajax_gs_ff_activate_plugin', array($this, 'gs_ff_activate_plugin'));
 
         // Deactivate Forminator Forms plugin
-        add_action('wp_ajax_gs_ff_deactivate_plugin', array($this, 'gs_ff_deactivate_plugin'));
+        add_action('wp_ajax_formntr_deactivate_plugin', array($this, 'formntr_deactivate_plugin'));
     }
 
     /**
@@ -42,7 +42,7 @@ class GS_Formntr_Extensions
      * @since 1.0.15
      */
 
-    function gs_ff_deactivate_plugin()
+    function formntr_deactivate_plugin()
     {
         // nonce check
         check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
@@ -85,31 +85,48 @@ class GS_Formntr_Extensions
 
     function gs_ff_install_plugin()
     {
-        check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
-        if (!isset($_POST['plugin_slug'], $_POST['download_url'])) {
-            wp_send_json_error(['message' => 'Missing required parameters.']);
+        /* Nonce verify */
+        if (! check_ajax_referer('frmntr-gs-ajax-nonce', 'security', false)) {
+            wp_send_json_error([
+                'message' => __('Invalid security token', 'gsheetconnector-forminator')
+            ]);
         }
 
-        $plugin_slug = sanitize_text_field(wp_unslash($_POST['plugin_slug']));
-        $download_url = isset($_POST['download_url']) ? sanitize_text_field(wp_unslash($_POST['download_url'])) : '';
+        /* Permission check */
+        if (! current_user_can('install_plugins')) {
+            wp_send_json_error([
+                'message' => __('You do not have permission to install plugin', 'gsheetconnector-forminator')
+            ]);
+        }
 
+        if (empty($_POST['plugin_slug']) || empty($_POST['download_url'])) {
+            wp_send_json_error([
+                'message' => __('Missing required parameters', 'gsheetconnector-forminator')
+            ]);
+        }
+
+        $plugin_slug  = sanitize_text_field(wp_unslash($_POST['plugin_slug']));
+        $download_url = esc_url_raw(wp_unslash($_POST['download_url']));
 
         if (empty($plugin_slug) || empty($download_url)) {
-            wp_send_json_error(['message' => 'Invalid plugin data.']);
+            wp_send_json_error([
+                'message' => __('Invalid plugin data', 'gsheetconnector-forminator')
+            ]);
         }
 
-        include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-        include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-        include_once ABSPATH . 'wp-admin/includes/file.php';
-        include_once ABSPATH . 'wp-admin/includes/update.php';
+        /*  Required files */
+        require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+        require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/update.php';
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
         $upgrader = new Plugin_Upgrader(new WP_Ajax_Upgrader_Skin());
 
-        // Get the list of installed plugins
         $installed_plugins = get_plugins();
         $plugin_path = '';
 
-        // Find the correct plugin file path
+        /* Find installed plugin */
         foreach ($installed_plugins as $path => $details) {
             if (strpos($path, $plugin_slug . '/') === 0) {
                 $plugin_path = $path;
@@ -117,33 +134,49 @@ class GS_Formntr_Extensions
             }
         }
 
-        // Check if the plugin is already installed
+        /* ==============================
+           If Installed → Upgrade
+         ============================== */
         if ($plugin_path) {
-            // Plugin is installed, check for updates
+
             $update_plugins = get_site_transient('update_plugins');
 
             if (isset($update_plugins->response[$plugin_path])) {
-                // Upgrade the plugin
+
                 $result = $upgrader->upgrade($plugin_path);
 
                 if (is_wp_error($result)) {
-                    wp_send_json_error(['message' => 'Upgrade failed: ' . $result->get_error_message()]);
+                    wp_send_json_error([
+                        'message' => __('Upgrade failed: ', 'gsheetconnector-forminator') . $result->get_error_message()
+                    ]);
                 }
 
-                wp_send_json_success(['message' => 'Plugin upgraded successfully.']);
+                wp_send_json_success([
+                    'message' => __('Plugin upgraded successfully', 'gsheetconnector-forminator')
+                ]);
             } else {
-                wp_send_json_error(['message' => 'No updates available for this plugin.']);
-            }
-        } else {
-            // Plugin is NOT installed, install it
-            $result = $upgrader->install($download_url);
 
-            if (is_wp_error($result)) {
-                wp_send_json_error(['message' => 'Installation failed: ' . $result->get_error_message()]);
+                wp_send_json_success([
+                    'message' => __('Plugin already installed and up to date', 'gsheetconnector-forminator')
+                ]);
             }
-
-            wp_send_json_success();
         }
+
+        /*
+         ==============================
+         Not Installed → Install
+         ============================== */
+        $result = $upgrader->install($download_url);
+
+        if (is_wp_error($result)) {
+            wp_send_json_error([
+                'message' => __('Installation failed: ', 'gsheetconnector-forminator') . $result->get_error_message()
+            ]);
+        }
+
+        wp_send_json_success([
+            'message' => __('Plugin installed successfully', 'gsheetconnector-forminator')
+        ]);
     }
 
     /**
@@ -155,31 +188,53 @@ class GS_Formntr_Extensions
 
     function gs_ff_activate_plugin()
     {
-        check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
-
-        if (!current_user_can('activate_plugins')) {
-            wp_send_json_error(['message' => 'Permission denied.']);
+        /*  Verify nonce */
+        if (! check_ajax_referer('frmntr-gs-ajax-nonce', 'security', false)) {
+            wp_send_json_error(array(
+                'message' => __('Invalid security token', 'gsheetconnector-forminator')
+            ));
         }
 
-        if (!isset($_POST['plugin_slug'])) {
-            wp_send_json_error(['message' => 'Missing plugin slug.']);
+        /*  Permission check */
+        if (! current_user_can('activate_plugins')) {
+            wp_send_json_error(array(
+                'message' => __('You do not have permission to activate plugin', 'gsheetconnector-forminator')
+            ));
+        }
+
+        /*  Check plugin slug */
+        if (empty($_POST['plugin_slug'])) {
+            wp_send_json_error(array(
+                'message' => __('Plugin slug is missing', 'gsheetconnector-forminator')
+            ));
         }
 
         $plugin_slug = sanitize_text_field(wp_unslash($_POST['plugin_slug']));
 
-        include_once ABSPATH . 'wp-admin/includes/plugin.php';
-        // Check if plugin file exists
-        if (!file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug)) {
-            wp_send_json_error(['message' => 'Plugin file not found: ' . WP_PLUGIN_DIR . '/' . $plugin_slug]);
+        /*  Load required file */
+        if (! function_exists('activate_plugin')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
 
-        $activated = activate_plugin($plugin_slug);
-
-        if (is_wp_error($activated)) {
-            wp_send_json_error(['message' => $activated->get_error_message()]);
+        /* Check if already active */
+        if (is_plugin_active($plugin_slug)) {
+            wp_send_json_success(array(
+                'message' => __('Plugin is already activated', 'gsheetconnector-forminator')
+            ));
         }
 
-        wp_send_json_success();
+        /* Activate plugin */
+        $result = activate_plugin($plugin_slug);
+
+        if (is_wp_error($result)) {
+            wp_send_json_error(array(
+                'message' => $result->get_error_message()
+            ));
+        }
+
+        wp_send_json_success(array(
+            'message' => __('Plugin activated successfully', 'gsheetconnector-forminator')
+        ));
     }
 }
-$GS_Formntr_Extensions = new GS_Formntr_Extensions();
+$GS_Formntr_Extensions = new GS_Formntr_Extensions(); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

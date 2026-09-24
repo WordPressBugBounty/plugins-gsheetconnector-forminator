@@ -8,8 +8,7 @@
 if (!defined('ABSPATH')) {
     exit();
 }
-//add_action('wp_ajax_delete_feed_forminator', 'delete_feed_forminator');
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $forms = Forminator_API::get_forms();
 $form_id = '';
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -60,10 +59,9 @@ $feeds = $service_obj->get_feed_details();
                     <?php
                     if (!empty($feeds)) {
                         foreach ($feeds as  $key => $feed) {
-                            $meta_value = unserialize($feed['meta_value']);
-                            $feed_name = $meta_value['feed_name'];
-                            $form_id = $feed['post_id'];
-                            $feed_id = $feed['meta_id'];
+                            $feed_name = $feed['feed_name'];
+                            $form_id = $feed['form_id'];
+                            $feed_id = $feed['id'];
                     ?>
                             <tr>
                                 <td><?php echo esc_html($key + 1); ?></td>

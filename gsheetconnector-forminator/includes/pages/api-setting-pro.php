@@ -1,3 +1,10 @@
+<?php 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+?>
+
 <div class="card-wp">
     <div class="gs_formntr_in_fields">
         <h2><span class="title1"><?php echo esc_html__(' Google - ', 'gsheetconnector-forminator'); ?></span><span class="title"><?php echo esc_html__('  API Settings', 'gsheetconnector-forminator'); ?></span></h2>
@@ -27,9 +34,10 @@
                 </div>
                
                 <?php
-                $gsformntr_auth_url = GSC_FORMNTR_googlesheet::getClient_auth();
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+                $gs_formntr_auth_url = GSC_FORMNTR_googlesheet::getClient_auth();
                 ?>
-                <a href="<?php echo esc_url_raw($gsformntr_auth_url); ?>" id="authlink_gsformntr" target="_blank">
+                <a href="<?php echo esc_url_raw($gs_formntr_auth_url); ?>" id="authlink_gsformntr" target="_blank">
                     <div class="gsformntr-button gsformntr-button-secondary"><?php echo esc_html__("Click here to generate an Authentication Token", 'gsheetconnector-forminator'); ?>
                     </div>
                 </a>

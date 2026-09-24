@@ -95,6 +95,9 @@ class GS_FORMNTR_Service
             }
 
 
+          
+
+
             foreach ($field_data_array as $key => $value) {
 
                 $field_value = "";
@@ -287,82 +290,62 @@ class GS_FORMNTR_Service
                 $data['Subject'] = implode(' | ', $subject_parts);
             }
 
-            // Replace 'meta_key_name' with the actual name of the meta key you want to retrieve the meta ID for
-            $meta_key_name = 'forminator_forms_feed';
             // Get a reference to the global WordPress database object
             global $wpdb;
 
-            // Define the query to retrieve the meta values for the given post ID
-            $results = $wpdb->get_results(
-                $wpdb->prepare(
-                    "SELECT * FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key = %s",
-                    $form_id,
-                    'forminator_forms_feed'
-                ),
-                ARRAY_A
-            );
-            $feedIdsArr = array_column($results, 'meta_id');
-            if (empty($feedIdsArr)) {
+            // All feeds for this form (custom tables, with legacy postmeta fallback).
+            $feeds = GS_FORMNTR_Feed_Store::get_for_form($form_id);
+            if (empty($feeds)) {
                 return $field_data_array;
             }
-            $feedIds = implode(',', array_map('intval', $feedIdsArr));
-            // Loop through the results to extract the meta values
-            $meta_values = array();
-            foreach ($results as $result) {
-                $meta_key = $result['meta_key'];
-                $meta_value = $result['meta_value'];
-                $meta_values[$meta_key] = $meta_value;
-            }
 
-            // $query1 = $wpdb->prepare("SELECT * FROM {$wpdb->postmeta} WHERE post_id IN ($feedIds);");
-            $feeds_details = $wpdb->get_results(
+            // Submission ID - sequential entry number for this form, synced like PRO's pinned "Submission ID" field.
+            // Computed only once at least one feed exists, avoiding an unnecessary query otherwise.
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- MAX() aggregation has no core API; must read live, uncached data to correctly compute the next sequential submission ID.
+            $latest_entry_id = $wpdb->get_var(
                 $wpdb->prepare(
-                    "SELECT * FROM {$wpdb->postmeta} WHERE post_id IN ($feedIds)"
-                ),
-                ARRAY_A
+                    "SELECT MAX(entry_id) FROM {$wpdb->prefix}frmt_form_entry WHERE form_id = %d",
+                    $form_id
+                )
             );
+            $data['Submission ID'] = $latest_entry_id !== null ? $latest_entry_id + 1 : 1;
 
-            if (!empty($feeds_details)) {
-                foreach ($feeds_details as $key => $value) {
-                    $meta_value = $value['meta_value'];
-                    // Unserialize the meta value to get an array
-                    // $meta_array = unserialize($meta_value);
-                    if (is_serialized($meta_value)) {
-                        $meta_array = unserialize($meta_value);
-                    } else {
-                        $meta_array = $meta_value; // Or maybe [] if you always expect an array
-                    }
-                    // Extract the sheet name from the array
-                    $meta_array = maybe_unserialize($meta_value);
-                    $sheet_name = $meta_array['sheet_name'] ?? '';
-                    $sheet_id = $meta_array['sheet_id'] ?? '';
-                    $tab_name = $meta_array['tab_name'] ?? '';
-                    $tab_id = $meta_array['tab_id'] ?? '';
+            foreach ($feeds as $feed) {
 
-
-                    // Get the form data
-                    include_once(GS_FORMNTR_ROOT . '/lib/google-sheets.php');
-                    //$tokendata = get_option('gs_formntr_token');
-                    $doc = new FORMI_GSC_googlesheet();
-                    $doc->auth();
-                    $doc->setSpreadsheetId($sheet_id);
-                    $doc->setWorkTabId($tab_id);
-                    // Fetch the local date and time
-                    $local_date = date_i18n(get_option('date_format'));
-                    $local_time = date_i18n(get_option('time_format'));
-
-                    // Check if the user has manually added a header for date and time
-                    $manual_date_header = isset($meta_values['date_header']) ? $meta_values['date_header'] : 'date';
-                    $manual_time_header = isset($meta_values['time_header']) ? $meta_values['time_header'] : 'time';
-
-                    // Pass the date and time to the data array using the headers
-                    $data[$manual_date_header] = $local_date;
-                    $data[$manual_time_header] = $local_time;
-                   
-
-                    // Add the row to Google Sheets
-                    $doc->add_row($data, $field_data_array);
+                // Skip feeds that have been disabled.
+                if ((int) $feed['status'] === 0) {
+                    continue;
                 }
+
+                $feed_details = is_array($feed['data']) ? $feed['data'] : array();
+                $sheet_id = isset($feed_details['sheet_id']) ? $feed_details['sheet_id'] : '';
+                $tab_id   = isset($feed_details['tab_id']) ? $feed_details['tab_id'] : '';
+
+                if ($sheet_id === '' || $tab_id === '') {
+                    continue;
+                }
+
+                // Get the form data
+                include_once(GS_FORMNTR_ROOT . '/lib/google-sheets.php');
+                $doc = new FORMI_GSC_googlesheet();
+                $doc->auth();
+                $doc->setSpreadsheetId($sheet_id);
+                $doc->setWorkTabId($tab_id);
+
+                // Fetch the local date and time
+                $local_date = date_i18n(get_option('date_format'));
+                $local_time = date_i18n(get_option('time_format'));
+
+                // Check if the user has manually added a header for date and time
+                $manual_date_header = isset($feed_details['date_header']) ? $feed_details['date_header'] : 'date';
+                $manual_time_header = isset($feed_details['time_header']) ? $feed_details['time_header'] : 'time';
+
+                // Pass the date and time to the data array using the headers
+                $data[$manual_date_header] = $local_date;
+                $data[$manual_time_header] = $local_time;
+
+                // Add the row to Google Sheets (add_row() also re-checks the feed status).
+                $doc->add_row($data, $field_data_array, isset($feed['status']) ? (int) $feed['status'] : 1);
             }
             return $field_data_array;
         } catch (Exception $e) {
@@ -389,8 +372,7 @@ class GS_FORMNTR_Service
 
 
             if ($feedId) {
-                $deleted = delete_metadata('post', $feedId, 'forminator_forms_feed_details');
-                $deleted1 = delete_metadata_by_mid('post', $feedId);
+                $deleted1 = GS_FORMNTR_Feed_Store::delete($feedId);
 
                 if ($deleted1) {
                     echo 'success';
@@ -439,6 +421,10 @@ class GS_FORMNTR_Service
         try {
 
             if (isset($_POST['execute-edit-feed-forminator'])) {
+
+
+
+             
                 // nonce check
                 if (
                     !isset($_POST['frmntr-form-gs-ajax-nonce']) ||
@@ -468,25 +454,13 @@ class GS_FORMNTR_Service
 
                 // Update the feed data in the database
                 if ($feed_id !== "" && $sheet_name !== "" && $sheet_id !== "" && $tab_name !== "" && $tab_id !== "") {
-                    $meta_key = 'forminator_forms_feed_details';
                     $meta_value = array(
                         'sheet_name' => $sheet_name,
                         'sheet_id' => $sheet_id,
                         'tab_name' => $tab_name,
                         'tab_id' => $tab_id,
                     );
-                    update_post_meta($feed_id, $meta_key, $meta_value);
-
-                    // Fetch the form field labels dynamically
-                    // $form_settings = Forminator_API::get_form($form_id);
-                    // $form = $form_settings->fields;
-
-                    // $final_header_array = [];
-                    // foreach ($form as $item) {
-                    //     if (isset($item->raw['field_label'])) {
-                    //         $final_header_array[] = $item->raw['field_label'];
-                    //     }
-                    // }
+                    GS_FORMNTR_Feed_Store::save_data($feed_id, $meta_value);
                     add_action('admin_notices', array($this, 'forminator_success_notice'));
                 }
             }
@@ -567,28 +541,12 @@ class GS_FORMNTR_Service
                 : '';
 
                 if ($form_id != "") {
-                    $meta_key = 'forminator_forms_feed';
-                    $existing_feeds = get_post_meta($form_id, $meta_key);
-                    $duplicate_found = false;
-                    if (!empty($existing_feeds)) {
-                        foreach ($existing_feeds as $feed) {
-                            if (isset($feed['feed_name']) && strtolower($feed['feed_name']) === strtolower($feed_name)) {
-                                $duplicate_found = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if ($duplicate_found) {
+                    if (GS_FORMNTR_Feed_Store::name_exists($form_id, $feed_name)) {
                         // Show error
                         add_action('admin_notices', array($this, 'forminator_feed_error_notice'));
                     } else {
                         // Insert new feed
-                        $meta_value = array(
-                            'feed_name' => $feed_name,
-                            'form_id'   => $form_id,
-                        );
-                        add_post_meta($form_id, $meta_key, $meta_value);
+                        GS_FORMNTR_Feed_Store::create($form_id, $feed_name);
                         add_action('admin_notices', array($this, 'forminator_feed_success_notice'));
                     }
                 } else {
@@ -615,22 +573,8 @@ class GS_FORMNTR_Service
     {
         $feed_data = array();
         try {
-            $form_id = isset($_GET['form_id']) ? sanitize_text_field(wp_unslash($_GET['form_id'])) : '';
-            global $wpdb;
-            $table_name = esc_sql($wpdb->prefix . 'postmeta');
-            // $query = "SELECT post_id, meta_id, meta_value FROM $table_name WHERE meta_key = 'forminator_forms_feed' AND post_id = $form_id";
-            // $feed_data = $wpdb->get_results($query, ARRAY_A);
-            $feed_data = $wpdb->get_results(
-                $wpdb->prepare(
-                    "SELECT post_id, meta_id, meta_value 
-                    FROM {$table_name} 
-                    WHERE meta_key = %s 
-                    AND post_id = %d",
-                    'forminator_forms_feed',
-                    $form_id
-                ),
-                ARRAY_A
-            );
+            $form_id = isset($_GET['form_id']) ? intval(wp_unslash($_GET['form_id'])) : 0;// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $feed_data = GS_FORMNTR_Feed_Store::get_for_form($form_id);
         } catch (Exception $e) {
             GS_FORMNTR_Free_Utility::frmgs_debug_log($e->getMessage());
         }
@@ -652,11 +596,11 @@ class GS_FORMNTR_Service
         $forms = array();
         try {
             global $wpdb;
-            $forms_table = $wpdb->prefix . 'posts';
-            $forms = $wpdb->get_results(
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching -- form list must reflect current post state (newly created/edited forms); caching risks showing a stale list.
+            $forms = $wpdb->get_results(// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $wpdb->prepare(
-                    "SELECT * FROM {$forms_table} 
-                    WHERE post_type = %s 
+                    "SELECT * FROM {$wpdb->posts}
+                    WHERE post_type = %s
                     AND (post_status = %s OR post_status = %s)",
                     'forminator_forms',
                     'publish',
@@ -676,21 +620,17 @@ class GS_FORMNTR_Service
 
     public function get_forms_connected_to_sheet()
     {
-        global $wpdb;
-        $query = $wpdb->get_results(
-            $wpdb->prepare(
-                "
-                SELECT ID, post_title, meta_value, meta_key, meta_id
-                FROM {$wpdb->prefix}posts AS p
-                JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
-                WHERE pm.meta_key = %s
-                AND p.post_type = %s
-                ",
-                'forminator_forms_feed',
-                'forminator_forms'
-            )
-        );
-        return $query;
+        $rows = array();
+        foreach (GS_FORMNTR_Feed_Store::all() as $feed) {
+            $rows[] = (object) array(
+                'form_id'    => $feed['form_id'],
+                'form_title' => get_the_title($feed['form_id']),
+                'feed_id'    => $feed['id'],
+                'feed_name'  => $feed['feed_name'],
+                'data'       => $feed['data'],
+            );
+        }
+        return $rows;
     }
 
     /**
@@ -738,6 +678,7 @@ class GS_FORMNTR_Service
     }
 }
 
-
-$gs_FORMNTR_service = new GS_FORMNTR_Service();
-$gs_FORMNTR_service->init();
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$gs_formntr_service = new GS_FORMNTR_Service();
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$gs_formntr_service->init();

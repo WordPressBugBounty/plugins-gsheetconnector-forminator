@@ -1,0 +1,853 @@
+/***Start Extra CSS***/
+#wpbody-content {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, "Helvetica Neue", sans-serif;
+  color: #4a4a4a;
+  overflow: hidden;
+  padding-bottom: 50px;
+}
+#wpcontent {
+  padding-left: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+}
+html {
+  scroll-behavior: smooth;
+}
+.gsfrm-free div,
+.gsfrm-free a,
+.gsfrm-free span,
+.gsfrm-free p,
+.gsfrm-free h1,
+.gsfrm-free h2,
+.gsfrm-free h3,
+.gsfrm-free h4,
+.gsfrm-free h5,
+.gsfrm-free h6 {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.spacer {
+  clear: both;
+}
+.gsfrm-free a {
+  text-decoration: underline;
+  color: #000;
+}
+.gsfrm-free a:active,
+.gsfrm-free a:hover {
+  color: #000;
+}
+.gsfrm-free a:focus {
+  box-shadow: unset;
+  color: #000;
+}
+.gsfrm-free ul {
+  list-style-type: none;
+}
+.gsfrm-free ul,
+.gsfrm-free li {
+  margin: 0px;
+  padding: 0px;
+}
+.gsfrm-free h1,
+.gsfrm-free h2,
+.gsfrm-free h3,
+.gsfrm-free h4,
+.gsfrm-free h5,
+.gsfrm-free h6 {
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 28px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+.gsfrm-free h2 {
+  font-size: 22px;
+}
+.gsfrm-free .heading {
+  margin: 15px 0;
+  font-size: 22px;
+  line-height: 31px;
+  color: #000;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.gsfrm-free p {
+  font-size: 15px;
+  color: var(--text-light);
+  line-height: 26px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+.gsfrm-free label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-label);
+  line-height: 1.3;
+}
+
+.gsfrm-free img {
+  max-width: 100%;
+  display: block;
+}
+.gsfrm-free .form-control {
+  width: 100%;
+  padding: 4px 10px 4px 10px !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: 0px !important;
+  font-size: 14px !important;
+  line-height: 2.30769231 !important;
+}
+.gsfrm-free select {
+  border: 1px solid #ccc;
+  padding: 7px 30px 7px 10px;
+  cursor: pointer;
+  background: #fff url(../img/arrow-down.svg) no-repeat right center;
+  background-size: 22px auto;
+  font-size: 14px;
+  line-height: 25px;
+  color: #444;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.gsfrm-free input,
+.gsfrm-free select,
+.gsfrm-free textarea {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+.gsfrm-free input[type="checkbox"]:focus,
+.gsfrm-free input[type="color"]:focus,
+.gsfrm-free input[type="date"]:focus,
+.gsfrm-free input[type="datetime-local"]:focus,
+.gsfrm-free input[type="datetime"]:focus,
+.gsfrm-free input[type="email"]:focus,
+.gsfrm-free input[type="month"]:focus,
+.gsfrm-free input[type="number"]:focus,
+.gsfrm-free input[type="password"]:focus,
+.gsfrm-free input[type="radio"]:focus,
+.gsfrm-free input[type="search"]:focus,
+.gsfrm-free input[type="tel"]:focus,
+.gsfrm-free input[type="text"]:focus,
+.gsfrm-free input[type="time"]:focus,
+.gsfrm-free input[type="url"]:focus,
+.gsfrm-free input[type="week"]:focus,
+.gsfrm-free select:focus,
+.gsfrm-free textarea:focus {
+  outline: none !important;
+  border-color: #16a34a !important;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15) !important;
+}
+.gsfrm-free .auto-select {
+  position: relative;
+  width: 100%;
+  font-size: 14px;
+  color: #444;
+  padding: 0;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.gsfrm-free .auto-select-display {
+  border: 1px solid #ccc !important;
+  line-height: 2.30769231 !important;
+  border-radius: unset !important;
+  padding: 4px 30px 4px 10px !important;
+  cursor: pointer !important;
+  max-width: 100% !important;
+  background: #fff url(../img/arrow-down.svg) no-repeat right center !important;
+  background-size: 22px auto !important;
+}
+.gsfrm-free .auto-select-display:hover {
+  color: inherit !important;
+}
+.gsfrm-free .auto-select-options {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.gsfrm-free .auto-select-options div {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.gsfrm-free .auto-select-options div:hover {
+  background: #f2f2f2;
+}
+.gsfrm-free .input-msg {
+  color: #dc3232;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+.gsfrm-free .btn {
+  box-shadow: none;
+  color: #fff !important;
+  text-decoration: none;
+  text-shadow: none;
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+  border-width: 1px !important;
+  border-style: solid !important;
+  text-align: center;
+  padding: 8px 16px !important;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 5px;
+}
+.gsfrm-free .btn-primary {
+  background-color: var(--primary);
+  color: var(--text-white);
+  border: 1px solid var(--primary);
+}
+.gsfrm-free .deactivate-btn {
+  background: var(--bg-deactivate);
+  color: var(--btn-deactive-text-normal) !important;
+  border: 1px solid var(--bg-deactivate);
+}
+.gsfrm-free .btn-reset {
+  background-color: #000 !important;
+  color: var(--text-white);
+}
+.gsfrm-free .btn-reset:hover {
+  color: var(--text-white) !important;
+}
+.gsfrm-free .loading {
+  background-image: url(../img/ajax-loader.gif);
+  background-position: 50% 80%;
+  background-repeat: no-repeat;
+  width: 14px;
+  display: inline-block;
+  height: 14px;
+}
+.gsfrm-free .common-disable:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+.gsfrm-free .common-disable:disabled {
+  box-shadow: none;
+  color: #fff !important;
+  text-decoration: none;
+  text-shadow: none;
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+  border-width: 1px !important;
+  border-style: solid !important;
+  text-align: center;
+  padding: 8px 16px !important;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 5px;
+}
+/*Start pop up to Display Message*/
+.gsfrm-free .frmntr-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 99999;
+  overflow-y: auto;
+}
+.gsfrm-free .gsc-modal-icon {
+  width: 60px;
+  height: 60px;
+  background: #fff3cd;
+  color: #d97706;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+.gsfrm-free .frmntr-popup {
+  background: #fff;
+  padding: 32px 28px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  animation: modalFade 0.3s ease forwards;
+}
+.gsfrm-free .gsc-modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+.gsfrm-free .gsc-modal-text {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 26px;
+}
+.gsfrm-free .popup-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+.gsfrm-free .popup-actions .button {
+  margin-left: 10px;
+}
+.gsfrm-free .free-to-pro-data .gsc-modal-text {
+  margin-bottom: 12px;
+}
+/*End pop up to Display Message*/
+#gfgs-code,
+#frmntr-client-token {
+  cursor: not-allowed !important;
+  pointer-events: none;
+  caret-color: transparent;
+}
+.gsfrm-free .disable-cursor {
+  cursor: not-allowed !important;
+  pointer-events: none;
+  caret-color: transparent;
+}
+
+/***Start NOTICE SLIDER****/
+.gsfrm-free .notification-gsc-notice-slider {
+  position: relative;
+  width: 100%;
+  margin: 15px 0;
+}
+/* Track */
+.gsfrm-free .notification-gsc-slider-track {
+  position: relative;
+}
+/* Slides */
+.gsfrm-free .notification-gsc-slide {
+  display: none;
+  width: 100%;
+}
+/* Active slide */
+.gsfrm-free .notification-gsc-slide.active {
+  display: block;
+  animation: fadeSlide 0.4s ease;
+}
+/* Fade animation */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/*RIGHT ARROWS*/
+.gsfrm-free .notification-gsc-slider-arrows {
+  position: absolute;
+  right: 90px;
+  top: 62%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 6px;
+}
+/* Arrow buttons */
+.gsfrm-free .notification-gsc-slider-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #111827;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.gsfrm-free .notification-gsc-slider-btn:hover {
+  background: #16233f;
+  border-color: #9ca3af;
+}
+/***Start NOTICE SLIDER****/
+
+/*Start Activate pro Plugin Message*/
+/* Activation Banner */
+.gsfrm-free .gsc-activate-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(90deg, #eff6ff, #ffffff);
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid #3b82f6;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 15px 15px;
+  position: relative;
+}
+/* Icon */
+.gsfrm-free .gsc-activate-icon {
+  color: #2563eb;
+}
+/* Content */
+.gsfrm-free .gsc-activate-content {
+  flex: 1;
+}
+.gsfrm-free .gsc-activate-content .gsc-activate-content-header {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e3a8a;
+  line-height: normal;
+}
+.gsfrm-free .gsc-activate-content p {
+  margin: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+/* Actions */
+.gsfrm-free .gsc-activate-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+/* Activate Button */
+.gsfrm-free .gsc-btn-activate {
+  background: #2563eb;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.gsfrm-free .gsc-btn-activate:hover {
+  background: #1d4ed8;
+}
+/* Skip Button */
+.gsfrm-free .gsc-btn-skip {
+  background: transparent;
+  border: none;
+  color: #374151;
+  font-size: 13px;
+  cursor: pointer;
+}
+.gsfrm-free .gsc-btn-skip:hover {
+  text-decoration: underline;
+}
+/* Close */
+.gsfrm-free .gsc-activate-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-size: 14px;
+  cursor: pointer;
+}
+.gsfrm-free .gsc-activate-close:hover {
+  color: #111827;
+}
+/*End Activate pro Plugin Message*/
+/*Start Upgrade to pro message*/
+.gsfrm-free .gsc-upgrade-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(90deg, #ecfdf5, #ffffff);
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 14px 18px;
+  position: relative;
+  margin: 15px 15px;
+}
+/* Icon */
+.gsfrm-free .gsc-upgrade-icon {
+  font-size: 28px;
+}
+/* Content */
+.gsfrm-free .gsc-upgrade-content {
+  flex: 1;
+}
+.gsfrm-free .gsc-upgrade-content .gsc-upgrade-heading {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #065f46;
+  line-height: normal;
+}
+.gsfrm-free .gsc-upgrade-content p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+/* Buttons */
+.gsfrm-free .gsc-upgrade-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.gsfrm-free .gsc-btn-upgrade {
+  background: #199436;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.gsfrm-free .gsc-btn-upgrade:hover {
+  background: #15803d;
+}
+.gsfrm-free .gsc-btn-later {
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+}
+.gsfrm-free .gsc-btn-later:hover {
+  text-decoration: underline;
+}
+/* Dismiss Button */
+.gsfrm-free .gsc-dismiss-btn {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+/* Hover */
+.gsfrm-free .gsc-dismiss-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+/* Focus */
+.gsfrm-free .gsc-dismiss-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.25);
+}
+/* Active */
+.gsfrm-free .gsc-dismiss-btn:active {
+  background: #e5e7eb;
+}
+/* Close Button */
+.gsfrm-free .gsc-upgrade-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: #6b7280;
+  cursor: pointer;
+}
+.gsfrm-free .gsc-upgrade-close:hover {
+  color: #111827;
+}
+/*End Upgrade to pro message*/
+/*Start Advertisement Slide Message*/
+.gsfrm-free .gsc-ad-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(90deg, #f8fafc, #ffffff);
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #199436;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 15px;
+  position: relative;
+}
+/* Left Logo */
+.gsfrm-free .gsc-ad-left {
+  flex-shrink: 0;
+}
+.gsfrm-free .gsc-ad-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+/* Content */
+.gsfrm-free .gsc-ad-content {
+  flex: 1;
+}
+.gsfrm-free .gsc-ad-content .gsc-ad-content-header {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #065f46;
+  line-height: normal;
+}
+.gsfrm-free .gsc-ad-content p {
+  margin: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+/* Button */
+.gsfrm-free .gsc-ad-actions {
+  display: flex;
+  align-items: center;
+}
+.gsfrm-free .gsc-btn-ad {
+  background: #199436;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.gsfrm-free .gsc-btn-ad:hover {
+  background: #15803d;
+}
+/*End Advertisement Slide Message*/
+
+/*Start Copy Message Display*/
+.gsfrm-free .position-relative-copy {
+  position: relative;
+}
+.gsfrm-free .gsc-copy-msg {
+  position: fixed;
+  bottom: 48px;
+  left: 175px;
+  background: #fff;
+  z-index: 9999;
+  color: #0c63e4;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600 !important;
+  border-left: 4px solid #0c63e4;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+/*End Copy Message Display*/
+
+/*Start Integration Debug LOG */
+.gsfrm-free .gsc-error-details {
+  position: relative;
+}
+.gsfrm-free .more-error-display {
+  max-height: 75px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.gsfrm-free .more-error-toggle {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #0073aa;
+  cursor: pointer;
+}
+.gsfrm-free .more-error-display {
+  line-height: 15px; /* 5 lines = 75px */
+  max-height: 75px; /* 5 lines */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.gsfrm-free .error-log-main {
+  max-width: 100%;
+}
+.gsfrm-free .debug-log-div {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.gsfrm-free .error-log-table tbody {
+  display: block;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.gsfrm-free .error-log-table thead,
+.gsfrm-free .error-log-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.gsfrm-free .error-log-table th,
+.gsfrm-free .error-log-table td {
+  word-break: break-word;
+}
+.gsfrm-free .error-log-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gsfrm-free .debug-logon,
+.gsfrm-free .debug-logoff {
+  width: 18px;
+  height: 18px;
+  background: url(../img/arrow.svg) no-repeat left top;
+  background-size: 18px;
+  display: inline-block;
+  font-size: 0px;
+  text-decoration: none;
+  position: relative;
+  top: -5px;
+  left: 10px;
+}
+.gsfrm-free .debug-logon {
+  rotate: 180deg;
+}
+.gsfrm-free .gsc-log-badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.gsfrm-free .button-primary {
+  background-color: #199436 !important;
+  border-color: #199436 !important;
+}
+.gsfrm-free .btn-logs {
+  border-color: #d1d5db !important;
+  background-color: #f6f7f7 !important;
+  color: #000 !important;
+}
+.gsfrm-free .gsc-success {
+  background: #e6f4ea;
+  color: #1e7e34;
+}
+.gsfrm-free .gsc-warning {
+  background: #fff4e5;
+  color: #856404;
+}
+.gsfrm-free .gsc-error {
+  background: #fdecea;
+  color: #b02a37;
+}
+/* Base style for error code badge */
+.gsfrm-free .sb-error-code {
+  display: inline-block;
+  padding: 0px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 17px;
+  border: 1px solid transparent;
+  background: #f3f4f6;
+  color: #111827;
+}
+/* 2xx – Success (Green) */
+.gsfrm-free .sb-error-code[data-code^="2"] {
+  border-color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.15);
+  color: #166534;
+}
+/* 3xx – Redirect / Info (Blue) */
+.gsfrm-free .sb-error-code[data-code^="3"] {
+  border-color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.15);
+  color: #1e40af;
+}
+/* 4xx – Client Error (Amber / Orange) */
+.gsfrm-free .sb-error-code[data-code^="4"] {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.18);
+  color: #92400e;
+}
+/* 5xx – Server Error (Red) */
+.gsfrm-free .sb-error-code[data-code^="5"] {
+  border-color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.16);
+  color: #7f1d1d;
+}
+/* 401 / 403 – Auth related */
+.gsfrm-free .sb-error-code[data-code="401"],
+.gsfrm-free .sb-error-code[data-code="403"] {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.18);
+  color: #92400e;
+}
+/* 404 – Not Found (still client error) */
+.gsfrm-free .sb-error-code[data-code="404"] {
+  border-color: #f97316;
+  background-color: rgba(249, 115, 22, 0.18);
+  color: #9a3412;
+}
+/* 500+ – Hard server crash */
+.gsfrm-free .sb-error-code[data-code="500"],
+.gsfrm-free .sb-error-code[data-code="502"],
+.gsfrm-free .sb-error-code[data-code="503"] {
+  border-color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.16);
+  color: #7f1d1d;
+}
+/*End Integration Debug LOG */
+/***End Extra CSS***/
+
+.gsfrm-free .gsc-modal-title {
+  line-height: 1.3;
+}
+
+
+ .gsfrm-free .gform-settings-field__header-undot {
+    margin: 30px 0 0px 0;
+    padding: 0px 0 0px;
+    display: block;
+    width: 100%;
+    position: relative;
+}
+.gsfrm-free .font-size-14{
+	font-size:14px !important;
+}
+
+.gsfrm-free .font-size-18{
+	font-size:18px !important;
+}
+
+.gsfrm-free .formnator-to-gsheet {
+    background: #f1f5f9;
+}
+
+.gsfrm-free  button.add_field_choice.circle-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #374151;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
