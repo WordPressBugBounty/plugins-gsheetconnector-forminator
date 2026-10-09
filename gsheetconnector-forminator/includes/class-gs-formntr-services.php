@@ -92,18 +92,24 @@ class GS_FORMNTR_Service
 
                     $group_labels[$item->slug] = $item->raw['field_label'];
                 }
+            } // ADD: collect "Other" texts (custom-radio-1 => text)
+            $custom_other = array();
+            foreach ($field_data_array as $cv) {
+                if (isset($cv['name']) && strpos($cv['name'], 'custom-') === 0 && is_scalar($cv['value'] ?? null)) {
+                    $custom_other[substr($cv['name'], 7)] = $cv['value'];   // "radio-1" => "radio others"
+                }
             }
-
-
-          
-
 
             foreach ($field_data_array as $key => $value) {
 
                 $field_value = "";
+                // ADD: the "Other" text is merged into its parent field, so skip it here
+                if (isset($value['name']) && strpos($value['name'], 'custom-') === 0) {
+                    continue;
+                }
                 $field_label = (isset($form_field_label[$value['name']]) && $form_field_label[$value['name']] != "")
-                ? $form_field_label[$value['name']]
-                : $value['name'];
+                    ? $form_field_label[$value['name']]
+                    : $value['name'];
 
                 if (
                     isset($value['name']) &&
@@ -111,15 +117,15 @@ class GS_FORMNTR_Service
                 ) {
 
                     $calc_value = is_array($value['value'])
-                    ? ($value['value']['formatting_result'] ?? implode(',', $value['value']))
-                    : $value['value'];
+                        ? ($value['value']['formatting_result'] ?? implode(',', $value['value']))
+                        : $value['value'];
 
-                  // calculation-5-2 => calculation-5
+                    // calculation-5-2 => calculation-5
                     $parent_slug = preg_replace('/-\d+$/', '', $value['name']);
 
                     $field_label = $form_field_label[$parent_slug]
-                    ?? $form_field_label[$value['name']]
-                    ?? $parent_slug;
+                        ?? $form_field_label[$value['name']]
+                        ?? $parent_slug;
 
                     if (!isset($grouped_subject[$field_label])) {
                         $grouped_subject[$field_label] = array();
@@ -156,19 +162,26 @@ class GS_FORMNTR_Service
                     ) {
 
                         $field_value = is_array($value['value'])
-                        ? implode(', ', $value['value'])
-                        : $value['value'];
+                            ? implode(', ', $value['value'])
+                            : $value['value'];
                     } else {
 
                         $field_value = is_array($value['value'])
-                        ? implode(', ', $value['value'])
-                        : $value['value'];
+                            ? implode(', ', $value['value'])
+                            : $value['value'];
                     }
 
                     if (!isset($grouped_subject[$label])) {
                         $grouped_subject[$label] = array();
                     }
-
+                    // ADD: Other value support
+                    if (isset($value['field_type']) && in_array($value['field_type'], ['radio', 'checkbox', 'select'], true)) {
+                        $has_other = false;
+                        $other_text = $this->resolve_choice_value($value['value'], $value['field_array']['options'] ?? array(), $has_other, $this->get_other_text($value, $custom_other));
+                        if ($has_other) {
+                            $field_value = $other_text;
+                        }
+                    }
                     $grouped_subject[$label][] = $field_value;
 
                     continue;
@@ -257,11 +270,19 @@ class GS_FORMNTR_Service
                         }
                     } else {
                         $field_value = isset($value['value']['formatting_result'])
-                        ? $value['value']['formatting_result']
-                        : implode(',', $value['value']);
+                            ? $value['value']['formatting_result']
+                            : implode(',', $value['value']);
                     }
                 } else {
                     $field_value = $value['value'];
+                }
+                // ADD: Other value support
+                if (isset($value['field_type']) && in_array($value['field_type'], ['radio', 'checkbox', 'select'], true)) {
+                    $has_other = false;
+                    $other_text = $this->resolve_choice_value($value['value'], $value['field_array']['options'] ?? array(), $has_other, $this->get_other_text($value, $custom_other));
+                    if ($has_other) {
+                        $field_value = $other_text;
+                    }
                 }
 
                 if (isset($field_value) && (strpos($field_value, '+') === 0 || strpos($field_value, '=') === 0)) {
@@ -275,7 +296,7 @@ class GS_FORMNTR_Service
 
             if (!empty($grouped_subject)) {
 
-         
+
                 $subject_parts = array();
 
                 foreach ($grouped_subject as $label => $values) {
@@ -354,7 +375,56 @@ class GS_FORMNTR_Service
         }
         return $field_data_array;
     }
+    /**
+     * Get the text typed in the "Other" input of a field.
+     */
 
+    private function get_other_text($value, $custom_other)
+    {
+        $name = $value['name'] ?? '';
+        return isset($custom_other[$name]) ? (string) $custom_other[$name] : '';
+    }
+
+    /**
+     * redio,select
+     *
+     * @since 1.0.15
+     */
+
+    private function resolve_choice_value($value, $options, &$has_other = false, $other_text = '')
+    {
+        $selected = is_array($value) ? $value : array($value);
+
+        $map = array();
+        if (is_array($options)) {
+            foreach ($options as $option) {
+                if (isset($option['value'])) {
+                    $map[(string) $option['value']] = $option['label'] ?? $option['value'];
+                }
+            }
+        }
+
+        $result = array();
+        foreach ($selected as $v) {
+            if (!is_scalar($v) || $v === '') {
+                continue;
+            }
+            $lower = strtolower(trim((string) $v));
+
+            if ($lower === 'custom_option' || $lower === 'other') {
+                // "Other" option selected
+                $result[] = $other_text !== '' ? 'Other: ' . $other_text : 'Other';
+                $has_other = true;
+            } elseif (isset($map[(string) $v])) {
+                $result[] = $map[(string) $v];
+            } else {
+                $result[] = 'Other: ' . $v;
+                $has_other = true;
+            }
+        }
+
+        return implode(', ', $result);
+    }
     /**
      * Deleting Feed.
      *
@@ -366,8 +436,8 @@ class GS_FORMNTR_Service
         try {
             check_ajax_referer('frmntr-gs-ajax-nonce', 'security');
             $feedId = isset($_POST['feed_id'])
-            ? intval(sanitize_text_field(wp_unslash($_POST['feed_id'])))
-            : 0;
+                ? intval(sanitize_text_field(wp_unslash($_POST['feed_id'])))
+                : 0;
 
 
 
@@ -424,7 +494,7 @@ class GS_FORMNTR_Service
 
 
 
-             
+
                 // nonce check
                 if (
                     !isset($_POST['frmntr-form-gs-ajax-nonce']) ||
@@ -533,12 +603,12 @@ class GS_FORMNTR_Service
 
                 // Sanitize input
                 $feed_name = isset($_POST['feed_name'])
-                ? sanitize_text_field(wp_unslash($_POST['feed_name']))
-                : '';
+                    ? sanitize_text_field(wp_unslash($_POST['feed_name']))
+                    : '';
 
                 $form_id = isset($_GET['form_id'])
-                ? intval(sanitize_text_field(wp_unslash($_GET['form_id'])))
-                : '';
+                    ? intval(sanitize_text_field(wp_unslash($_GET['form_id'])))
+                    : '';
 
                 if ($form_id != "") {
                     if (GS_FORMNTR_Feed_Store::name_exists($form_id, $feed_name)) {
@@ -573,7 +643,7 @@ class GS_FORMNTR_Service
     {
         $feed_data = array();
         try {
-            $form_id = isset($_GET['form_id']) ? intval(wp_unslash($_GET['form_id'])) : 0;// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $form_id = isset($_GET['form_id']) ? intval(wp_unslash($_GET['form_id'])) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $feed_data = GS_FORMNTR_Feed_Store::get_for_form($form_id);
         } catch (Exception $e) {
             GS_FORMNTR_Free_Utility::frmgs_debug_log($e->getMessage());
@@ -597,7 +667,7 @@ class GS_FORMNTR_Service
         try {
             global $wpdb;
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching -- form list must reflect current post state (newly created/edited forms); caching risks showing a stale list.
-            $forms = $wpdb->get_results(// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            $forms = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $wpdb->prepare(
                     "SELECT * FROM {$wpdb->posts}
                     WHERE post_type = %s

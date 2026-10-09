@@ -1,12 +1,12 @@
 === GSheetConnector – Forminator Google Sheets Connector, Export Forminator Submissions ===
-Contributors: westerndeal, abdullah17, gsheetconnector
+Contributors: westerndeal, abdullah17
 Donate link: https://www.paypal.me/WesternDeal
 Author URL: https://www.gsheetconnector.com/
 Tags: forminator, forminator google sheet, forminator forms google sheet, google sheet forminator, wordpress google sheet
 Requires at least: 5.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,10 @@ Enjoy!
 [FREE VERSIONS CAN BE DOWNLOADED FROM HERE](https://profiles.wordpress.org/westerndeal/#content-plugins)
 
 == Changelog ==
+
+= 2.0.1 (09-10-2026) =
+- Updated: Updated Freemius integration code and related files.
+- Fixed: Resolved an issue where the "Other" values for Radio, Checkbox, and Select fields in Forminator Forms were not being saved correctly in Google Sheets.
 
 =  2.0.0 (24-09-2026) =
 - Added: Introduced a refreshed and more intuitive user interface for an improved user experience.

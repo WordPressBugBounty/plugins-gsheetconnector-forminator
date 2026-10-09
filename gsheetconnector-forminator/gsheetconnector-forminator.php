@@ -6,7 +6,7 @@
  * Description: Send your Forminator Forms data to your Google Sheets spreadsheet.
  * Author: GSheetConnector
  * Author URI: https://www.gsheetconnector.com/
- * Version: 2.0.0
+ * Version: 2.0.1
  * Text Domain: gsheetconnector-forminator
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -22,8 +22,8 @@ if (GS_FORMNTR_Init::gscfrmn_is_pugin_active('GS_FORMNTR_Init_PRO')) {
     return;
 }
 
-define('GS_FORMNTR_VERSION', '2.0.0');
-define('GS_FORMNTR_DB_VERSION', '2.0.0');
+define('GS_FORMNTR_VERSION', '2.0.1');
+define('GS_FORMNTR_DB_VERSION', '2.0.1');
 define('GS_FORMNTR_ROOT', dirname(__FILE__));
 define('GS_FORMNTR_URL', plugins_url('/', __FILE__));
 define('GS_FORMNTR_BASE_FILE', basename(dirname(__FILE__)) . '/gsheetconnector-forminator.php');
@@ -53,19 +53,19 @@ if (function_exists('is_plugin_active') && is_plugin_active('gsheetconnector-for
 
                 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Freemius SDK boilerplate global paired with the gfff_fs() accessor; standard Freemius-generated naming convention.
                 $gfff_fs = fs_dynamic_init(array(
-                    'id' => '13370',
-                    'slug' => 'gsheetconnector-for-forminator-forms',
-                    'type' => 'plugin',
-                    'public_key' => 'pk_bc410aed4ec4f870a557038234458',
-                    'is_premium' => false,
-                    'has_addons' => false,
-                    'has_paid_plans' => false,
-                    'is_org_compliant' => true,
-                    'menu' => array(
-                        'slug' => 'gsheetconnector-for-forminator-forms',
-                        'first-path' => (!is_multisite() ? 'admin.php?page=formntr-gsheet-config' : 'plugins.php'),
-                        'account' => false,
-                        'support' => false,
+                    'id'                  => '13370',
+                    'slug'                => 'gsheetconnector-for-forminator-forms',
+                    'type'                => 'plugin',
+                    'public_key'          => 'pk_bc410aed4ec4f870a557038234458',
+                    'is_premium'          => false,
+                    'has_addons'          => false,
+                    'has_paid_plans'      => false,
+                    'is_org_compliant'    => true,
+                    'menu'                => array(
+                        'slug'           => 'gsheetconnector-for-forminator-forms',
+                        'first-path'     => 'admin.php?page=formntr-gsheet-config',
+                        'account'        => false,
+                        'support'        => false,
                     ),
                 ));
             }
@@ -797,23 +797,23 @@ class GS_FORMNTR_Init
     }
 
     /**
-* Plugin row meta.
-*
-* Adds row meta links to the plugin list table
-*/
-public function plugin_row_meta($plugin_meta, $plugin_file)
-{
-  if (GS_FORMNTR_BASE_NAME === $plugin_file) {
-   $row_meta = [
-    'docs' => '<a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector" target="_blank" aria-label="' . esc_attr(esc_html__('View Documentation', 'gsheetconnector-forminator')) . '" target="_blank">' . esc_html__('Docs', 'gsheetconnector-forminator') . '</a>',
-    'ideo' => '<a href="https://wordpress.org/support/plugin/gsheetconnector-forminator/" aria-label="' . esc_attr(esc_html__('Get Support', 'gsheetconnector-forminator')) . '" target="_blank">' . esc_html__('Support', 'gsheetconnector-forminator') . '</a>',
-  ];
+     * Plugin row meta.
+     *
+     * Adds row meta links to the plugin list table
+     */
+    public function plugin_row_meta($plugin_meta, $plugin_file)
+    {
+        if (GS_FORMNTR_BASE_NAME === $plugin_file) {
+            $row_meta = [
+                'docs' => '<a href="https://www.gsheetconnector.com/docs/forminator-forms-gsheetconnector" target="_blank" aria-label="' . esc_attr(esc_html__('View Documentation', 'gsheetconnector-forminator')) . '" target="_blank">' . esc_html__('Docs', 'gsheetconnector-forminator') . '</a>',
+                'ideo' => '<a href="https://wordpress.org/support/plugin/gsheetconnector-forminator/" aria-label="' . esc_attr(esc_html__('Get Support', 'gsheetconnector-forminator')) . '" target="_blank">' . esc_html__('Support', 'gsheetconnector-forminator') . '</a>',
+            ];
 
-  $plugin_meta = array_merge($plugin_meta, $row_meta);
-}
+            $plugin_meta = array_merge($plugin_meta, $row_meta);
+        }
 
-return $plugin_meta;
-}
+        return $plugin_meta;
+    }
 }
 // Initialize the google sheet connector class
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
